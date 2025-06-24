@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>modulos.html</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Chakra Petch', sans-serif;
+            background-color: #0d0c1d;
+            color: #d0d0d0;
+        }
+        .font-orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+        .neon-text-cyan {
+            color: #00e5ff;
+            text-shadow: 0 0 5px #00e5ff, 0 0 10px #00e5ff;
+        }
+         .neon-text-pink {
+            color: #ff00ff;
+            text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff;
+        }
+        .cyber-border {
+            border: 2px solid #00e5ff;
+            box-shadow: 0 0 15px #00e5ff, inset 0 0 15px #00e5ff;
+        }
+        .module-content {
+            /* Se elimina 'display: none;' para permitir el cálculo de altura y la transición */
+            transition: max-height 0.5s ease-in-out;
+            overflow: hidden;
+            max-height: 0;
+        }
+        .module-header svg {
+            transition: transform 0.3s ease;
+        }
+        .module-header.active svg {
+            transform: rotate(180deg);
+        }
+        .sub-item {
+            color: #a0a0b0;
+            padding-left: 1rem;
+            position: relative;
+        }
+        .sub-item::before {
+            content: '>>';
+            position: absolute;
+            left: -0.5rem;
+            top: 0;
+            color: #ff00ff;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+
+    <main class="w-full max-w-4xl bg-[#131227] cyber-border rounded-lg overflow-hidden my-8 p-6 md:p-10">
+
+        <header class="text-center mb-10">
+            <h1 class="font-orbitron text-3xl md:text-4xl font-bold neon-text-cyan mb-2">PROGRAMA DE ESTUDIO</h1>
+            <h2 class="font-orbitron text-xl md:text-2xl text-white">TALLER DE INTELIGENCIA ARTIFICIAL</h2>
+            <p class="mt-4 text-lg text-gray-400">Tu camino de principiante a profesional de la IA.</p>
+        </header>
+
+        <div id="accordion-container" class="space-y-4">
+            <!-- Módulo 1 -->
+            <div class="module-item border border-pink-500/50 rounded-lg overflow-hidden">
+                <div class="module-header p-4 cursor-pointer bg-black/30 flex justify-between items-center">
+                    <h3 class="font-orbitron text-lg text-pink-400">MÓDULO 1: EL DESPERTAR DE LA IA [CONCEPTOS FUNDAMENTALES]</h3>
+                    <svg class="w-6 h-6 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+                <div class="module-content p-5 bg-black/20">
+                    <ul class="space-y-4 text-gray-300">
+                        <li><b>Tema 1: ¿Qué es la Inteligencia Artificial? (Y qué no es):</b> Desmitificando la IA. Ejemplos cotidianos (Siri, Netflix, Waze).</li>
+                        <li><b>Tema 2: Tipos de IA que nos Rodean:</b> Machine Learning, Deep Learning, IA Generativa. Una visión general sin tecnicismos.</li>
+                        <li><b>Tema 3: El Arte de Preguntar - ¿Qué es un Prompt?:</b> Cómo "hablar" con una IA. La importancia de las instrucciones claras.</li>
+                        <li><b>Tema 4: Laboratorio de Prompts (Práctico):</b> Interactuando con IAs de texto (ChatGPT, Gemini). Creación de textos y resúmenes.</li>
+                        <li><b>Tema 5: Creando Imágenes con Palabras:</b> Introducción a IAs generativas de imágenes (Midjourney, DALL-E). De la idea al arte.</li>
+                        <li><b>Tema 6: Herramientas de IA para la Vida Diaria:</b> Apps para organizar viajes, aprender idiomas y mejorar la productividad.</li>
+                        <li><b>Tema 7: La Ética y los Peligros de la IA:</b> ¿Qué son los sesgos? El problema de la "caja negra". Uso responsable.</li>
+                        <li><b>Tema 8: El Futuro es Ahora:</b> Impacto en el trabajo y la sociedad. Tu lugar en la nueva era.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Módulo 2 -->
+            <div class="module-item border border-cyan-500/50 rounded-lg overflow-hidden">
+                <div class="module-header p-4 cursor-pointer bg-black/30 flex justify-between items-center">
+                    <h3 class="font-orbitron text-lg text-cyan-400">MÓDULO 2: EL LENGUAJE DE LAS MÁQUINAS [PROGRAMACIÓN]</h3>
+                    <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+                <div class="module-content p-5 bg-black/20">
+                     <ul class="space-y-4 text-gray-300">
+                        <li><b>Tema 9: Lógica de Programación y Algoritmia:</b> Pseudocódigo, diagramas de flujo y resolución de problemas.</li>
+                        <li><b>Tema 10: Python desde Cero:</b> Entorno (Jupyter, VSCode), sintaxis, variables, tipos de datos.</li>
+                        <li><b>Tema 11: Estructuras de Control:</b> Condicionales (if/else), bucles (for/while) y control de flujo.</li>
+                        <li><b>Tema 12: Funciones y Modularidad:</b> Creación de funciones, paso de argumentos, lambdas y organización del código.</li>
+                        <li><b>Tema 13: Estructuras de Datos:</b> Listas, tuplas, diccionarios, sets y sus aplicaciones prácticas.</li>
+                        <li><b>Tema 14: Introducción a Librerías:</b> Cómo instalar y usar paquetes externos con PIP.</li>
+                        <li><b>Tema 15: NumPy - Computación Numérica:</b> Arrays multidimensionales (ndarrays), operaciones vectorizadas.</li>
+                        <li><b>Tema 16: Pandas - Manipulación de Datos:</b> Series y DataFrames. Lectura de CSVs, selección y filtrado.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Módulo 3 -->
+             <div class="module-item border border-pink-500/50 rounded-lg overflow-hidden">
+                <div class="module-header p-4 cursor-pointer bg-black/30 flex justify-between items-center">
+                    <h3 class="font-orbitron text-lg text-pink-400">MÓDULO 3: LA LÓGICA INTERNA [MATEMÁTICA Y ESTADÍSTICA]</h3>
+                    <svg class="w-6 h-6 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+                <div class="module-content p-5 bg-black/20">
+                    <ul class="space-y-4 text-gray-300">
+                        <li><b>Tema 17: Álgebra Lineal Esencial:</b> Vectores, matrices y su significado geométrico.</li>
+                        <li><b>Tema 18: Operaciones Matriciales con NumPy:</b> Producto punto, transposición, inversa.</li>
+                        <li><b>Tema 19: Cálculo para IA:</b> La intuición detrás de las derivadas y los gradientes.</li>
+                        <li><b>Tema 20: Probabilidad para Modelos:</b> Probabilidad condicional, Teorema de Bayes.</li>
+                        <li><b>Tema 21: Estadística Descriptiva:</b> Medidas (media, mediana), dispersión (varianza) y cuantiles.</li>
+                        <li><b>Tema 22: Distribuciones de Probabilidad:</b> Normal, Binomial, y su uso en modelado.</li>
+                        <li><b>Tema 23: Correlación vs. Causalidad:</b> Entendiendo la relación entre variables.</li>
+                        <li><b>Tema 24: Visualización de Datos:</b> Matplotlib y Seaborn para crear histogramas, boxplots y heatmaps.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Módulo 4 -->
+            <div class="module-item border border-cyan-500/50 rounded-lg overflow-hidden">
+                <div class="module-header p-4 cursor-pointer bg-black/30 flex justify-between items-center">
+                    <h3 class="font-orbitron text-lg text-cyan-400">MÓDULO 4: ENSEÑANDO A APRENDER [MACHINE LEARNING]</h3>
+                    <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+                <div class="module-content p-5 bg-black/20">
+                    <ul class="space-y-4 text-gray-300">
+                        <li><b>Tema 25: Intro al Aprendizaje Automático:</b> Supervisado, No Supervisado, por Refuerzo.</li>
+                        <li><b>Tema 26: Regresión Lineal y Polinómica:</b> Implementación con Scikit-Learn.</li>
+                        <li><b>Tema 27: Regresión Logística:</b> Clasificación binaria, función sigmoide.</li>
+                        <li><b>Tema 28: Árboles de Decisión y Random Forests:</b> Criterios de división (Gini, entropía).</li>
+                        <li><b>Tema 29: Support Vector Machines (SVM):</b> Hiperplanos, márgenes y el truco del kernel.</li>
+                        <li><b>Tema 30: Métricas de Evaluación:</b> Matriz de confusión, precisión, recall, F1-score, curva ROC.</li>
+                        <li><b>Tema 31: Preprocesamiento Avanzado:</b> Escalado, Codificación, Imputación de nulos.</li>
+                        <li><b>Tema 32: Optimización de Modelos:</b> Validación Cruzada, Grid Search y Random Search.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Módulo 5 -->
+             <div class="module-item border border-pink-500/50 rounded-lg overflow-hidden">
+                <div class="module-header p-4 cursor-pointer bg-black/30 flex justify-between items-center">
+                    <h3 class="font-orbitron text-lg text-pink-400">MÓDULO 5: LA MENTE PROFUNDA [DEEP LEARNING]</h3>
+                    <svg class="w-6 h-6 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+                <div class="module-content p-5 bg-black/20">
+                    <ul class="space-y-4 text-gray-300">
+                        <li><b>Tema 33: El Perceptrón y las Redes Neuronales:</b> Del modelo biológico al artificial. Backpropagation.</li>
+                        <li><b>Tema 34: Arquitectura de Redes Neuronales:</b> Capas (densa, entrada, salida), neuronas y pesos.</li>
+                        <li><b>Tema 35: TensorFlow y Keras:</b> API Secuencial y Funcional. Construcción de modelos.</li>
+                        <li><b>Tema 36: Redes Convolucionales (CNN):</b> Filtros, pooling. Clasificación de imágenes.</li>
+                        <li><b>Tema 37: Redes Recurrentes (RNN):</b> Manejo de secuencias, memoria y arquitecturas LSTM.</li>
+                        <li><b>Tema 38: Fundamentos de NLP:</b> Tokenización, lematización, stop words. Librería NLTK.</li>
+                        <li><b>Tema 39: Vectorización de Texto:</b> Bag of Words, TF-IDF, y embeddings (Word2Vec).</li>
+                        <li><b>Tema 40: Arquitectura Transformer y Attention:</b> El motor de los LLMs (BERT, GPT).</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Módulo 6 -->
+             <div class="module-item border border-cyan-500/50 rounded-lg overflow-hidden">
+                <div class="module-header p-4 cursor-pointer bg-black/30 flex justify-between items-center">
+                    <h3 class="font-orbitron text-lg text-cyan-400">MÓDULO 6: DEL CÓDIGO A LA REALIDAD [IA PROFESIONAL]</h3>
+                    <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+                <div class="module-content p-5 bg-black/20">
+                    <ul class="space-y-4 text-gray-300">
+                        <li><b>Tema 41: IA Generativa Avanzada:</b> GANs, VAEs y Modelos de Difusión.</li>
+                        <li><b>Tema 42: MLOps - Ciclo de Vida:</b> De la experimentación a la producción. Versionado con DVC.</li>
+                        <li><b>Tema 43: Contenerización con Docker:</b> Creación de imágenes para portabilidad.</li>
+                        <li><b>Tema 44: Despliegue de Modelos como APIs:</b> Uso de FastAPI para servir predicciones.</li>
+                        <li><b>Tema 45: Monitoreo y Mantenimiento:</b> Detección de "model drift" y reentrenamiento.</li>
+                        <li><b>Tema 46: Ética y Explicabilidad (XAI):</b> Justicia, sesgos y herramientas (LIME, SHAP).</li>
+                        <li><b>Tema 47: Transfer Learning:</b> Uso de modelos pre-entrenados para visión y texto.</li>
+                        <li><b>Tema 48: Proyecto Final:</b> Desarrollo de una solución completa, de la idea al prototipo.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const accordionItems = document.querySelectorAll('.module-item');
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.module-header');
+                const content = item.querySelector('.module-content');
+                header.addEventListener('click', () => {
+                    const isActive = header.classList.contains('active');
+                    
+                    // Cierra todos los demás items antes de abrir el nuevo
+                    accordionItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.querySelector('.module-header').classList.remove('active');
+                            otherItem.querySelector('.module-content').style.maxHeight = null;
+                        }
+                    });
+                    
+                    // Abre o cierra el item actual
+                    if (!isActive) {
+                        header.classList.add('active');
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    } else {
+                        header.classList.remove('active');
+                        content.style.maxHeight = null;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
