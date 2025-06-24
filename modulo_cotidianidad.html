@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulos IA Cotidiana</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Chakra Petch', sans-serif; background-color: #0d0c1d; color: #d0d0d0; }
+        .font-orbitron { font-family: 'Orbitron', sans-serif; }
+        .neon-text-cyan { color: #00e5ff; text-shadow: 0 0 5px #00e5ff, 0 0 10px #00e5ff; }
+        .neon-text-pink { color: #ff00ff; text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff; }
+        .cyber-border { border: 2px solid #00e5ff; box-shadow: 0 0 15px #00e5ff, inset 0 0 15px #00e5ff; }
+        .module-content { transition: max-height 0.4s ease; overflow: hidden; max-height: 0; }
+        .module-header svg { transition: transform 0.3s ease; }
+        .module-header.active svg { transform: rotate(180deg); }
+        .sub-item { color: #a0a0b0; padding-left: 1rem; position: relative; }
+        .sub-item::before { content: '>>'; position: absolute; left: -0.5rem; top: 0; color: currentColor; font-size: 0.8em; }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+    <main class="w-full max-w-4xl bg-[#131227] cyber-border rounded-lg overflow-hidden my-8 p-6 md:p-10">
+        <header class="text-center mb-8">
+            <h1 class="font-orbitron text-3xl md:text-4xl font-bold neon-text-cyan mb-2">IA EN LO COTIDIANO</h1>
+            <h2 class="font-orbitron text-xl md:text-2xl text-white">6 Módulos • 48 Temas</h2>
+        </header>
+        <div id="accordion" class="space-y-4">
+            <!-- Módulo 1 -->
+            <div class="module-item border border-pink-500/50 rounded-lg">
+                <div class="module-header p-4 cursor-pointer bg-black/30 flex justify-between items-center">
+                    <h3 class="font-orbitron text-lg text-pink-400">MÓDULO 1: Descubrir la IA en tu día a día</h3>
+                    <svg class="w-6 h-6 text-pink-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="module-content p-5 bg-black/20">
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="sub-item">Tema 1: ¿Qué es una IA sin jerga? Analogías cotidianas.</li>
+                        <li class="sub-item">Tema 2: Prompts: tu pregunta como clave de acceso.</li>
+                        <li class="sub-item">Tema 3: Cómo formular tu primera consulta efectiva.</li>
+                        <li class="sub-item">Tema 4: Diferencias entre ChatGPT, Bard y Gemini.</li>
+                        <li class="sub-item">Tema 5: Mitos más comunes sobre la IA desmontados.</li>
+                        <li class="sub-item">Tema 6: Privacidad y datos: qué sucede con tu info.</li>
+                        <li class="sub-item">Tema 7: Prompts avanzados para tareas simples.</li>
+                        <li class="sub-item">Tema 8: Taller exprés: probar un prompt en vivo.</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Módulo 2 -->
+            <div class="module-item border border-cyan-500/50 rounded-lg">
+                <div class="module-header p-4 cursor-pointer bg-black/30 flex justify-between items-center">
+                    <h3 class="font-orbitron text-lg text-cyan-400">MÓDULO 2: IA para organizar tu rutina</h3>
+                    <svg class="w-6 h-6 text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="module-content p-5 bg-black/20">
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="sub-item">Tema 9: Planificar un viaje con IA paso a paso.</li>
+                        <li class="sub-item">Tema 10: Listas de compras inteligentes.</li>
+                        <li class="sub-item">Tema 11: Calendarios y recordatorios automáticos.</li>
+                        <li class="sub-item">Tema 12: IA para seguimiento de gastos.</li>
+                        <li class="sub-item">Tema 13: Creación de menús y recetas personalizadas.</li>
+                        <li class="sub-item">Tema 14: Organizar tu correo: filtros y respuestas.</li>
+                        <li class="sub-item">Tema 15: IA en apps de transporte y movilidad.</li>
+                        <li class="sub-item">Tema 16: Práctica: automatiza una tarea rutinaria.</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Módulo 3 -->
+            <div class="module-item border border-pink-500/50 rounded-lg">
+                <div class="module-header p-4 cursor-pointer bg-black/30 flex justify-between items-center">
+                    <h3 class="font-orbitron text-lg text-pink-400">MÓDULO 3: IA para productividad personal</h3>
+                    <svg class="w-6 h-6 text-pink-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="module-content p-5 bg-black/20">
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="sub-item">Tema 17: Resúmenes rápidos de documentos largos.</li>
+                        <li class="sub-item">Tema 18: Corrección gramatical y estilo.</li>
+                        <li class="sub-item">Tema 19: Generar ideas: lluvia de prompts.</li>
+                        <li class="sub-item">Tema 20: Escritura de emails eficientes.</li>
+                        <li class="sub-item">Tema 21: IA para tomar notas en reuniones.</li>
+                        <li class="sub-item">Tema 22: Creación de presentaciones automáticas.</li>
+                        <li class="sub-item">Tema 23: Traducción instantánea y matices.</li>
+                        <li class="sub-item">Tema 24: Práctica: mejora un texto propio con IA.</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Módulo 4 -->
+            <div class="module-item border border-cyan-500/50 rounded-lg">
+                <div class="module-header p-4 cursor-pointer bg-black/30 flex justify-between items-center">
+                    <h3 class="font-orbitron text-lg text-cyan-400">MÓDULO 4: IA creativa y de ocio</h3>
+                    <svg class="w-6 h-6 text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="module-content p-5 bg-black/20">
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="sub-item">Tema 25: Generar imágenes para redes sociales.</li>
+                        <li class="sub-item">Tema 26: Guiones cortos y cuentos con IA.</li>
+                        <li class="sub-item">Tema 27: Juegos de palabras y chistes automatizados.</li>
+                        <li class="sub-item">Tema 28: Música y playlists personalizadas.</li>
+                        <li class="sub-item">Tema 29: Diseño básico de posters y flyers.</li>
+                        <li class="sub-item">Tema 30: Planificación de eventos y sorpresas.</li>
+                        <li class="sub-item">Tema 31: Edición rápida de fotos y filtros.</li>
+                        <li class="sub-item">Tema 32: Práctica: crea un proyecto creativo con IA.</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Módulo 5 -->
+            <div class="module-item border border-pink-500/50 rounded-lg">
+                <div class="module-header p-4 cursor-pointer bg-black/30 flex justify-between items-center">
+                    <h3 class="font-orbitron text-lg text-pink-400">MÓDULO 5: IA en comunicación y redes</h3>
+                    <svg class="w-6 h-6 text-pink-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="module-content p-5 bg-black/20">
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="sub-item">Tema 33: Chatbots para atención diaria.</li>
+                        <li class="sub-item">Tema 34: Moderación y limpieza de comentarios.</li>
+                        <li class="sub-item">Tema 35: Generar captions y hashtags efectivos.</li>
+                        <li class="sub-item">Tema 36: Programar publicaciones automáticas.</li>
+                        <li class="sub-item">Tema 37: Analizar feedback y métricas básicas.</li>
+                        <li class="sub-item">Tema 38: Personalizar respuestas de clientes.</li>
+                        <li class="sub-item">Tema 39: IA para newsletters y boletines.</li>
+                        <li class="sub-item">Tema 40: Práctica: monta un mini flujo de redes con IA.</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Módulo 6 -->
+            <div class="module-item border border-cyan-500/50 rounded-lg">
+                <div class="module-header p-4 cursor-pointer bg-black/30 flex justify-between items-center">
+                    <h3 class="font-orbitron text-lg text-cyan-400">MÓDULO 6: Trucos, trucos y ética</h3>
+                    <svg class="w-6 h-6 text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="module-content p-5 bg-black/20">
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="sub-item">Tema 41: Mitos falsos sobre IA doméstica.</li>
+                        <li class="sub-item">Tema 42: Trucos para mejorar resultados de prompts.</li>
+                        <li class="sub-item">Tema 43: Comparativa rápida de plataformas IA.</li>
+                        <li class="sub-item">Tema 44: Costos, suscripciones y versiones gratuitas.</li>
+                        <li class="sub-item">Tema 45: Filtros de contenido y seguridad.</li>
+                        <li class="sub-item">Tema 46: Ética en uso diario y consentimiento.</li>
+                        <li class="sub-item">Tema 47: Mantenerte actualizado sin abrumarte.</li>
+                        <li class="sub-item">Tema 48: Proyecto final: tu asistente IA personal.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        document.querySelectorAll('.module-item').forEach(item => {
+            const header = item.querySelector('.module-header');
+            const content = item.querySelector('.module-content');
+            header.addEventListener('click', () => {
+                const active = header.classList.contains('active');
+                document.querySelectorAll('.module-header.active').forEach(h => {
+                    h.classList.remove('active');
+                    h.nextElementSibling.style.maxHeight = null;
+                });
+                if (!active) {
+                    header.classList.add('active');
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
