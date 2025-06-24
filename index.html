@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAELAFICHA IA - Inicio</title>
+    <title>flyerwp.html</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,78 +12,222 @@
         body {
             font-family: 'Chakra Petch', sans-serif;
             background-color: #0d0c1d;
-            color: #d0d0d0;
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
+            padding: 1rem;
         }
         .font-orbitron {
             font-family: 'Orbitron', sans-serif;
         }
-        .neon-text-cyan {
-            color: #00e5ff;
-            text-shadow: 0 0 5px #00e5ff, 0 0 15px #00e5ff, 0 0 30px #00e5ff;
-        }
         .neon-text-pink {
-            color: #ff00ff;
-            text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff;
+            text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+        }
+        .neon-text-cyan {
+            text-shadow: 0 0 5px #00e5ff, 0 0 10px #00e5ff, 0 0 20px #00e5ff;
         }
         .cyber-border {
             border: 2px solid #00e5ff;
             box-shadow: 0 0 15px #00e5ff, inset 0 0 15px #00e5ff;
         }
-        .cyber-button {
-            background-color: transparent;
-            border: 2px solid #ff00ff;
-            color: #ff00ff;
-            padding: 0.75rem 1.5rem;
-            font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 10px #ff00ff;
+
+        /* --- Contenedor con efecto glitch --- */
+        .glitch-container {
+            position: relative;
+            overflow: hidden;
         }
-        .cyber-button:hover {
-            background-color: #ff00ff;
-            color: #0d0c1d;
-            box-shadow: 0 0 25px #ff00ff;
+
+        .glitch-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0d0c1d;
+            animation: glitch-bg 3s steps(1) infinite;
+        }
+        
+        .glitch-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #131227;
+            box-shadow: 0 0 10px #ff00ff;
+            animation: glitch-scanlines 2s steps(4) infinite;
+        }
+
+        @keyframes glitch-bg {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 0.2; }
+        }
+        
+        @keyframes glitch-scanlines {
+            0% { clip-path: inset(5% 0 90% 0); }
+            20% { clip-path: inset(80% 0 5% 0); }
+            40% { clip-path: inset(30% 0 40% 0); }
+            60% { clip-path: inset(90% 0 1% 0); }
+            80% { clip-path: inset(10% 0 75% 0); }
+            100% { clip-path: inset(5% 0 90% 0); }
+        }
+
+        /* --- Título con efecto glitch --- */
+        .glitch-title {
+            position: relative;
+        }
+        .glitch-title::before, .glitch-title::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #131227;
+        }
+        .glitch-title::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00ff;
+            animation: glitch-anim-1 2.5s infinite linear reverse;
+        }
+        .glitch-title::after {
+            left: -2px;
+            text-shadow: -2px 0 #00e5ff;
+            animation: glitch-anim-2 2.5s infinite linear reverse;
+        }
+
+        @keyframes glitch-anim-1 {
+            0%, 12%, 18%, 22%, 64%, 68%, 75%, 100% { clip-path: inset(40% 0 41% 0); }
+            14% { clip-path: inset(21% 0 74% 0); } 20% { clip-path: inset(93% 0 1% 0); }
+            66% { clip-path: inset(3% 0 90% 0); } 77% { clip-path: inset(0 0 100% 0); }
+        }
+        @keyframes glitch-anim-2 {
+            0%, 10%, 17%, 25%, 55%, 59%, 70%, 100% { clip-path: inset(65% 0 30% 0); }
+            14% { clip-path: inset(45% 0 50% 0); } 20% { clip-path: inset(10% 0 88% 0); }
+            57% { clip-path: inset(90% 0 5% 0); } 72% { clip-path: inset(0 0 100% 0); }
+        }
+        
+        /* Animación para el borde de la oferta */
+        @keyframes pulse-border-anim {
+          0% { border-color: #ff00ff; box-shadow: 0 0 8px #ff00ff; }
+          50% { border-color: #ff80ff; box-shadow: 0 0 20px #ff00ff; }
+          100% { border-color: #ff00ff; box-shadow: 0 0 8px #ff00ff; }
+        }
+        .animate-pulse-border {
+          animation: pulse-border-anim 2s infinite;
         }
     </style>
 </head>
-<body class="p-4">
+<body>
 
-    <main class="w-full max-w-3xl bg-[#131227] cyber-border rounded-lg text-center p-8 md:p-12">
-
-        <h1 class="font-orbitron text-4xl md:text-6xl font-bold neon-text-cyan">CAELAFICHA IA</h1>
+    <!-- Contenedor vertical optimizado para vista móvil -->
+    <main class="w-full max-w-sm bg-[#131227] cyber-border rounded-lg overflow-hidden my-8 glitch-container">
         
-        <p class="mt-4 text-xl md:text-2xl text-white">
-            Empezás desde <span class="neon-text-pink">cero</span>, terminás usando IA como un <span class="neon-text-pink">profesional</span>.
-        </p>
+        <div class="relative z-10">
+            <!-- Header con logo -->
+            <header class="p-6 text-center bg-black/30">
+                <!-- Logo SVG Cerebro-Chip Minimalista -->
+                <div class="w-24 h-24 mx-auto mb-4">
+                     <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <filter id="neon-glow" x="-50%" y="-50%" width="200%" height="200%">
+                                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        <!-- Chip -->
+                        <rect x="50" y="50" width="100" height="100" rx="10" fill="#1a1a2e" stroke="#00e5ff" stroke-width="3"/>
+                        <!-- Pines del chip -->
+                        <g stroke="#00e5ff" stroke-width="3">
+                            <line x1="30" y1="70" x2="50" y2="70"/> <line x1="30" y1="90" x2="50" y2="90"/> <line x1="30" y1="110" x2="50" y2="110"/> <line x1="30" y1="130" x2="50" y2="130"/>
+                            <line x1="150" y1="70" x2="170" y2="70"/> <line x1="150" y1="90" x2="170" y2="90"/> <line x1="150" y1="110" x2="170" y2="110"/> <line x1="150" y1="130" x2="170" y2="130"/>
+                        </g>
+                        <!-- Cerebro minimalista esquemático -->
+                        <path d="M 100,75 C 85,75 80,85 80,95 C 80,105 85,115 100,115 M 100,75 C 115,75 120,85 120,95 C 120,105 115,115 100,115 M 90,115 L 90,125 M 110,115 L 110,125" stroke="#ff00ff" stroke-width="4" fill="none" stroke-linecap="round" filter="url(#neon-glow)"/>
+                    </svg>
+                </div>
+                <h1 class="font-orbitron text-3xl font-bold text-white glitch-title" data-text="TALLER DE I.A.">TALLER DE I.A.</h1>
+            </header>
 
-        <!-- Stats Section -->
-        <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-            <div class="bg-black/40 p-4 rounded-md border border-cyan-700">
-                <span class="font-orbitron text-3xl font-bold text-white">1</span>
-                <p class="text-sm font-medium text-cyan-300">AÑO DE DURACIÓN</p>
-            </div>
-            <div class="bg-black/40 p-4 rounded-md border border-cyan-700">
-                <span class="font-orbitron text-3xl font-bold text-white">6</span>
-                <p class="text-sm font-medium text-cyan-300">MÓDULOS</p>
-            </div>
-            <div class="bg-black/40 p-4 rounded-md border border-cyan-700">
-                <span class="font-orbitron text-3xl font-bold text-white">48</span>
-                <p class="text-sm font-medium text-cyan-300">TEMAS PRÁCTICOS</p>
-            </div>
-        </div>
+            <div class="p-6">
+                <!-- Propuesta de Valor -->
+                <section class="mb-6 text-center">
+                    <h2 class="text-xl font-bold text-white">Empezás como <span class="text-pink-400 neon-text-pink">principiante</span>, terminás como <span class="text-pink-400 neon-text-pink">profesional</span>.</h2>
+                </section>
+                
+                <!-- Estructura -->
+                <section class="mb-6">
+                     <div class="grid grid-cols-3 gap-2 text-center">
+                        <div class="bg-black/40 p-3 rounded-md border border-cyan-700">
+                            <span class="font-orbitron text-2xl font-bold text-white">12</span>
+                            <p class="text-xs font-medium text-cyan-300">MESES</p>
+                        </div>
+                        <div class="bg-black/40 p-3 rounded-md border border-cyan-700">
+                            <span class="font-orbitron text-2xl font-bold text-white">6</span>
+                            <p class="text-xs font-medium text-cyan-300">MÓDULOS</p>
+                        </div>
+                        <div class="bg-black/40 p-3 rounded-md border border-cyan-700">
+                            <span class="font-orbitron text-2xl font-bold text-white">48</span>
+                            <p class="text-xs font-medium text-cyan-300">TEMAS</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Metodología -->
+                <section class="mb-6 text-sm text-gray-300 space-y-3">
+                     <div class="flex items-center gap-3">
+                        <span class="text-cyan-400 font-bold">[//]</span>
+                        <p>1 Prueba de validación por Módulo.</p>
+                     </div>
+                     <div class="flex items-center gap-3">
+                        <span class="text-cyan-400 font-bold">[//]</span>
+                        <p>1 Trabajo práctico de aplicación por Tema.</p>
+                     </div>
+                </section>
+                
+                 <!-- Modalidades -->
+                <section class="mb-6 text-center">
+                    <div class="inline-flex items-center gap-4 rounded-md p-2 bg-black/40 border border-pink-500/50">
+                        <span class="text-pink-400 font-semibold">PRESENCIAL</span>
+                        <span class="text-gray-500">|</span>
+                        <span class="text-pink-400 font-semibold">VIRTUAL</span>
+                    </div>
+                </section>
 
-        <!-- Links Section -->
-        <div class="mt-12 flex flex-col md:flex-row justify-center items-center gap-6">
-            <a href="modulos.html" class="cyber-button rounded-md w-full md:w-auto">
-                Ver Programa Completo
-            </a>
-            <a href="flyerwp.html" class="cyber-button rounded-md w-full md:w-auto">
-                Flyer para Compartir
-            </a>
+                <!-- Arancel con Oferta -->
+                <section class="mb-6 text-center p-4 rounded-md border-2 border-pink-500 relative overflow-hidden animate-pulse-border bg-black/30">
+                    <div class="absolute -top-1 -left-1 w-20 h-20 flex items-center justify-center">
+                       <div class="w-full h-full bg-pink-500 text-black font-bold text-sm flex items-center justify-center transform -rotate-45 -translate-x-6 -translate-y-6">
+                           <span>-30%</span>
+                       </div>
+                    </div>
+                    <h3 class="font-orbitron text-lg font-bold text-pink-400">OFERTA LANZAMIENTO</h3>
+                    <p class="text-gray-500 text-xl my-1 line-through">ARS $95.000</p>
+                    <p class="font-orbitron text-5xl font-bold text-white neon-text-cyan">ARS $66.500</p>
+                    <p class="font-semibold text-pink-400 mt-1">/mes los primeros 3 meses</p>
+                </section>
+                
+                <!-- Contacto -->
+                <section class="mt-8">
+                    <div class="flex flex-col gap-4">
+                         <a href="https://wa.me/5491127652386" target="_blank" class="w-full text-center p-3 rounded-md transition-all duration-300 bg-cyan-400/80 text-black font-bold hover:bg-cyan-300 hover:shadow-lg hover:shadow-cyan-400/50 flex items-center justify-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.1-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943s-.182-.133-.38-.232z"/></svg>
+                            Contactar por WhatsApp
+                        </a>
+                        <a href="mailto:caelaficha.ia@gmail.com" class="w-full text-center p-3 rounded-md transition-all duration-300 bg-pink-500/80 text-white font-bold hover:bg-pink-500 hover:shadow-lg hover:shadow-pink-500/50 flex items-center justify-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/></svg>
+                            Enviar Correo
+                        </a>
+                    </div>
+                </section>
+            </div>
         </div>
     </main>
 
