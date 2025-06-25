@@ -3,163 +3,478 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Módulos IA Cotidiana</title>
+    <title>IA EN LO COTIDIANO - Cronograma 2025/2026</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Chakra Petch', sans-serif; background-color: #0d0c1d; color: #d0d0d0; }
+        :root {
+            --neon-cyan: #00e5ff;
+            --neon-pink: #ff00ff;
+            --neon-yellow: #ffff00;
+            --neon-green: #00ff00;
+            --dark-bg: #0d0c1d;
+            --card-bg: #131227;
+        }
+        body { 
+            font-family: 'Chakra Petch', sans-serif; 
+            background-color: var(--dark-bg); 
+            color: #d0d0d0;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 229, 255, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 0, 255, 0.05) 0%, transparent 20%);
+        }
         .font-orbitron { font-family: 'Orbitron', sans-serif; }
-        .neon-text-cyan { color: #00e5ff; text-shadow: 0 0 5px #00e5ff, 0 0 10px #00e5ff; }
-        .neon-text-pink { color: #ff00ff; text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff; }
-        .cyber-border { border: 2px solid #00e5ff; box-shadow: 0 0 15px #00e5ff, inset 0 0 15px #00e5ff; }
-        .module-content { transition: max-height 0.4s ease; overflow: hidden; max-height: 0; }
-        .module-header svg { transition: transform 0.3s ease; }
-        .module-header.active svg { transform: rotate(180deg); }
-        .sub-item { color: #a0a0b0; padding-left: 1rem; position: relative; }
-        .sub-item::before { content: '>>'; position: absolute; left: -0.5rem; top: 0; color: currentColor; font-size: 0.8em; }
+        .neon-text-cyan { 
+            color: var(--neon-cyan); 
+            text-shadow: 0 0 5px var(--neon-cyan), 0 0 10px var(--neon-cyan); 
+        }
+        .neon-text-pink { 
+            color: var(--neon-pink); 
+            text-shadow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-pink); 
+        }
+        .neon-text-yellow { 
+            color: var(--neon-yellow); 
+            text-shadow: 0 0 5px var(--neon-yellow), 0 0 10px var(--neon-yellow); 
+        }
+        .neon-text-green { 
+            color: var(--neon-green); 
+            text-shadow: 0 0 5px var(--neon-green), 0 0 10px var(--neon-green); 
+        }
+        .cyber-border { 
+            border: 2px solid var(--neon-cyan); 
+            box-shadow: 0 0 15px var(--neon-cyan), inset 0 0 15px var(--neon-cyan); 
+        }
+        .cyber-border-pink { 
+            border: 2px solid var(--neon-pink); 
+            box-shadow: 0 0 15px var(--neon-pink), inset 0 0 15px var(--neon-pink); 
+        }
+        .module-content { 
+            transition: max-height 0.4s ease; 
+            overflow: hidden; 
+            max-height: 0; 
+        }
+        .module-header svg { 
+            transition: transform 0.3s ease; 
+        }
+        .module-header.active svg { 
+            transform: rotate(180deg); 
+        }
+        .sub-item { 
+            padding-left: 1rem; 
+            position: relative; 
+            margin-bottom: 0.5rem;
+        }
+        .sub-item::before { 
+            content: '▹'; 
+            position: absolute; 
+            left: 0; 
+            color: var(--neon-cyan); 
+        }
+        .date-badge { 
+            display: inline-block; 
+            padding: 0.15rem 0.5rem; 
+            border-radius: 4px; 
+            font-size: 0.75rem; 
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+        .tp-badge { 
+            background-color: rgba(255, 255, 0, 0.1); 
+            color: var(--neon-yellow); 
+            border: 1px solid var(--neon-yellow); 
+        }
+        .eval-badge { 
+            background-color: rgba(255, 0, 0, 0.1); 
+            color: #ff5555; 
+            border: 1px solid #ff5555; 
+        }
+        .holiday-badge { 
+            background-color: rgba(0, 255, 0, 0.1); 
+            color: var(--neon-green); 
+            border: 1px solid var(--neon-green); 
+        }
+        .progress-bar {
+            height: 6px;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink));
+            border-radius: 3px;
+            margin-top: 10px;
+        }
+        .timeline-marker {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--neon-pink);
+            top: 50%;
+            transform: translateY(-50%);
+            left: -6px;
+            z-index: 10;
+        }
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .module-card {
+            background-color: rgba(19, 18, 39, 0.8);
+            border-radius: 8px;
+            padding: 1rem;
+            border: 1px solid #2a2940;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 229, 255, 0.2);
+        }
+        .glow {
+            animation: glow 2s infinite alternate;
+        }
+        @keyframes glow {
+            from { box-shadow: 0 0 5px var(--neon-cyan), 0 0 10px var(--neon-cyan); }
+            to { box-shadow: 0 0 15px var(--neon-cyan), 0 0 20px var(--neon-cyan); }
+        }
+        .grid-highlight {
+            background: linear-gradient(45deg, rgba(0, 229, 255, 0.1), rgba(255, 0, 255, 0.1));
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        .holiday-item {
+            background-color: rgba(0, 255, 0, 0.05);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+        }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen p-4">
-    <main class="w-full max-w-4xl bg-[#131227] cyber-border rounded-lg overflow-hidden my-8 p-6 md:p-10">
-        <header class="text-center mb-8">
+<body class="flex flex-col items-center min-h-screen p-4">
+    <main class="w-full max-w-6xl bg-[#131227] cyber-border rounded-lg overflow-hidden my-8 p-6 md:p-10 glow">
+        <header class="text-center mb-10">
             <h1 class="font-orbitron text-3xl md:text-4xl font-bold neon-text-cyan mb-2">IA EN LO COTIDIANO</h1>
-            <h2 class="font-orbitron text-xl md:text-2xl text-white">6 Módulos • 48 Temas</h2>
+            <h2 class="font-orbitron text-xl md:text-2xl text-white">Programa de Estudio Práctico</h2>
+            <p class="mt-4 text-lg text-gray-400">Tu guía para integrar la IA en tu vida diaria</p>
+            
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-[#0d0c1d] p-4 rounded-lg cyber-border">
+                    <h3 class="font-orbitron text-lg neon-text-cyan mb-2">Fechas</h3>
+                    <p class="text-center">
+                        <span class="text-cyan-300 block">Inicio: 4 Ago 2025</span>
+                        <span class="text-pink-300 block mt-1">Fin: 3 Ago 2026</span>
+                    </p>
+                </div>
+                
+                <div class="bg-[#0d0c1d] p-4 rounded-lg cyber-border">
+                    <h3 class="font-orbitron text-lg neon-text-pink mb-2">Horario</h3>
+                    <p class="text-center text-cyan-300">Martes y Jueves</p>
+                    <p class="text-center text-gray-400">17:00 - 19:00</p>
+                </div>
+                
+                <div class="bg-[#0d0c1d] p-4 rounded-lg cyber-border">
+                    <h3 class="font-orbitron text-lg neon-text-yellow mb-2">Duración</h3>
+                    <p class="text-center text-cyan-300">52 semanas</p>
+                    <p class="text-center text-gray-400">(1 año académico)</p>
+                </div>
+            </div>
+            
+            <div class="mt-6 bg-[#0d0c1d] p-4 rounded-lg cyber-border-pink">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-cyan-300">Inicio: 4 Ago 2025</span>
+                    <span class="text-pink-300">Fin: 3 Ago 2026</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="h-full bg-gradient-to-r from-cyan-500 to-pink-500" style="width: 25%"></div>
+                </div>
+                <div class="mt-2 text-sm text-gray-300 flex justify-between">
+                    <span>Módulo 1</span>
+                    <span>Módulo 6</span>
+                </div>
+            </div>
         </header>
-        <div id="accordion" class="space-y-4">
-            <!-- Módulo 1 -->
-            <div class="module-item border border-pink-500/50 rounded-lg">
-                <div class="module-header p-4 cursor-pointer bg-black/30 flex justify-between items-center">
-                    <h3 class="font-orbitron text-lg text-pink-400">MÓDULO 1: Descubrir la IA en tu día a día</h3>
-                    <svg class="w-6 h-6 text-pink-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+
+        <div class="grid-highlight">
+            <h3 class="font-orbitron text-xl neon-text-cyan mb-4 text-center">Cronograma Detallado</h3>
+            <div class="module-grid">
+                <!-- Módulo 1 -->
+                <div class="module-card">
+                    <div class="module-header flex justify-between items-center cursor-pointer">
+                        <div>
+                            <h3 class="font-orbitron text-lg text-pink-400">MÓDULO 1</h3>
+                            <p class="text-cyan-300 text-sm">Descubrir la IA en tu día a día</p>
+                            <p class="text-gray-400 text-xs mt-1">5 Ago - 28 Ago 2025</p>
+                        </div>
+                        <svg class="w-6 h-6 text-pink-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                    <div class="module-content mt-3">
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li class="sub-item">T1: ¿Qué es una IA sin jerga? <span class="date-badge">5 Ago</span></li>
+                            <li class="sub-item">T2: Prompts: tu pregunta como clave <span class="date-badge">7 Ago</span></li>
+                            <li class="sub-item">T3: Primera consulta efectiva <span class="date-badge">12 Ago</span></li>
+                            <li class="sub-item">T4: Diferencias entre ChatGPT, Bard y Gemini <span class="date-badge">14 Ago</span></li>
+                            <li class="sub-item">T5: Mitos sobre la IA desmontados <span class="date-badge">19 Ago</span></li>
+                            <li class="sub-item">T6: Privacidad y datos <span class="date-badge">21 Ago</span></li>
+                            <li class="sub-item">T7: Prompts avanzados <span class="date-badge">26 Ago</span></li>
+                            <li class="sub-item tp-item">T8: Taller exprés: probar un prompt <span class="date-badge tp-badge">28 Ago</span></li>
+                            <li class="sub-item eval-item">Evaluación M1 <span class="date-badge eval-badge">1 Sep</span></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="module-content p-5 bg-black/20">
-                    <ul class="space-y-2 text-gray-300">
-                        <li class="sub-item">Tema 1: ¿Qué es una IA sin jerga? Analogías cotidianas.</li>
-                        <li class="sub-item">Tema 2: Prompts: tu pregunta como clave de acceso.</li>
-                        <li class="sub-item">Tema 3: Cómo formular tu primera consulta efectiva.</li>
-                        <li class="sub-item">Tema 4: Diferencias entre ChatGPT, Bard y Gemini.</li>
-                        <li class="sub-item">Tema 5: Mitos más comunes sobre la IA desmontados.</li>
-                        <li class="sub-item">Tema 6: Privacidad y datos: qué sucede con tu info.</li>
-                        <li class="sub-item">Tema 7: Prompts avanzados para tareas simples.</li>
-                        <li class="sub-item">Tema 8: Taller exprés: probar un prompt en vivo.</li>
-                    </ul>
+
+                <!-- Módulo 2 -->
+                <div class="module-card">
+                    <div class="module-header flex justify-between items-center cursor-pointer">
+                        <div>
+                            <h3 class="font-orbitron text-lg text-cyan-400">MÓDULO 2</h3>
+                            <p class="text-pink-300 text-sm">IA para organizar tu rutina</p>
+                            <p class="text-gray-400 text-xs mt-1">2 Sep - 25 Sep 2025</p>
+                        </div>
+                        <svg class="w-6 h-6 text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                    <div class="module-content mt-3">
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li class="sub-item">T9: Planificar un viaje con IA <span class="date-badge">2 Sep</span></li>
+                            <li class="sub-item">T10: Listas de compras inteligentes <span class="date-badge">4 Sep</span></li>
+                            <li class="sub-item">T11: Calendarios y recordatorios <span class="date-badge">9 Sep</span></li>
+                            <li class="sub-item">T12: IA para seguimiento de gastos <span class="date-badge">11 Sep</span></li>
+                            <li class="sub-item">T13: Creación de menús personalizados <span class="date-badge">16 Sep</span></li>
+                            <li class="sub-item">T14: Organizar tu correo <span class="date-badge">18 Sep</span></li>
+                            <li class="sub-item">T15: IA en transporte y movilidad <span class="date-badge">23 Sep</span></li>
+                            <li class="sub-item tp-item">T16: Automatiza una tarea rutinaria <span class="date-badge tp-badge">25 Sep</span></li>
+                            <li class="sub-item eval-item">Evaluación M2 <span class="date-badge eval-badge">29 Sep</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Vacaciones -->
+                <div class="module-card holiday-item">
+                    <div class="module-header flex justify-between items-center">
+                        <div>
+                            <h3 class="font-orbitron text-lg text-green-400">VACACIONES</h3>
+                            <p class="text-yellow-300 text-sm">Descanso académico</p>
+                            <p class="text-gray-400 text-xs mt-1">30 Sep - 6 Oct 2025</p>
+                        </div>
+                        <svg class="w-6 h-6 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                    <div class="module-content mt-3">
+                        <p class="text-center text-green-300 text-sm py-2">¡Tiempo para descansar y recargar energías!</p>
+                    </div>
+                </div>
+
+                <!-- Módulo 3 -->
+                <div class="module-card">
+                    <div class="module-header flex justify-between items-center cursor-pointer">
+                        <div>
+                            <h3 class="font-orbitron text-lg text-pink-400">MÓDULO 3</h3>
+                            <p class="text-cyan-300 text-sm">IA para productividad personal</p>
+                            <p class="text-gray-400 text-xs mt-1">7 Oct - 30 Oct 2025</p>
+                        </div>
+                        <svg class="w-6 h-6 text-pink-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                    <div class="module-content mt-3">
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li class="sub-item">T17: Resúmenes de documentos <span class="date-badge">7 Oct</span></li>
+                            <li class="sub-item">T18: Corrección gramatical y estilo <span class="date-badge">9 Oct</span></li>
+                            <li class="sub-item">T19: Generar ideas: lluvia de prompts <span class="date-badge">14 Oct</span></li>
+                            <li class="sub-item">T20: Escritura de emails eficientes <span class="date-badge">16 Oct</span></li>
+                            <li class="sub-item">T21: IA para tomar notas <span class="date-badge">21 Oct</span></li>
+                            <li class="sub-item">T22: Creación de presentaciones <span class="date-badge">23 Oct</span></li>
+                            <li class="sub-item">T23: Traducción instantánea y matices <span class="date-badge">28 Oct</span></li>
+                            <li class="sub-item tp-item">T24: Mejora un texto con IA <span class="date-badge tp-badge">30 Oct</span></li>
+                            <li class="sub-item eval-item">Evaluación M3 <span class="date-badge eval-badge">3 Nov</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Módulo 4 -->
+                <div class="module-card">
+                    <div class="module-header flex justify-between items-center cursor-pointer">
+                        <div>
+                            <h3 class="font-orbitron text-lg text-cyan-400">MÓDULO 4</h3>
+                            <p class="text-pink-300 text-sm">IA creativa y de ocio</p>
+                            <p class="text-gray-400 text-xs mt-1">4 Nov - 27 Nov 2025</p>
+                        </div>
+                        <svg class="w-6 h-6 text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                    <div class="module-content mt-3">
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li class="sub-item">T25: Generar imágenes para redes <span class="date-badge">4 Nov</span></li>
+                            <li class="sub-item">T26: Guiones cortos y cuentos con IA <span class="date-badge">6 Nov</span></li>
+                            <li class="sub-item">T27: Juegos de palabras y chistes <span class="date-badge">11 Nov</span></li>
+                            <li class="sub-item">T28: Música y playlists personalizadas <span class="date-badge">13 Nov</span></li>
+                            <li class="sub-item">T29: Diseño básico de posters <span class="date-badge">18 Nov</span></li>
+                            <li class="sub-item">T30: Planificación de eventos <span class="date-badge">20 Nov</span></li>
+                            <li class="sub-item">T31: Edición rápida de fotos <span class="date-badge">25 Nov</span></li>
+                            <li class="sub-item tp-item">T32: Crea un proyecto creativo <span class="date-badge tp-badge">27 Nov</span></li>
+                            <li class="sub-item eval-item">Evaluación M4 <span class="date-badge eval-badge">1 Dic</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Vacaciones Navidad -->
+                <div class="module-card holiday-item">
+                    <div class="module-header flex justify-between items-center">
+                        <div>
+                            <h3 class="font-orbitron text-lg text-green-400">NAVIDAD</h3>
+                            <p class="text-yellow-300 text-sm">Vacaciones</p>
+                            <p class="text-gray-400 text-xs mt-1">20 Dic 2025 - 7 Ene 2026</p>
+                        </div>
+                        <svg class="w-6 h-6 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                    <div class="module-content mt-3">
+                        <p class="text-center text-green-300 text-sm py-2">¡Felices fiestas! Regresamos en enero</p>
+                    </div>
+                </div>
+
+                <!-- Módulo 5 -->
+                <div class="module-card">
+                    <div class="module-header flex justify-between items-center cursor-pointer">
+                        <div>
+                            <h3 class="font-orbitron text-lg text-pink-400">MÓDULO 5</h3>
+                            <p class="text-cyan-300 text-sm">IA en comunicación y redes</p>
+                            <p class="text-gray-400 text-xs mt-1">8 Ene - 30 Ene 2026</p>
+                        </div>
+                        <svg class="w-6 h-6 text-pink-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                    <div class="module-content mt-3">
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li class="sub-item">T33: Chatbots para atención diaria <span class="date-badge">8 Ene</span></li>
+                            <li class="sub-item">T34: Moderación de comentarios <span class="date-badge">10 Ene</span></li>
+                            <li class="sub-item">T35: Generar captions y hashtags <span class="date-badge">15 Ene</span></li>
+                            <li class="sub-item">T36: Programar publicaciones automáticas <span class="date-badge">17 Ene</span></li>
+                            <li class="sub-item">T37: Analizar feedback y métricas <span class="date-badge">22 Ene</span></li>
+                            <li class="sub-item">T38: Personalizar respuestas <span class="date-badge">24 Ene</span></li>
+                            <li class="sub-item">T39: IA para newsletters <span class="date-badge">29 Ene</span></li>
+                            <li class="sub-item tp-item">T40: Monta un flujo de redes con IA <span class="date-badge tp-badge">30 Ene</span></li>
+                            <li class="sub-item eval-item">Evaluación M5 <span class="date-badge eval-badge">3 Feb</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Módulo 6 -->
+                <div class="module-card">
+                    <div class="module-header flex justify-between items-center cursor-pointer">
+                        <div>
+                            <h3 class="font-orbitron text-lg text-cyan-400">MÓDULO 6</h3>
+                            <p class="text-pink-300 text-sm">Trucos, ética y proyecto final</p>
+                            <p class="text-gray-400 text-xs mt-1">4 Feb - 25 Mar 2026</p>
+                        </div>
+                        <svg class="w-6 h-6 text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                    <div class="module-content mt-3">
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li class="sub-item">T41: Mitos falsos sobre IA doméstica <span class="date-badge">4 Feb</span></li>
+                            <li class="sub-item">T42: Trucos para mejorar resultados <span class="date-badge">6 Feb</span></li>
+                            <li class="sub-item">T43: Comparativa de plataformas IA <span class="date-badge">11 Feb</span></li>
+                            <li class="sub-item">T44: Costos y suscripciones <span class="date-badge">13 Feb</span></li>
+                            <li class="sub-item">T45: Filtros de contenido y seguridad <span class="date-badge">18 Feb</span></li>
+                            <li class="sub-item">T46: Ética en uso diario <span class="date-badge">20 Feb</span></li>
+                            <li class="sub-item">T47: Mantenerte actualizado <span class="date-badge">25 Feb</span></li>
+                            <li class="sub-item tp-item">T48: Proyecto final: asistente IA <span class="date-badge tp-badge">4 Mar</span></li>
+                            <li class="sub-item eval-item">Presentación proyectos <span class="date-badge eval-badge">25 Mar</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Proyecto Final -->
+                <div class="module-card" style="border: 2px solid var(--neon-yellow);">
+                    <div class="module-header flex justify-between items-center">
+                        <div>
+                            <h3 class="font-orbitron text-lg neon-text-yellow">PROYECTO FINAL</h3>
+                            <p class="text-pink-300 text-sm">Implementación completa</p>
+                            <p class="text-gray-400 text-xs mt-1">1 Abr - 3 Ago 2026</p>
+                        </div>
+                        <svg class="w-6 h-6 text-yellow-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                    <div class="module-content mt-3">
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li class="sub-item">Desarrollo del proyecto <span class="date-badge">1 Abr</span></li>
+                            <li class="sub-item">Revisiones semanales <span class="date-badge">Cada martes</span></li>
+                            <li class="sub-item">Entrega preliminar <span class="date-badge">1 Jul</span></li>
+                            <li class="sub-item">Presentación final <span class="date-badge">29 Jul</span></li>
+                            <li class="sub-item">Ceremonia de graduación <span class="date-badge">3 Ago</span></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <!-- Módulo 2 -->
-            <div class="module-item border border-cyan-500/50 rounded-lg">
-                <div class="module-header p-4 cursor-pointer bg-black/30 flex justify-between items-center">
-                    <h3 class="font-orbitron text-lg text-cyan-400">MÓDULO 2: IA para organizar tu rutina</h3>
-                    <svg class="w-6 h-6 text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                </div>
-                <div class="module-content p-5 bg-black/20">
-                    <ul class="space-y-2 text-gray-300">
-                        <li class="sub-item">Tema 9: Planificar un viaje con IA paso a paso.</li>
-                        <li class="sub-item">Tema 10: Listas de compras inteligentes.</li>
-                        <li class="sub-item">Tema 11: Calendarios y recordatorios automáticos.</li>
-                        <li class="sub-item">Tema 12: IA para seguimiento de gastos.</li>
-                        <li class="sub-item">Tema 13: Creación de menús y recetas personalizadas.</li>
-                        <li class="sub-item">Tema 14: Organizar tu correo: filtros y respuestas.</li>
-                        <li class="sub-item">Tema 15: IA en apps de transporte y movilidad.</li>
-                        <li class="sub-item">Tema 16: Práctica: automatiza una tarea rutinaria.</li>
-                    </ul>
-                </div>
-            </div>
-            <!-- Módulo 3 -->
-            <div class="module-item border border-pink-500/50 rounded-lg">
-                <div class="module-header p-4 cursor-pointer bg-black/30 flex justify-between items-center">
-                    <h3 class="font-orbitron text-lg text-pink-400">MÓDULO 3: IA para productividad personal</h3>
-                    <svg class="w-6 h-6 text-pink-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                </div>
-                <div class="module-content p-5 bg-black/20">
-                    <ul class="space-y-2 text-gray-300">
-                        <li class="sub-item">Tema 17: Resúmenes rápidos de documentos largos.</li>
-                        <li class="sub-item">Tema 18: Corrección gramatical y estilo.</li>
-                        <li class="sub-item">Tema 19: Generar ideas: lluvia de prompts.</li>
-                        <li class="sub-item">Tema 20: Escritura de emails eficientes.</li>
-                        <li class="sub-item">Tema 21: IA para tomar notas en reuniones.</li>
-                        <li class="sub-item">Tema 22: Creación de presentaciones automáticas.</li>
-                        <li class="sub-item">Tema 23: Traducción instantánea y matices.</li>
-                        <li class="sub-item">Tema 24: Práctica: mejora un texto propio con IA.</li>
-                    </ul>
-                </div>
-            </div>
-            <!-- Módulo 4 -->
-            <div class="module-item border border-cyan-500/50 rounded-lg">
-                <div class="module-header p-4 cursor-pointer bg-black/30 flex justify-between items-center">
-                    <h3 class="font-orbitron text-lg text-cyan-400">MÓDULO 4: IA creativa y de ocio</h3>
-                    <svg class="w-6 h-6 text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                </div>
-                <div class="module-content p-5 bg-black/20">
-                    <ul class="space-y-2 text-gray-300">
-                        <li class="sub-item">Tema 25: Generar imágenes para redes sociales.</li>
-                        <li class="sub-item">Tema 26: Guiones cortos y cuentos con IA.</li>
-                        <li class="sub-item">Tema 27: Juegos de palabras y chistes automatizados.</li>
-                        <li class="sub-item">Tema 28: Música y playlists personalizadas.</li>
-                        <li class="sub-item">Tema 29: Diseño básico de posters y flyers.</li>
-                        <li class="sub-item">Tema 30: Planificación de eventos y sorpresas.</li>
-                        <li class="sub-item">Tema 31: Edición rápida de fotos y filtros.</li>
-                        <li class="sub-item">Tema 32: Práctica: crea un proyecto creativo con IA.</li>
-                    </ul>
-                </div>
-            </div>
-            <!-- Módulo 5 -->
-            <div class="module-item border border-pink-500/50 rounded-lg">
-                <div class="module-header p-4 cursor-pointer bg-black/30 flex justify-between items-center">
-                    <h3 class="font-orbitron text-lg text-pink-400">MÓDULO 5: IA en comunicación y redes</h3>
-                    <svg class="w-6 h-6 text-pink-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                </div>
-                <div class="module-content p-5 bg-black/20">
-                    <ul class="space-y-2 text-gray-300">
-                        <li class="sub-item">Tema 33: Chatbots para atención diaria.</li>
-                        <li class="sub-item">Tema 34: Moderación y limpieza de comentarios.</li>
-                        <li class="sub-item">Tema 35: Generar captions y hashtags efectivos.</li>
-                        <li class="sub-item">Tema 36: Programar publicaciones automáticas.</li>
-                        <li class="sub-item">Tema 37: Analizar feedback y métricas básicas.</li>
-                        <li class="sub-item">Tema 38: Personalizar respuestas de clientes.</li>
-                        <li class="sub-item">Tema 39: IA para newsletters y boletines.</li>
-                        <li class="sub-item">Tema 40: Práctica: monta un mini flujo de redes con IA.</li>
-                    </ul>
-                </div>
-            </div>
-            <!-- Módulo 6 -->
-            <div class="module-item border border-cyan-500/50 rounded-lg">
-                <div class="module-header p-4 cursor-pointer bg-black/30 flex justify-between items-center">
-                    <h3 class="font-orbitron text-lg text-cyan-400">MÓDULO 6: Trucos, trucos y ética</h3>
-                    <svg class="w-6 h-6 text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                </div>
-                <div class="module-content p-5 bg-black/20">
-                    <ul class="space-y-2 text-gray-300">
-                        <li class="sub-item">Tema 41: Mitos falsos sobre IA doméstica.</li>
-                        <li class="sub-item">Tema 42: Trucos para mejorar resultados de prompts.</li>
-                        <li class="sub-item">Tema 43: Comparativa rápida de plataformas IA.</li>
-                        <li class="sub-item">Tema 44: Costos, suscripciones y versiones gratuitas.</li>
-                        <li class="sub-item">Tema 45: Filtros de contenido y seguridad.</li>
-                        <li class="sub-item">Tema 46: Ética en uso diario y consentimiento.</li>
-                        <li class="sub-item">Tema 47: Mantenerte actualizado sin abrumarte.</li>
-                        <li class="sub-item">Tema 48: Proyecto final: tu asistente IA personal.</li>
-                    </ul>
+        </div>
+
+        <div class="mt-10">
+            <h3 class="font-orbitron text-xl neon-text-cyan mb-4 text-center">Calendario Académico</h3>
+            <div class="bg-[#0d0c1d] p-4 rounded-lg cyber-border">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <h4 class="font-orbitron text-lg neon-text-pink mb-3">Periodos Lectivos</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex justify-between">
+                                <span class="text-gray-300">Primer cuatrimestre:</span>
+                                <span class="text-cyan-300">4 Ago - 19 Dic 2025</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span class="text-gray-300">Segundo cuatrimestre:</span>
+                                <span class="text-cyan-300">8 Ene - 3 Ago 2026</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span class="text-gray-300">Horas totales:</span>
+                                <span class="text-cyan-300">192 horas</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-orbitron text-lg neon-text-cyan mb-3">Vacaciones</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex justify-between">
+                                <span class="text-gray-300">Descanso académico:</span>
+                                <span class="text-green-300">30 Sep - 6 Oct 2025</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span class="text-gray-300">Navidad/Año Nuevo:</span>
+                                <span class="text-green-300">20 Dic 2025 - 7 Ene 2026</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span class="text-gray-300">Semana Santa:</span>
+                                <span class="text-green-300">24-30 Mar 2026</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
+
+    <footer class="text-center text-gray-500 text-sm mt-6 mb-4">
+        <p>© 2025 - Programa IA en lo Cotidiano | Inicia: 4/8/2025 - Finaliza: 3/8/2026</p>
+    </footer>
+
     <script>
-        document.querySelectorAll('.module-item').forEach(item => {
-            const header = item.querySelector('.module-header');
-            const content = item.querySelector('.module-content');
-            header.addEventListener('click', () => {
-                const active = header.classList.contains('active');
-                document.querySelectorAll('.module-header.active').forEach(h => {
-                    h.classList.remove('active');
-                    h.nextElementSibling.style.maxHeight = null;
+        document.querySelectorAll('.module-card').forEach(card => {
+            const header = card.querySelector('.module-header');
+            const content = card.querySelector('.module-content');
+            
+            if (header && content) {
+                header.addEventListener('click', () => {
+                    const isActive = header.classList.contains('active');
+                    
+                    if (isActive) {
+                        header.classList.remove('active');
+                        content.style.maxHeight = null;
+                    } else {
+                        header.classList.add('active');
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    }
                 });
-                if (!active) {
-                    header.classList.add('active');
-                    content.style.maxHeight = content.scrollHeight + 'px';
-                }
-            });
+            }
         });
+        
+        // Auto open first module
+        const firstCard = document.querySelector('.module-card');
+        if (firstCard) {
+            const firstHeader = firstCard.querySelector('.module-header');
+            const firstContent = firstCard.querySelector('.module-content');
+            if (firstHeader && firstContent) {
+                firstHeader.classList.add('active');
+                firstContent.style.maxHeight = firstContent.scrollHeight + 'px';
+            }
+        }
     </script>
 </body>
 </html>
