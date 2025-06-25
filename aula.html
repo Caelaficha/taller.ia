@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula Virtual</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- Reset y Variables Globales --- */
+        :root {
+            --bg-color: #121212;
+            --surface-color: #1e1e1e;
+            --primary-color: #bb86fc;
+            --primary-variant-color: #3700b3;
+            --secondary-color: #03dac6;
+            --on-bg-text-color: #e0e0e0;
+            --on-surface-text-color: #cccccc;
+            --border-color: #2c2c2c;
+            --error-color: #cf6679;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--on-bg-text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* --- Estructura Principal del Aula --- */
+        .aula-container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            max-width: 1600px;
+            max-height: 900px;
+            background-color: var(--surface-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .contenido-principal {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: #000;
+        }
+
+        /* --- Área de Video --- */
+        .video-principal {
+            flex-grow: 1;
+            display: grid;
+            place-items: center;
+            padding: 2rem;
+        }
+        
+        .marcador-video {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--on-surface-text-color);
+            font-size: 1.5rem;
+            border: 2px dashed var(--border-color);
+            position: relative;
+        }
+        .marcador-video::after {
+            content: 'Cámara Desactivada';
+            position: absolute;
+            color: #555;
+            font-size: 1rem;
+            bottom: 2rem;
+        }
+
+
+        /* --- Barra de Controles --- */
+        .barra-controles {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            gap: 1rem;
+            background-color: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .control-button {
+            background-color: #2a2a2a;
+            color: var(--on-bg-text-color);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .control-button:hover {
+            background-color: #3a3a3a;
+            transform: translateY(-2px);
+        }
+
+        .control-button svg {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .control-button.salir {
+            background-color: var(--error-color);
+        }
+         .control-button.salir:hover {
+            background-color: #e08796;
+        }
+
+        /* --- Panel Lateral (Chat y Participantes) --- */
+        .panel-lateral {
+            width: 320px;
+            flex-shrink: 0;
+            background-color: var(--surface-color);
+            border-left: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .panel-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tab-button {
+            flex-grow: 1;
+            padding: 1rem;
+            background: none;
+            border: none;
+            color: var(--on-surface-text-color);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .tab-button:hover {
+            background-color: rgba(255,255,255,0.05);
+        }
+
+        .tab-button.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+        
+        .panel-contenido {
+            display: none;
+            flex-grow: 1;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .panel-contenido.active {
+            display: flex;
+        }
+        
+        /* Estilos del Chat */
+        #chat {
+            padding: 1rem;
+        }
+
+        .mensajes {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        .mensaje {
+           padding: 0.5rem 0.75rem;
+           border-radius: 8px;
+           max-width: 85%;
+        }
+
+        .mensaje.propio {
+            background-color: var(--primary-variant-color);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 2px;
+        }
+
+        .mensaje.ajeno {
+            background-color: #2c2c2c;
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+        }
+
+        .mensaje .autor {
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--secondary-color);
+        }
+        
+        .mensaje.propio .autor {
+             color: #b39ddb;
+        }
+
+        #chat-input {
+            width: 100%;
+            background-color: #2c2c2c;
+            border: 1px solid #444;
+            padding: 0.75rem;
+            border-radius: 6px;
+            color: var(--on-bg-text-color);
+            font-size: 0.9rem;
+        }
+
+        #chat-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        /* Estilos de Participantes */
+        #participantes ul {
+            list-style: none;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        #participantes li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem;
+            border-radius: 6px;
+        }
+        #participantes li svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+        .profesor-icon { color: var(--secondary-color); }
+        .mic-on { color: #81c784; }
+        .mic-off { color: #e57373; }
+        
+        /* Modal para Notificaciones */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 1000;
+        }
+
+        .modal-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--surface-color);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            text-align: center;
+            transform: scale(0.9);
+            transition: transform 0.3s;
+        }
+
+        .modal-overlay.visible .modal-content {
+            transform: scale(1);
+        }
+        
+        #modal-message {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        #modal-close-btn {
+            background-color: var(--primary-color);
+            color: #000;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        /* --- Responsividad --- */
+        @media (max-width: 768px) {
+            body {
+                height: auto;
+            }
+            .aula-container {
+                flex-direction: column;
+                height: 100vh;
+                max-height: none;
+                border-radius: 0;
+            }
+            .panel-lateral {
+                width: 100%;
+                height: 40vh; /* Altura definida para el panel en móvil */
+                border-left: none;
+                border-top: 1px solid var(--border-color);
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="aula-container">
+
+        <!-- 1. ÁREA PRINCIPAL -->
+        <main class="contenido-principal">
+            <div class="video-principal">
+                <div class="marcador-video"></div>
+            </div>
+            <div class="barra-controles">
+                <button class="control-button" id="mic-btn" title="Silenciar / Activar Micrófono">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M7 4a3 3 0 016 0v6a3 3 0 11-6 0V4z"></path><path d="M5.5 9.5a.5.5 0 01.5.5v1a4 4 0 004 4h1a4 4 0 004-4v-1a.5.5 0 011 0v1a5 5 0 01-4.5 4.975V18h2a.5.5 0 010 1h-5a.5.5 0 010-1h2v-1.525A5 5 0 015 11v-1a.5.5 0 01.5-.5z"></path></svg>
+                </button>
+                <button class="control-button" id="cam-btn" title="Activar / Desactivar Cámara">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M2 4.5A1.5 1.5 0 013.5 3h11A1.5 1.5 0 0116 4.5v3.414l2.293-2.293a.5.5 0 01.854.353v8.052a.5.5 0 01-.854.353L16 12.086V15.5A1.5 1.5 0 0114.5 17h-11A1.5 1.5 0 012 15.5v-11zM3.5 4a.5.5 0 00-.5.5v11a.5.5 0 00.5.5h11a.5.5 0 00.5-.5V4.5a.5.5 0 00-.5-.5h-11z"></path></svg>
+                </button>
+                <button class="control-button" id="share-btn" title="Compartir Pantalla">
+                     <svg fill="currentColor" viewBox="0 0 20 20"><path d="M13 3.5a.5.5 0 01.5.5v2a.5.5 0 01-1 0v-1.5H4.5a.5.5 0 00-.5.5v8a.5.5 0 00.5.5H7a.5.5 0 010 1H4a1 1 0 01-1-1v-9a1 1 0 011-1h9z"></path><path d="M9.929 11.586a.5.5 0 00.707 0l3-3a.5.5 0 00-.707-.707L10.5 10.364V6.5a.5.5 0 00-1 0v4.328L7.646 8.96a.5.5 0 10-.707.707l3 3z"></path><path d="M13.5 9a.5.5 0 00-.5.5v4a.5.5 0 00.5.5h3a.5.5 0 00.5-.5v-4a.5.5 0 00-.5-.5h-3zM13 9.5a.5.5 0 01.5-.5h3a.5.5 0 01.5.5v4a.5.5 0 01-.5.5h-3a.5.5 0 01-.5-.5v-4z"></path></svg>
+                </button>
+                <button class="control-button salir" id="exit-btn" title="Salir de la llamada">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M12.95 5.05a.5.5 0 01.707 0l2.5 2.5a.5.5 0 010 .707l-2.5 2.5a.5.5 0 01-.707-.707L14.793 8.5H7.5a.5.5 0 010-1h7.293L12.95 5.757a.5.5 0 010-.707z"></path><path d="M7 3.5a.5.5 0 00-.5-.5h-3a2.5 2.5 0 00-2.5 2.5v8a2.5 2.5 0 002.5 2.5h3a.5.5 0 000-1h-3a1.5 1.5 0 01-1.5-1.5v-8A1.5 1.5 0 013.5 4h3a.5.5 0 00.5-.5z"></path></svg>
+                </button>
+            </div>
+        </main>
+
+        <!-- 2. BARRA LATERAL (PANEL) -->
+        <aside class="panel-lateral">
+            <div class="panel-tabs">
+                <button class="tab-button active" data-target="chat">Chat</button>
+                <button class="tab-button" data-target="participantes">Participantes (4)</button>
+            </div>
+
+            <!-- Panel de Chat -->
+            <div id="chat" class="panel-contenido active">
+                <div class="mensajes">
+                    <div class="mensaje ajeno">
+                        <div class="autor">Ana</div>
+                        <p>Hola a todos, ¿se me escucha bien?</p>
+                    </div>
+                     <div class="mensaje propio">
+                        <div class="autor">Yo</div>
+                        <p>¡Sí, perfecto Ana!</p>
+                    </div>
+                    <div class="mensaje ajeno">
+                        <div class="autor">Profesor García</div>
+                        <p>Excelente. Bienvenidos a la clase de hoy. Empezaremos en un minuto.</p>
+                    </div>
+                </div>
+                <input id="chat-input" type="text" placeholder="Escribe un mensaje...">
+            </div>
+
+            <!-- Panel de Participantes -->
+            <div id="participantes" class="panel-contenido">
+                <ul>
+                    <li>
+                        <svg class="profesor-icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path></svg>
+                        <span>Profesor García</span>
+                        <svg class="mic-on" style="margin-left: auto;" fill="currentColor" viewBox="0 0 20 20"><path d="M7 4a3 3 0 016 0v6a3 3 0 11-6 0V4z"></path><path d="M5.5 9.5a.5.5 0 01.5.5v1a4 4 0 004 4h1a4 4 0 004-4v-1a.5.5 0 011 0v1a5 5 0 01-4.5 4.975V18h2a.5.5 0 010 1h-5a.5.5 0 010-1h2v-1.525A5 5 0 015 11v-1a.5.5 0 01.5-.5z"></path></svg>
+                    </li>
+                    <li>
+                        <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                        <span>Ana</span>
+                        <svg class="mic-on" style="margin-left: auto;" fill="currentColor" viewBox="0 0 20 20"><path d="M7 4a3 3 0 016 0v6a3 3 0 11-6 0V4z"></path><path d="M5.5 9.5a.5.5 0 01.5.5v1a4 4 0 004 4h1a4 4 0 004-4v-1a.5.5 0 011 0v1a5 5 0 01-4.5 4.975V18h2a.5.5 0 010 1h-5a.5.5 0 010-1h2v-1.525A5 5 0 015 11v-1a.5.5 0 01.5-.5z"></path></svg>
+                    </li>
+                    <li>
+                        <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                        <span>Carlos</span>
+                        <svg class="mic-off" style="margin-left: auto;" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.22 3.128A3.001 3.001 0 0113 6.012v2.372a.5.5 0 01-.82.388L5.18 3.518A.5.5 0 016 3H3.5a.5.5 0 00-.5.5v1a.5.5 0 01-1 0v-1A1.5 1.5 0 013.5 2H6a.5.5 0 01.388-.18l1.832 1.308zm-2.316 9.354l6-4.5a.5.5 0 01.652.764l-6 4.5a.5.5 0 01-.652-.764zM15 11v-1a.5.5 0 00-1 0v1a4 4 0 01-3.575 3.97L15 11zM4.5 11.5a.5.5 0 01.5.5v.975a5.002 5.002 0 008.736 2.68L4.82 8.736A5 5 0 004.5 12.5v-.5a.5.5 0 01-.5-.5z" clip-rule="evenodd" /></svg>
+                    </li>
+                     <li>
+                        <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                        <span>Yo</span>
+                        <svg class="mic-on" style="margin-left: auto;" fill="currentColor" viewBox="0 0 20 20"><path d="M7 4a3 3 0 016 0v6a3 3 0 11-6 0V4z"></path><path d="M5.5 9.5a.5.5 0 01.5.5v1a4 4 0 004 4h1a4 4 0 004-4v-1a.5.5 0 011 0v1a5 5 0 01-4.5 4.975V18h2a.5.5 0 010 1h-5a.5.5 0 010-1h2v-1.525A5 5 0 015 11v-1a.5.5 0 01.5-.5z"></path></svg>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+    </div>
+    
+    <!-- Modal para notificaciones -->
+    <div id="notification-modal" class="modal-overlay">
+        <div class="modal-content">
+            <p id="modal-message"></p>
+            <button id="modal-close-btn">Entendido</button>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.tab-button');
+            const contents = document.querySelectorAll('.panel-contenido');
+
+            // Funcionalidad de las pestañas (Chat/Participantes)
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Ocultar todos
+                    tabs.forEach(t => t.classList.remove('active'));
+                    contents.forEach(c => c.classList.remove('active'));
+
+                    // Mostrar el seleccionado
+                    tab.classList.add('active');
+                    const targetId = tab.getAttribute('data-target');
+                    document.getElementById(targetId).classList.add('active');
+                });
+            });
+
+            // Modal de notificaciones
+            const modal = document.getElementById('notification-modal');
+            const modalMessage = document.getElementById('modal-message');
+            const modalCloseBtn = document.getElementById('modal-close-btn');
+
+            function showModal(message) {
+                modalMessage.textContent = message;
+                modal.classList.add('visible');
+            }
+
+            function hideModal() {
+                modal.classList.remove('visible');
+            }
+
+            modalCloseBtn.addEventListener('click', hideModal);
+            modal.addEventListener('click', (e) => {
+                if(e.target === modal) {
+                    hideModal();
+                }
+            });
+
+            // Lógica de los botones de control
+            document.getElementById('mic-btn').addEventListener('click', () => {
+                showModal('Función de micrófono no implementada.');
+            });
+
+            document.getElementById('cam-btn').addEventListener('click', () => {
+                showModal('Función de cámara no implementada.');
+            });
+             document.getElementById('share-btn').addEventListener('click', () => {
+                showModal('Función de compartir pantalla no implementada.');
+            });
+
+            document.getElementById('exit-btn').addEventListener('click', () => {
+                showModal('Saliendo de la llamada...');
+                // Aquí iría la lógica para redirigir o cerrar la conexión
+            });
+            
+            // Lógica del Input de Chat
+            const chatInput = document.getElementById('chat-input');
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && this.value.trim() !== '') {
+                    const mensajesContainer = document.querySelector('.mensajes');
+                    const nuevoMensaje = document.createElement('div');
+                    nuevoMensaje.classList.add('mensaje', 'propio');
+                    nuevoMensaje.innerHTML = `<div class="autor">Yo</div><p>${this.value}</p>`;
+                    mensajesContainer.appendChild(nuevoMensaje);
+                    this.value = '';
+                    mensajesContainer.scrollTop = mensajesContainer.scrollHeight; // Auto-scroll
+                }
+            });
+        });
+    </script>
+</body>
+</html>
