@@ -34,12 +34,12 @@
 
         /* --- Container with glitch effect --- */
         .glitch-container { position: relative; overflow: hidden; height: 100%; }
-        .glitch-container::after {
+        .glitch-container.is-animating::after {
             content: ''; position: absolute; top: 0; left: 0;
             width: 100%; height: 100%;
             background: #0d0c1d; animation: glitch-bg 3s steps(1) infinite;
         }
-        .glitch-container::before {
+        .glitch-container.is-animating::before {
             content: ''; position: absolute; top: 0; left: 0;
             width: 100%; height: 100%;
             background: #131227; box-shadow: 0 0 10px #ff00ff;
@@ -54,16 +54,16 @@
 
         /* --- Title with glitch effect --- */
         .glitch-title { position: relative; }
-        .glitch-title::before, .glitch-title::after {
+        .glitch-title.is-animating::before, .glitch-title.is-animating::after {
             content: attr(data-text); position: absolute; top: 0; left: 0;
             width: 100%; height: 100%;
             overflow: hidden; background: #0d0c1d;
         }
-        .glitch-title::before {
+        .glitch-title.is-animating::before {
             left: 2px; text-shadow: -2px 0 #ff00ff;
             animation: glitch-anim-1 2.5s infinite linear reverse;
         }
-        .glitch-title::after {
+        .glitch-title.is-animating::after {
             left: -2px; text-shadow: -2px 0 #00e5ff;
             animation: glitch-anim-2 2.5s infinite linear reverse;
         }
@@ -164,13 +164,13 @@
 </head>
 <body>
     <div id="flyer-to-capture" class="w-full max-w-5xl">
-        <h1 class="font-orbitron text-3xl md:text-4xl font-bold text-white glitch-title mb-8 text-center" data-text="TALLERES DE I.A.">TALLERES DE I.A.</h1>
+        <h1 class="font-orbitron text-3xl md:text-4xl font-bold text-white glitch-title is-animating mb-8 text-center" data-text="TALLERES DE I.A.">TALLERES DE I.A.</h1>
         <div class="card-container">
             <!-- Card 1: Taller Completo -->
             <div class="card">
-                <main class="w-full h-full bg-[#131227] cyber-border rounded-lg overflow-hidden glitch-container">
+                <main class="w-full h-full bg-[#131227] cyber-border rounded-lg overflow-hidden glitch-container is-animating">
                     <div class="relative z-10">
-                        <header class="p-6 text-center bg-black/30"><div class="w-20 h-20 mx-auto mb-4"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><filter id="neon-glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><rect x="50" y="50" width="100" height="100" rx="10" fill="#1a1a2e" stroke="#00e5ff" stroke-width="3"/><g stroke="#00e5ff" stroke-width="3"><line x1="30" y1="70" x2="50" y2="70"/><line x1="30" y1="90" x2="50" y2="90"/><line x1="30" y1="110" x2="50" y2="110"/><line x1="30" y1="130" x2="50" y2="130"/><line x1="150" y1="70" x2="170" y2="70"/><line x1="150" y1="90" x2="170" y2="90"/><line x1="150" y1="110" x2="170" y2="110"/><line x1="150" y1="130" x2="170" y2="130"/></g><path d="M 100,75 C 85,75 80,85 80,95 C 80,105 85,115 100,115 M 100,75 C 115,75 120,85 120,95 C 120,105 115,115 100,115 M 90,115 L 90,125 M 110,115 L 110,125" stroke="#ff00ff" stroke-width="4" fill="none" stroke-linecap="round" filter="url(#neon-glow)"/></svg></div><h2 class="font-orbitron text-2xl font-bold text-white glitch-title" data-text="TALLER COMPLETO">TALLER COMPLETO</h2></header>
+                        <header class="p-6 text-center bg-black/30"><div class="w-20 h-20 mx-auto mb-4"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><filter id="neon-glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><rect x="50" y="50" width="100" height="100" rx="10" fill="#1a1a2e" stroke="#00e5ff" stroke-width="3"/><g stroke="#00e5ff" stroke-width="3"><line x1="30" y1="70" x2="50" y2="70"/><line x1="30" y1="90" x2="50" y2="90"/><line x1="30" y1="110" x2="50" y2="110"/><line x1="30" y1="130" x2="50" y2="130"/><line x1="150" y1="70" x2="170" y2="70"/><line x1="150" y1="90" x2="170" y2="90"/><line x1="150" y1="110" x2="170" y2="110"/><line x1="150" y1="130" x2="170" y2="130"/></g><path d="M 100,75 C 85,75 80,85 80,95 C 80,105 85,115 100,115 M 100,75 C 115,75 120,85 120,95 C 120,105 115,115 100,115 M 90,115 L 90,125 M 110,115 L 110,125" stroke="#ff00ff" stroke-width="4" fill="none" stroke-linecap="round" filter="url(#neon-glow)"/></svg></div><h2 class="font-orbitron text-2xl font-bold text-white glitch-title is-animating" data-text="TALLER COMPLETO">TALLER COMPLETO</h2></header>
                         <div class="p-6">
                             <section class="mb-6 text-center"><h3 class="text-lg font-bold text-white">Empezás como <span class="text-pink-400 neon-text-pink">principiante</span>, terminás como <span class="text-pink-400 neon-text-pink">profesional</span>.</h3></section>
                             <section class="mb-6"><div class="grid grid-cols-3 gap-2 text-center"><div class="bg-black/40 p-3 rounded-md border border-cyan-700"><span class="font-orbitron text-2xl font-bold text-white">12</span><p class="text-xs font-medium text-cyan-300">MESES</p></div><div class="bg-black/40 p-3 rounded-md border border-cyan-700"><span class="font-orbitron text-2xl font-bold text-white">6</span><p class="text-xs font-medium text-cyan-300">MÓDULOS</p></div><div class="bg-black/40 p-3 rounded-md border border-cyan-700"><span class="font-orbitron text-2xl font-bold text-white">48</span><p class="text-xs font-medium text-cyan-300">TEMAS</p></div></div></section>
@@ -184,9 +184,9 @@
             
             <!-- Card 2: Módulos Cotidianos -->
             <div class="card">
-                <main class="w-full h-full bg-[#131227] cyber-border rounded-lg overflow-hidden glitch-container">
+                <main class="w-full h-full bg-[#131227] cyber-border rounded-lg overflow-hidden glitch-container is-animating">
                     <div class="relative z-10">
-                        <header class="p-6 text-center bg-black/30"><div class="w-20 h-20 mx-auto mb-4"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><filter id="neon-glow-2" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><rect x="40" y="40" width="120" height="120" rx="15" fill="#1a1a2e" stroke="#ff00ff" stroke-width="3"/><line x1="100" y1="40" x2="100" y2="160" stroke="#00e5ff" stroke-width="2" stroke-dasharray="4"/><line x1="40" y1="100" x2="160" y2="100" stroke="#00e5ff" stroke-width="2" stroke-dasharray="4"/><circle cx="70" cy="70" r="10" fill="#00e5ff" filter="url(#neon-glow-2)"/><circle cx="130" cy="70" r="10" fill="#ff00ff" filter="url(#neon-glow-2)"/><circle cx="70" cy="130" r="10" fill="#ff00ff" filter="url(#neon-glow-2)"/><circle cx="130" cy="130" r="10" fill="#00e5ff" filter="url(#neon-glow-2)"/></svg></div><h2 class="font-orbitron text-2xl font-bold text-white glitch-title" data-text="MÓDULOS COTIDIANOS">MÓDULOS COTIDIANOS</h2></header>
+                        <header class="p-6 text-center bg-black/30"><div class="w-20 h-20 mx-auto mb-4"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><filter id="neon-glow-2" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><rect x="40" y="40" width="120" height="120" rx="15" fill="#1a1a2e" stroke="#ff00ff" stroke-width="3"/><line x1="100" y1="40" x2="100" y2="160" stroke="#00e5ff" stroke-width="2" stroke-dasharray="4"/><line x1="40" y1="100" x2="160" y2="100" stroke="#00e5ff" stroke-width="2" stroke-dasharray="4"/><circle cx="70" cy="70" r="10" fill="#00e5ff" filter="url(#neon-glow-2)"/><circle cx="130" cy="70" r="10" fill="#ff00ff" filter="url(#neon-glow-2)"/><circle cx="70" cy="130" r="10" fill="#ff00ff" filter="url(#neon-glow-2)"/><circle cx="130" cy="130" r="10" fill="#00e5ff" filter="url(#neon-glow-2)"/></svg></div><h2 class="font-orbitron text-2xl font-bold text-white glitch-title is-animating" data-text="MÓDULOS COTIDIANOS">MÓDULOS COTIDIANOS</h2></header>
                         <div class="p-6">
                             <section class="mb-6 text-center"><h3 class="text-lg font-bold text-white">Aprendé <span class="text-pink-400 neon-text-pink">módulos específicos</span> aplicables a tu <span class="text-pink-400 neon-text-pink">día a día</span>.</h3></section>
                             <section class="mb-6"><div class="grid grid-cols-3 gap-2 text-center"><div class="bg-black/40 p-3 rounded-md border border-cyan-700"><span class="font-orbitron text-2xl font-bold text-white">4</span><p class="text-xs font-medium text-cyan-300">MESES</p></div><div class="bg-black/40 p-3 rounded-md border border-cyan-700"><span class="font-orbitron text-2xl font-bold text-white">8</span><p class="text-xs font-medium text-cyan-300">SESIONES</p></div><div class="bg-black/40 p-3 rounded-md border border-cyan-700"><span class="font-orbitron text-2xl font-bold text-white">1</span><p class="text-xs font-medium text-cyan-300">TEMA</p></div></div></section>
@@ -234,12 +234,16 @@
             const copyFeedback = document.getElementById('copy-feedback');
             const flyerElement = document.getElementById('flyer-to-capture');
             const linkToCopy = 'https://caelaficha.github.io/taller.ia/';
+            const animatedElements = document.querySelectorAll('.glitch-title, .glitch-container');
 
-            // Copy Link Functionality
+            function toggleAnimations(enable) {
+                animatedElements.forEach(el => el.classList.toggle('is-animating', enable));
+            }
+
             copyBtn.addEventListener('click', () => {
                 const textArea = document.createElement("textarea");
                 textArea.value = linkToCopy;
-                textArea.style.position = "fixed"; 
+                textArea.style.position = "fixed";
                 textArea.style.left = "-9999px";
                 document.body.appendChild(textArea);
                 textArea.focus();
@@ -248,59 +252,88 @@
                     document.execCommand('copy');
                     copyFeedback.textContent = '¡Enlace copiado!';
                 } catch (err) {
-                    console.error('Fallback: Oops, unable to copy', err);
                     copyFeedback.textContent = 'Error al copiar.';
                 }
                 document.body.removeChild(textArea);
                 setTimeout(() => { copyFeedback.textContent = '' }, 2000);
             });
 
-            // Download GIF Functionality
-            downloadBtn.addEventListener('click', () => {
+            downloadBtn.addEventListener('click', async () => {
                 downloadBtn.disabled = true;
-                downloadBtn.textContent = 'Generando...';
+                downloadBtn.textContent = 'Preparando...';
+                toggleAnimations(false);
 
-                const gif = new GIF({
-                    workers: 2,
-                    quality: 10,
-                    workerScript: 'https://cdnjs.cloudflare.com/ajax/libs/gif.js/0.2.0/gif.worker.js',
-                    width: flyerElement.offsetWidth,
-                    height: flyerElement.offsetHeight
-                });
+                await new Promise(resolve => setTimeout(resolve, 100));
 
-                const framesToCapture = 15; // 3 seconds at 5fps
-                let capturedFrames = 0;
+                try {
+                    const workerScriptContent = `
+                        var GIFEncoder = function() {};
+                        var NeuQuant = function() {};
+                        var LZWEncoder = function() {};
+                        self.onmessage = function(e) {
+                            var data = e.data;
+                            var encoder = new GIFEncoder(data.width, data.height);
+                            if (data.firstFrame) {
+                                encoder.start();
+                                encoder.setRepeat(data.repeat);
+                                encoder.setDelay(data.delay);
+                                encoder.setQuality(data.quality);
+                            }
+                            encoder.addFrame(data.frame, true);
+                            if (data.lastFrame) {
+                                encoder.finish();
+                            }
+                            self.postMessage(encoder.stream().getData());
+                        };
+                    `;
+                    const workerBlob = new Blob([workerScriptContent], { type: 'application/javascript' });
+                    const workerUrl = URL.createObjectURL(workerBlob);
 
-                const captureFrame = () => {
-                    html2canvas(flyerElement, { 
-                        backgroundColor: '#0d0c1d',
-                        useCORS: true 
-                    }).then(canvas => {
-                        gif.addFrame(canvas, { delay: 200 }); // 200ms delay = 5fps
-                        capturedFrames++;
-                        if (capturedFrames < framesToCapture) {
-                            setTimeout(captureFrame, 200);
-                        } else {
-                            gif.render();
-                        }
+                    const gif = new GIF({
+                        workers: 2,
+                        quality: 10,
+                        workerScript: workerUrl,
+                        width: flyerElement.offsetWidth,
+                        height: flyerElement.offsetHeight
                     });
-                };
 
-                captureFrame();
+                    const framesToCapture = 15;
+                    downloadBtn.textContent = `Capturando 0/${framesToCapture}`;
 
-                gif.on('finished', function(blob) {
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = 'flyer-caelaficha-ia.gif';
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    URL.revokeObjectURL(url);
+                    for (let i = 0; i < framesToCapture; i++) {
+                        const canvas = await html2canvas(flyerElement, {
+                            backgroundColor: '#0d0c1d',
+                            useCORS: true
+                        });
+                        gif.addFrame(canvas, { delay: 200 });
+                        downloadBtn.textContent = `Capturando ${i + 1}/${framesToCapture}`;
+                    }
 
+                    downloadBtn.textContent = 'Renderizando...';
+
+                    gif.on('finished', function(blob) {
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = 'flyer-caelaficha-ia.gif';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                        URL.revokeObjectURL(workerUrl);
+
+                        downloadBtn.disabled = false;
+                        downloadBtn.textContent = 'Descargar GIF';
+                        toggleAnimations(true);
+                    });
+
+                    gif.render();
+                } catch (error) {
+                    console.error("Error al generar el GIF:", error);
+                    downloadBtn.textContent = 'Error. Reintentar.';
                     downloadBtn.disabled = false;
-                    downloadBtn.textContent = 'Descargar GIF';
-                });
+                    toggleAnimations(true);
+                }
             });
         });
     </script>
