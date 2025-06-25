@@ -1,76 +1,237 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CAELAFICHA IA - Inicio</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Chakra Petch', sans-serif;
-      background-color: #0d0c1d;
-      color: #d0d0d0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      margin: 0;
-      padding: 0;
-    }
-    .font-orbitron { font-family: 'Orbitron', sans-serif; }
-    .neon-text-cyan { color: #00e5ff; text-shadow: 0 0 5px #00e5ff, 0 0 15px #00e5ff, 0 0 30px #00e5ff; }
-    .neon-text-pink { color: #ff00ff; text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff; }
-    .cyber-border {
-      border: 2px solid #00e5ff;
-      box-shadow: 0 0 15px #00e5ff, inset 0 0 15px #00e5ff;
-    }
-    .cyber-button {
-      background-color: transparent;
-      border: 2px solid #ff00ff;
-      color: #ff00ff;
-      padding: 0.75rem 1.5rem;
-      font-family: 'Orbitron', sans-serif;
-      text-transform: uppercase;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 10px #ff00ff;
-    }
-    .cyber-button:hover {
-      background-color: #ff00ff;
-      color: #0d0c1d;
-      box-shadow: 0 0 25px #ff00ff;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAELAFICHA IA - Cronograma con Horarios</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Chakra Petch', sans-serif; background-color: #0d0c1d; color: #d0d0d0; }
+        .font-orbitron { font-family: 'Orbitron', sans-serif; }
+        .neon-text-cyan { color: #00e5ff; text-shadow: 0 0 5px #00e5ff, 0 0 10px #00e5ff; }
+        .neon-text-pink { color: #ff00ff; text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff; }
+        .cyber-border { border: 2px solid #00e5ff; box-shadow: 0 0 15px #00e5ff, inset 0 0 15px #00e5ff; }
+        
+        .cyber-toggle-button {
+            background-color: transparent; border: 2px solid; padding: 0.75rem 1.5rem;
+            font-family: 'Orbitron', sans-serif; text-transform: uppercase;
+            transition: all 0.3s ease; box-shadow: 0 0 10px;
+        }
+        .btn-avanzado { border-color: #00e5ff; color: #00e5ff; box-shadow: 0 0 10px #00e5ff; }
+        .btn-cotidiano { border-color: #ff00ff; color: #ff00ff; box-shadow: 0 0 10px #ff00ff; }
+        
+        .btn-avanzado.active, .btn-avanzado:hover { background-color: #00e5ff; color: #0d0c1d; box-shadow: 0 0 25px #00e5ff; }
+        .btn-cotidiano.active, .btn-cotidiano:hover { background-color: #ff00ff; color: #0d0c1d; box-shadow: 0 0 25px #ff00ff; }
+
+        .module-content { transition: max-height 0.4s ease-out; overflow: hidden; max-height: 0; }
+        .module-header svg { transition: transform 0.3s ease; }
+        .module-header.active svg { transform: rotate(180deg); }
+        
+        /* --- Revised Item Styles --- */
+        .sub-item {
+            color: #b0b0c0;
+            padding: 1rem 0 1rem 1.5rem;
+            position: relative;
+            border-left: 2px solid; /* Color set by specific class */
+            transition: background-color 0.2s ease;
+        }
+        .sub-item-cyan { border-color: rgba(0, 229, 255, 0.2); }
+        .sub-item-cyan:hover { background-color: rgba(0, 229, 255, 0.05); }
+        .sub-item-pink { border-color: rgba(255, 0, 255, 0.2); }
+        .sub-item-pink:hover { background-color: rgba(255, 0, 255, 0.05); }
+
+        .date-prefix {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .sub-item-cyan .date-prefix { color: #00e5ff; }
+        .sub-item-pink .date-prefix { color: #ff00ff; }
+
+        .time-slots {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .slot {
+            font-size: 0.8rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .topic-text {
+            line-height: 1.5;
+        }
+
+    </style>
 </head>
-<body class="p-4">
-  <main class="w-full max-w-3xl bg-[#131227] cyber-border rounded-lg text-center p-8 md:p-12">
-    <h1 class="font-orbitron text-4xl md:text-6xl font-bold neon-text-cyan">CAELAFICHA IA</h1>
-    <p class="mt-4 text-xl md:text-2xl text-white">
-      Empezás desde <span class="neon-text-pink">cero</span>, terminás usando IA como un <span class="neon-text-pink">profesional</span>.
-    </p>
-    <!-- Stats Section -->
-    <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-      <div class="bg-black/40 p-4 rounded-md border border-cyan-700">
-        <span class="font-orbitron text-3xl font-bold text-white">1</span>
-        <p class="text-sm font-medium text-cyan-300">AÑO DE DURACIÓN</p>
-      </div>
-      <div class="bg-black/40 p-4 rounded-md border border-cyan-700">
-        <span class="font-orbitron text-3xl font-bold text-white">6</span>
-        <p class="text-sm font-medium text-cyan-300">MÓDULOS</p>
-      </div>
-      <div class="bg-black/40 p-4 rounded-md border border-cyan-700">
-        <span class="font-orbitron text-3xl font-bold text-white">48</span>
-        <p class="text-sm font-medium text-cyan-300">TEMAS PRÁCTICOS</p>
-      </div>
-    </div>
-    <!-- Links Section -->
-    <div class="mt-12 flex flex-col md:flex-row justify-center items-center gap-6">
-      <a href="modulos.html" class="cyber-button rounded-md w-full md:w-auto">Ver Programa Completo</a>
-      <a href="modulos_cotidianidad.html" class="cyber-button rounded-md w-full md:w-auto">IA Cotidiana</a>
-      <a href="flyerwp.html" class="cyber-button rounded-md w-full md:w-auto">Flyer para Compartir</a>
-    </div>
-  </main>
+<body class="flex items-center justify-center min-h-screen p-4">
+
+    <main class="w-full max-w-4xl bg-[#131227] cyber-border rounded-lg overflow-hidden my-8 p-6 md:p-10">
+
+        <header class="text-center mb-10">
+            <h1 class="font-orbitron text-3xl md:text-4xl font-bold neon-text-cyan mb-2">CRONOGRAMA DE CURSOS</h1>
+            <p class="mt-4 text-lg text-gray-400">Selecciona un programa para ver sus módulos y fechas.</p>
+        </header>
+
+        <div class="flex flex-col sm:flex-row justify-center gap-4 mb-10">
+            <button id="btn-avanzado" class="cyber-toggle-button btn-avanzado active rounded-md">Programa Avanzado</button>
+            <button id="btn-cotidiano" class="cyber-toggle-button btn-cotidiano rounded-md">IA Cotidiana</button>
+        </div>
+
+        <div id="content-container">
+            <!-- Avanzado Program Content -->
+            <div id="avanzado-content" class="program-content space-y-4">
+                <!-- Módulos se insertarán aquí por el JS -->
+            </div>
+
+            <!-- Cotidiano Program Content -->
+            <div id="cotidiano-content" class="program-content space-y-4 hidden">
+                <!-- Módulos se insertarán aquí por el JS -->
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- TEMARIOS ---
+            const data = {
+                avanzado: {
+                    color: "cyan",
+                    modules: [
+                        { title: "MÓDULO 1: Introducción a la IA para principiantes", topics: ["¿Qué es la IA? Ejemplos cotidianos sin tecnicismos", "Historia y evolución breve de la IA", "IA débil vs IA fuerte", "Tipos de IA: Machine Learning, Deep Learning, Generativa", "Aplicaciones prácticas: asistentes, recomendaciones, buscadores", "Mitos y realidades de la IA", "Riesgos básicos y sesgos", "Primer contacto práctico: usar un chatbot"] },
+                        { title: "MÓDULO 2: Herramientas de IA sin programar", topics: ["Asistentes de voz y reconocimiento de voz", "Generación de texto con ChatGPT", "Creación de imágenes con Midjourney y DALL·E", "Traducción y corrección automática de textos", "Resúmenes y simplificación de documentos", "Organización de tareas y calendarios inteligentes", "Automatización de flujos de trabajo simples", "Laboratorio práctico: combinar tres herramientas"] },
+                        { title: "MÓDULO 3: Fundamentos de programación para IA", topics: ["Lógica de programación y pseudocódigo", "Entorno Python: instalación y Jupyter", "Variables, tipos de datos y operaciones básicas", "Estructuras de control: if/else y bucles", "Funciones y modularidad de código", "Estructuras de datos: listas, tuplas y diccionarios", "Manejo de archivos y lectura de datos", "Práctica: script para procesar un archivo CSV"] },
+                        { title: "MÓDULO 4: Ciencia de datos y matemáticas para IA", topics: ["Estadística descriptiva: media, mediana y varianza", "Probabilidad básica y teorema de Bayes", "Álgebra lineal: vectores y matrices", "Operaciones matriciales con NumPy", "Cálculo para IA: derivadas e intuición de gradientes", "Visualización de datos con Matplotlib", "Manipulación de datos con Pandas", "Práctica: análisis exploratorio de datos"] },
+                        { title: "MÓDULO 5: Machine Learning y modelos", topics: ["Aprendizaje supervisado, no supervisado y por refuerzo", "Regresión lineal y polinómica con scikit-learn", "Regresión logística y clasificación binaria", "Árboles de decisión y Random Forests", "Support Vector Machines y kernels", "Redes neuronales básicas con TensorFlow/Keras", "Fundamentos de NLP: tokenización y embeddings", "Práctica: pipeline de entrenamiento y evaluación"] },
+                        { title: "MÓDULO 6: Implementación profesional y ética", topics: ["IA generativa Avanzada: GANs, VAEs y difusión", "MLOps y ciclo de vida con DVC", "Contenerización con Docker", "Despliegue de modelos como API con FastAPI", "Monitoreo y detección de model drift", "Ética y explicabilidad con LIME/SHAP", "Transfer Learning: pre-entrenados para visión y texto", "Proyecto final: de la idea al prototipo funcional"] }
+                    ]
+                },
+                cotidiano: {
+                    color: "pink",
+                    modules: [
+                        { title: "MÓDULO 1: Descubrir la IA en tu día a día", topics: ["¿Qué es una IA sin jerga? Analogías cotidianas.", "Prompts: tu pregunta como clave de acceso.", "Cómo formular tu primera consulta efectiva.", "Diferencias entre ChatGPT, Bard y Gemini.", "Mitos sobre la IA desmontados.", "Privacidad y datos: qué sucede con tu info.", "Prompts avanzados para tareas simples.", "Taller exprés: probar un prompt en vivo."] },
+                        { title: "MÓDULO 2: IA para organizar tu rutina", topics: ["Planificar un viaje con IA paso a paso.", "Listas de compras inteligentes.", "Calendarios y recordatorios automáticos.", "IA para seguimiento de gastos.", "Creación de menús y recetas personalizadas.", "Organizar tu correo: filtros y respuestas.", "IA en apps de transporte y movilidad.", "Práctica: automatiza una tarea rutinaria."] },
+                        { title: "MÓDULO 3: IA para productividad personal", topics: ["Resúmenes rápidos de documentos largos.", "Corrección gramatical y estilo.", "Generar ideas: lluvia de prompts.", "Escritura de emails eficientes.", "IA para tomar notas en reuniones.", "Creación de presentaciones automáticas.", "Traducción instantánea y matices.", "Práctica: mejora un texto propio con IA."] },
+                        { title: "MÓDULO 4: IA creativa y de ocio", topics: ["Generar imágenes para redes sociales.", "Guiones cortos y cuentos con IA.", "Juegos de palabras y chistes automatizados.", "Música y playlists personalizadas.", "Diseño básico de posters y flyers.", "Planificación de eventos y sorpresas.", "Edición rápida de fotos y filtros.", "Práctica: crea un proyecto creativo con IA."] },
+                        { title: "MÓDULO 5: IA en comunicación y redes", topics: ["Chatbots para atención diaria.", "Moderación y limpieza de comentarios.", "Generar captions y hashtags efectivos.", "Programar publicaciones automáticas.", "Analizar feedback y métricas básicas.", "Personalizar respuestas de clientes.", "IA para newsletters y boletines.", "Práctica: monta un mini flujo de redes con IA."] },
+                        { title: "MÓDULO 6: Trucos, trucos y ética", topics: ["Mitos falsos sobre IA doméstica.", "Trucos para mejorar resultados de prompts.", "Comparativa rápida de plataformas IA.", "Costos, suscripciones y versiones gratuitas.", "Filtros de contenido y seguridad.", "Ética en uso diario y consentimiento.", "Mantenerte actualizado sin abrumarte.", "Proyecto final: tu asistente IA personal."] }
+                    ]
+                }
+            };
+            
+            const startDate = new Date('2025-08-04T12:00:00Z');
+            const endDate = new Date('2026-08-03T12:00:00Z');
+            const recessStartDate = new Date('2025-12-22T12:00:00Z');
+            const recessEndDate = new Date('2026-01-05T12:00:00Z');
+
+            let allTopicsAvanzado = data.avanzado.modules.flatMap(m => m.topics);
+            let allTopicsCotidiano = data.cotidiano.modules.flatMap(m => m.topics);
+            let classDatesAvanzado = [];
+            let classDatesCotidiano = [];
+            
+            for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+                if (d >= recessStartDate && d < recessEndDate) continue;
+
+                const dayOfWeek = d.getDay(); // 1=Lunes, 2=Martes, 3=Miércoles, 4=Jueves
+                if (dayOfWeek === 1 || dayOfWeek === 3) {
+                    if(classDatesAvanzado.length < allTopicsAvanzado.length) classDatesAvanzado.push(new Date(d));
+                }
+                if (dayOfWeek === 2 || dayOfWeek === 4) {
+                    if(classDatesCotidiano.length < allTopicsCotidiano.length) classDatesCotidiano.push(new Date(d));
+                }
+            }
+            
+            function renderProgram(programKey, dates) {
+                const programData = data[programKey];
+                const container = document.getElementById(`${programKey}-content`);
+                container.innerHTML = ''; // Clear previous content
+                let topicCounter = 0;
+
+                programData.modules.forEach(module => {
+                    const moduleElement = document.createElement('div');
+                    moduleElement.className = `module-item border border-${programData.color}-500/50 rounded-lg overflow-hidden`;
+                    
+                    const topicList = module.topics.map(topic => {
+                        const classDate = dates[topicCounter];
+                        topicCounter++;
+                        const dateString = classDate ? classDate.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' }) : "Fecha pendiente";
+                        return `<li class="sub-item sub-item-${programData.color}">
+                                    <span class="date-prefix">${dateString.replace(/^\w/, c => c.toUpperCase())}</span>
+                                    <div class="time-slots">
+                                        <span class="slot">Presencial: 17:00 - 19:00hs</span>
+                                        <span class="slot">Virtual: 13:00 - 15:00hs</span>
+                                    </div>
+                                    <p class="topic-text">${topic}</p>
+                                </li>`;
+                    }).join('');
+
+                    moduleElement.innerHTML = `
+                        <div class="module-header p-4 cursor-pointer bg-black/30 flex justify-between items-center">
+                            <h3 class="font-orbitron text-lg text-${programData.color}-400">${module.title}</h3>
+                            <svg class="w-6 h-6 text-${programData.color}-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </div>
+                        <div class="module-content p-5 bg-black/20">
+                            <ul class="space-y-3 text-gray-300">${topicList}</ul>
+                        </div>`;
+                    container.appendChild(moduleElement);
+                });
+            }
+
+            renderProgram('avanzado', classDatesAvanzado);
+            renderProgram('cotidiano', classDatesCotidiano);
+
+            const btnAvanzado = document.getElementById('btn-avanzado');
+            const btnCotidiano = document.getElementById('btn-cotidiano');
+            const avanzadoContent = document.getElementById('avanzado-content');
+            const cotidianoContent = document.getElementById('cotidiano-content');
+
+            function switchProgram(program) {
+                const isAvanzado = program === 'avanzado';
+                avanzadoContent.classList.toggle('hidden', !isAvanzado);
+                cotidianoContent.classList.toggle('hidden', isAvanzado);
+                btnAvanzado.classList.toggle('active', isAvanzado);
+                btnCotidiano.classList.toggle('active', !isAvanzado);
+                closeAllAccordions();
+            }
+
+            btnAvanzado.addEventListener('click', () => switchProgram('avanzado'));
+            btnCotidiano.addEventListener('click', () => switchProgram('cotidiano'));
+            
+            function closeAllAccordions() {
+                 document.querySelectorAll('.module-header.active').forEach(h => {
+                    h.classList.remove('active');
+                    h.nextElementSibling.style.maxHeight = null;
+                });
+            }
+
+            document.querySelectorAll('.module-item').forEach(item => {
+                const header = item.querySelector('.module-header');
+                header.addEventListener('click', () => {
+                    const isActive = header.classList.contains('active');
+                    const parentContainer = header.closest('.program-content');
+                    parentContainer.querySelectorAll('.module-header.active').forEach(activeHeader => {
+                        if (activeHeader !== header) {
+                            activeHeader.classList.remove('active');
+                            activeHeader.nextElementSibling.style.maxHeight = null;
+                        }
+                    });
+                    if (!isActive) {
+                        header.classList.add('active');
+                        header.nextElementSibling.style.maxHeight = header.nextElementSibling.scrollHeight + 'px';
+                    } else {
+                        header.classList.remove('active');
+                        header.nextElementSibling.style.maxHeight = null;
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
