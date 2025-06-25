@@ -164,6 +164,18 @@
             letter-spacing: 1px;
             color: var(--neon-cyan);
         }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .info-card {
+            background-color: var(--dark-bg);
+            border-radius: 8px;
+            padding: 1rem;
+            border: 1px solid #2a2940;
+        }
     </style>
 </head>
 <body class="flex flex-col items-center min-h-screen p-4">
@@ -173,8 +185,8 @@
             <h2 class="font-orbitron text-2xl md:text-3xl text-white">Programa de Estudio Práctico</h2>
             <p class="mt-4 text-xl text-gray-400">Tu guía para integrar la IA en tu vida diaria</p>
             
-            <div class="mt-8 grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div class="bg-[#0d0c1d] p-4 rounded-lg cyber-border">
+            <div class="info-grid">
+                <div class="info-card cyber-border">
                     <h3 class="font-orbitron text-xl neon-text-cyan mb-2">Fechas</h3>
                     <p class="text-center text-lg">
                         <span class="text-cyan-300 block">Inicio: 4 Ago 2025</span>
@@ -182,7 +194,7 @@
                     </p>
                 </div>
                 
-                <div class="bg-[#0d0c1d] p-4 rounded-lg cyber-border">
+                <div class="info-card cyber-border">
                     <h3 class="font-orbitron text-xl neon-text-pink mb-2">Horario</h3>
                     <p class="text-center text-cyan-300 text-lg">Martes y Jueves</p>
                     <div class="text-center text-gray-400 text-base mt-1">
@@ -191,30 +203,30 @@
                     </div>
                 </div>
                 
-                <div class="bg-[#0d0c1d] p-4 rounded-lg cyber-border">
+                <div class="info-card cyber-border">
                     <h3 class="font-orbitron text-xl neon-text-yellow mb-2">Duración</h3>
                     <p class="text-center text-cyan-300 text-lg">52 semanas</p>
                     <p class="text-center text-gray-400">(1 año académico)</p>
                 </div>
                 
-                <div class="bg-[#0d0c1d] p-4 rounded-lg cyber-border">
+                <div class="info-card cyber-border">
                     <h3 class="font-orbitron text-xl neon-text-green mb-2">Tiempo Restante</h3>
                     <div class="countdown-container">
                         <div class="countdown-item">
-                            <div id="days" class="countdown-value">00</div>
+                            <div id="days" class="countdown-value">42</div>
                             <div class="countdown-label">Días</div>
                         </div>
                         <div class="countdown-item">
-                            <div id="hours" class="countdown-value">00</div>
+                            <div id="hours" class="countdown-value">24</div>
                             <div class="countdown-label">Horas</div>
                         </div>
                         <div class="countdown-item">
-                            <div id="minutes" class="countdown-value">00</div>
+                            <div id="minutes" class="countdown-value">35</div>
                             <div class="countdown-label">Min</div>
                         </div>
                     </div>
                     <div class="progress-container mt-2">
-                        <div id="progress-bar" class="progress-bar"></div>
+                        <div id="progress-bar" class="progress-bar" style="width: 12%"></div>
                     </div>
                 </div>
             </div>
@@ -225,7 +237,98 @@
             <p class="text-center text-gray-400 mb-6">48 temas prácticos distribuidos en 6 módulos - 2 clases por semana</p>
             
             <div class="module-grid">
-                <!-- Modules and holidays will be injected here by JavaScript -->
+                <!-- Módulo 1 -->
+                <div class="module-card">
+                    <div class="module-header flex justify-between items-center cursor-pointer active">
+                        <div>
+                            <h3 class="font-orbitron text-xl text-pink-400">MÓDULO 1</h3>
+                            <p class="text-cyan-300 text-base">Descubrir la IA en tu día a día</p>
+                            <p class="text-gray-400 text-sm mt-1">
+                                5 ago - 28 ago 2025
+                            </p>
+                        </div>
+                        <svg class="w-8 h-8 text-pink-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                    <div class="module-content mt-4" style="max-height: 1000px">
+                        <ul class="text-gray-300 text-lg space-y-2">
+                            <li class="sub-item">¿Qué es una IA sin jerga? Analogías <span class="date-badge">5 ago</span></li>
+                            <li class="sub-item">Prompts: tu pregunta como clave <span class="date-badge">7 ago</span></li>
+                            <li class="sub-item">Primera consulta efectiva <span class="date-badge">12 ago</span></li>
+                            <li class="sub-item">Diferencias entre ChatGPT, Bard y Gemini <span class="date-badge">14 ago</span></li>
+                            <li class="sub-item">Mitos sobre la IA desmontados <span class="date-badge">19 ago</span></li>
+                            <li class="sub-item">Privacidad y datos <span class="date-badge">21 ago</span></li>
+                            <li class="sub-item">Prompts avanzados <span class="date-badge">26 ago</span></li>
+                            <li class="sub-item tp-item">TP: Taller exprés de prompts <span class="date-badge tp-badge">28 ago</span></li>
+                            <li class="sub-item eval-item">Evaluación M1 <span class="date-badge eval-badge">31 ago</span></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Módulo 2 -->
+                <div class="module-card">
+                    <div class="module-header flex justify-between items-center cursor-pointer">
+                        <div>
+                            <h3 class="font-orbitron text-xl text-cyan-400">MÓDULO 2</h3>
+                            <p class="text-pink-300 text-base">IA para organizar tu rutina</p>
+                            <p class="text-gray-400 text-sm mt-1">
+                                2 sept - 26 sept 2025
+                            </p>
+                        </div>
+                        <svg class="w-8 h-8 text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                    <div class="module-content mt-4">
+                        <ul class="text-gray-300 text-lg space-y-2">
+                            <li class="sub-item">Planificar un viaje con IA <span class="date-badge">2 sept</span></li>
+                            <li class="sub-item">Listas de compras inteligentes <span class="date-badge">4 sept</span></li>
+                            <li class="sub-item">Calendarios y recordatorios <span class="date-badge">9 sept</span></li>
+                            <li class="sub-item">IA para seguimiento de gastos <span class="date-badge">11 sept</span></li>
+                            <li class="sub-item">Creación de menús personalizados <span class="date-badge">16 sept</span></li>
+                            <li class="sub-item">Organizar tu correo <span class="date-badge">18 sept</span></li>
+                            <li class="sub-item">IA en transporte y movilidad <span class="date-badge">23 sept</span></li>
+                            <li class="sub-item tp-item">TP: Automatiza una tarea rutinaria <span class="date-badge tp-badge">25 sept</span></li>
+                            <li class="sub-item eval-item">Evaluación M2 <span class="date-badge eval-badge">28 sept</span></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Módulo 3 -->
+                <div class="module-card">
+                    <div class="module-header flex justify-between items-center cursor-pointer">
+                        <div>
+                            <h3 class="font-orbitron text-xl text-pink-400">MÓDULO 3</h3>
+                            <p class="text-cyan-300 text-base">IA para productividad personal</p>
+                            <p class="text-gray-400 text-sm mt-1">
+                                30 sept - 30 oct 2025
+                            </p>
+                        </div>
+                        <svg class="w-8 h-8 text-pink-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                    <div class="module-content mt-4">
+                        <ul class="text-gray-300 text-lg space-y-2">
+                            <li class="sub-item">Resúmenes de documentos <span class="date-badge">30 sept</span></li>
+                            <li class="sub-item">Corrección gramatical y estilo <span class="date-badge">2 oct</span></li>
+                            <li class="sub-item">Generar ideas: lluvia de prompts <span class="date-badge">7 oct</span></li>
+                            <li class="sub-item">Escritura de emails eficientes <span class="date-badge">9 oct</span></li>
+                            <li class="sub-item">IA para tomar notas <span class="date-badge">14 oct</span></li>
+                            <li class="sub-item">Creación de presentaciones <span class="date-badge">16 oct</span></li>
+                            <li class="sub-item">Traducción instantánea y matices <span class="date-badge">21 oct</span></li>
+                            <li class="sub-item tp-item">TP: Mejora un texto con IA <span class="date-badge tp-badge">23 oct</span></li>
+                            <li class="sub-item eval-item">Evaluación M3 <span class="date-badge eval-badge">26 oct</span></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Descanso Académico -->
+                <div class="module-card holiday-item">
+                    <div class="module-header flex justify-between items-center">
+                        <div>
+                            <h3 class="font-orbitron text-xl text-green-400">DESCANSO ACADÉMICO</h3>
+                            <p class="text-yellow-300 text-base">
+                                13 oct - 20 oct 2025
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -236,156 +339,11 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Countdown timer
-            const startDate = new Date('2025-08-04T12:00:00Z');
-            const now = new Date();
-            const countdownFunction = setInterval(function() {
-                const distance = startDate - new Date();
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                
-                document.getElementById("days").textContent = days.toString().padStart(2, '0');
-                document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
-                document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
-                
-                // Calculate progress percentage
-                const totalDuration = 365 * 24 * 60 * 60 * 1000; // 1 year in ms
-                const progress = Math.max(0, Math.min(100, 100 - (distance / totalDuration * 100)));
-                document.getElementById("progress-bar").style.width = progress + "%";
-                
-                if (distance < 0) {
-                    clearInterval(countdownFunction);
-                    document.getElementById("days").textContent = "00";
-                    document.getElementById("hours").textContent = "00";
-                    document.getElementById("minutes").textContent = "00";
-                    document.getElementById("progress-bar").style.width = "100%";
-                }
-            }, 1000);
-            
-            // Modules data
-            const modulesData = [
-                { title: "Descubrir la IA en tu día a día", topics: ["¿Qué es una IA sin jerga? Analogías", "Prompts: tu pregunta como clave", "Primera consulta efectiva", "Diferencias entre ChatGPT, Bard y Gemini", "Mitos sobre la IA desmontados", "Privacidad y datos", "Prompts avanzados", "TP: Taller exprés de prompts"] },
-                { title: "IA para organizar tu rutina", topics: ["Planificar un viaje con IA", "Listas de compras inteligentes", "Calendarios y recordatorios", "IA para seguimiento de gastos", "Creación de menús personalizados", "Organizar tu correo", "IA en transporte y movilidad", "TP: Automatiza una tarea rutinaria"] },
-                { title: "IA para productividad personal", topics: ["Resúmenes de documentos", "Corrección gramatical y estilo", "Generar ideas: lluvia de prompts", "Escritura de emails eficientes", "IA para tomar notas", "Creación de presentaciones", "Traducción instantánea y matices", "TP: Mejora un texto con IA"] },
-                { title: "IA creativa y de ocio", topics: ["Generar imágenes para redes", "Guiones cortos y cuentos con IA", "Juegos de palabras y chistes", "Música y playlists personalizadas", "Diseño básico de posters", "Planificación de eventos", "Edición rápida de fotos", "TP: Crea un proyecto creativo"] },
-                { title: "IA en comunicación y redes", topics: ["Chatbots para atención diaria", "Moderación de comentarios", "Generar captions y hashtags", "Programar publicaciones", "Analizar feedback y métricas", "Personalizar respuestas", "IA para newsletters", "TP: Monta un flujo de redes"] },
-                { title: "Trucos, ética y proyecto final", topics: ["Mitos falsos sobre IA doméstica", "Trucos para mejorar resultados", "Comparativa de plataformas IA", "Costos y suscripciones", "Filtros y seguridad", "Ética en uso diario", "Mantenerte actualizado", "TP Final: Asistente IA personal"] }
-            ];
-
-            const programStart = new Date('2025-08-04T12:00:00Z');
-            const programEnd = new Date('2026-08-03T12:00:00Z');
-            const recessDates = [
-                { start: new Date('2025-10-13T12:00:00Z'), end: new Date('2025-10-20T12:00:00Z'), title: "DESCANSO ACADÉMICO" },
-                { start: new Date('2025-12-20T12:00:00Z'), end: new Date('2026-01-05T12:00:00Z'), title: "VACACIONES NAVIDAD" },
-                { start: new Date('2026-03-24T12:00:00Z'), end: new Date('2026-03-31T12:00:00Z'), title: "SEMANA SANTA" }
-            ];
-            
-            // Generate class dates (Tuesdays and Thursdays)
-            let classDates = [];
-            let currentDate = new Date(programStart);
-            while (currentDate <= programEnd && classDates.length < 48) {
-                const dayOfWeek = currentDate.getDay();
-                let isHoliday = recessDates.some(range => 
-                    currentDate >= range.start && currentDate < range.end
-                );
-                
-                // Tuesdays (2) and Thursdays (4)
-                if ((dayOfWeek === 2 || dayOfWeek === 4) && !isHoliday) {
-                    classDates.push(new Date(currentDate));
-                }
-                currentDate.setDate(currentDate.getDate() + 1);
-            }
-
-            const moduleGrid = document.querySelector('.module-grid');
-            let topicIndex = 0;
-
-            // Create module cards
-            modulesData.forEach((module, moduleIndex) => {
-                const moduleTopics = module.topics;
-                const moduleStart = classDates[topicIndex];
-                const moduleEnd = classDates[topicIndex + moduleTopics.length - 1];
-
-                const card = document.createElement('div');
-                card.className = 'module-card';
-                
-                let topicsHTML = '';
-                moduleTopics.forEach(topic => {
-                    const date = classDates[topicIndex];
-                    const isTP = topic.startsWith("TP");
-                    const topicText = topic.replace(/TP\d*:\s*/, '');
-                    const badgeClass = isTP ? 'tp-badge' : '';
-                    
-                    // Format date as "d MMM"
-                    const formattedDate = date ? 
-                        `${date.getDate()} ${date.toLocaleString('es-ES', { month: 'short' }).replace('.','')}` : 
-                        'TBD';
-                    
-                    topicsHTML += `
-                        <li class="sub-item ${isTP ? 'tp-item' : ''}">
-                            ${topicText} 
-                            <span class="date-badge ${badgeClass}">${formattedDate}</span>
-                        </li>`;
-                    topicIndex++;
-                });
-
-                // Add evaluation date
-                const evalDate = new Date(classDates[topicIndex-1]);
-                if(evalDate) {
-                    evalDate.setDate(evalDate.getDate() + 3);
-                    topicsHTML += `
-                        <li class="sub-item eval-item">
-                            Evaluación M${moduleIndex + 1} 
-                            <span class="date-badge eval-badge">
-                                ${evalDate.getDate()} ${evalDate.toLocaleString('es-ES', { month: 'short' }).replace('.','')}
-                            </span>
-                        </li>`;
-                }
-
-                card.innerHTML = `
-                    <div class="module-header flex justify-between items-center cursor-pointer">
-                        <div>
-                            <h3 class="font-orbitron text-xl ${moduleIndex % 2 === 0 ? 'text-pink-400' : 'text-cyan-400'}">MÓDULO ${moduleIndex + 1}</h3>
-                            <p class="${moduleIndex % 2 === 0 ? 'text-cyan-300' : 'text-pink-300'} text-base">${module.title}</p>
-                            <p class="text-gray-400 text-sm mt-1">
-                                ${moduleStart ? 
-                                    `${moduleStart.getDate()} ${moduleStart.toLocaleString('es-ES', { month: 'short' }).replace('.','')} - 
-                                    ${moduleEnd.getDate()} ${moduleEnd.toLocaleString('es-ES', { month: 'short' }).replace('.','')} ${moduleEnd.getFullYear()}` : 
-                                    'Fechas por definir'}
-                            </p>
-                        </div>
-                        <svg class="w-8 h-8 ${moduleIndex % 2 === 0 ? 'text-pink-400' : 'text-cyan-400'}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </div>
-                    <div class="module-content mt-4">
-                        <ul class="text-gray-300 text-lg space-y-2">${topicsHTML}</ul>
-                    </div>
-                `;
-                moduleGrid.appendChild(card);
-            });
-            
-            // Add holiday cards
-            recessDates.forEach(holiday => {
-                const card = document.createElement('div');
-                card.className = 'module-card holiday-item';
-                card.innerHTML = `
-                    <div class="module-header flex justify-between items-center">
-                        <div>
-                            <h3 class="font-orbitron text-xl text-green-400">${holiday.title}</h3>
-                            <p class="text-yellow-300 text-base">
-                                ${holiday.start.getDate()} ${holiday.start.toLocaleString('es-ES', { month: 'short' }).replace('.','')} - 
-                                ${holiday.end.getDate()} ${holiday.end.toLocaleString('es-ES', { month: 'short' }).replace('.','')}
-                            </p>
-                        </div>
-                    </div>
-                `;
-                moduleGrid.appendChild(card);
-            });
-
             // Add toggle functionality for modules
             document.querySelectorAll('.module-card').forEach(card => {
                 const header = card.querySelector('.module-header');
                 const content = card.querySelector('.module-content');
-                if (header && content) {
+                if (header && content && !card.classList.contains('holiday-item')) {
                     header.addEventListener('click', () => {
                         const isActive = header.classList.contains('active');
                         if (isActive) {
@@ -398,17 +356,6 @@
                     });
                 }
             });
-
-            // Auto open first module
-            const firstCard = document.querySelector('.module-card');
-            if (firstCard) {
-                const firstHeader = firstCard.querySelector('.module-header');
-                const firstContent = firstCard.querySelector('.module-content');
-                if (firstHeader && firstContent) {
-                    firstHeader.classList.add('active');
-                    firstContent.style.maxHeight = firstContent.scrollHeight + 'px';
-                }
-            }
         });
     </script>
 </body>
