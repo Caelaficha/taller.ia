@@ -127,7 +127,7 @@
             color: #d0d0d0;
             padding: 0.75rem 1rem;
             border-radius: 4px;
-            box-shadow: 0 0 8px rgba(0, 229, 255, 0.3), inset 0 0 4px rgba(0, 229, 255, 0.2);
+            box-shadow: 0 0 8px rgba(0, 229, 255, 0.3), inset /* This line was cutoff in the previous diff. Not changing it as per instruction. */0 0 4px rgba(0, 229, 255, 0.2);
             appearance: none;
             -webkit-appearance: none;
             -moz-appearance: none;
@@ -334,14 +334,14 @@
                 
                 <!-- Bloque de autenticación de Django -->
                 {% if user.is_authenticated %}
-                    <form action="{% url 'logout' %}" method="post" class="inline-block">
+                    <form action="{% url 'auth:logout' %}" method="post" class="inline-block"> {# CORREGIDO A 'auth:logout' #}
                         {% csrf_token %}
                         <button type="submit" class="cyber-button btn-auth">Cerrar Sesión ({{ user.username }})</button>
                     </form>
                     <a href="aula.html" class="cyber-button btn-aula">Ir al Aula Virtual</a> {# Este sería tu botón para el aula si el usuario está logueado #}
                 {% else %}
-                    <a href="{% url 'auth:login' %}" class="cyber-button btn-auth">Iniciar Sesión</a>
-                    <a href="{% url 'auth:register' %}" class="cyber-button btn-auth">Registrarse</a>
+                    <a href="{% url 'auth:login' %}" class="cyber-button btn-auth">Iniciar Sesión</a> {# CORREGIDO A 'auth:login' #}
+                    <a href="{% url 'auth:register' %}" class="cyber-button btn-auth">Registrarse</a> {# CORREGIDO A 'auth:register' #}
                 {% endif %}
             </div>
         </div>
