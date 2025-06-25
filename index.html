@@ -12,7 +12,7 @@
         body {
             font-family: 'Chakra Petch', sans-serif;
             background-color: #0d0c1d;
-            background-image: 
+            background-image:
                 radial-gradient(circle at 10% 20%, rgba(255, 0, 255, 0.08) 0%, transparent 25%),
                 radial-gradient(circle at 90% 80%, rgba(0, 229, 255, 0.08) 0%, transparent 25%),
                 radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.01) 0%, transparent 50%);
@@ -26,17 +26,17 @@
             overflow-x: hidden;
         }
         .font-orbitron { font-family: 'Orbitron', sans-serif; }
-        .neon-text-cyan { 
-            color: #00e5ff; 
-            text-shadow: 0 0 5px #00e5ff, 0 0 15px #00e5ff, 0 0 30px #00e5ff; 
+        .neon-text-cyan {
+            color: #00e5ff;
+            text-shadow: 0 0 5px #00e5ff, 0 0 15px #00e5ff, 0 0 30px #00e5ff;
         }
-        .neon-text-pink { 
-            color: #ff00ff; 
-            text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff; 
+        .neon-text-pink {
+            color: #ff00ff;
+            text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff;
         }
-        .neon-text-yellow { 
-            color: #f3f74c; 
-            text-shadow: 0 0 5px #f3f74c, 0 0 10px #f3f74c; 
+        .neon-text-yellow {
+            color: #f3f74c;
+            text-shadow: 0 0 5px #f3f74c, 0 0 10px #f3f74c;
         }
         .cyber-border {
             border: 2px solid #00e5ff;
@@ -138,16 +138,27 @@
             background-color: #0d0c1d;
             color: #d0d0d0;
         }
+        /* Clase para el mensaje de éxito */
+        .message-success {
+            background-color: rgba(0, 255, 0, 0.15); /* Verde claro */
+            border: 1px solid #00ff00; /* Borde verde */
+            color: #00ff00; /* Texto verde */
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.7);
+        }
+        /* Clase para el mensaje de error */
+        .message-error {
+            background-color: rgba(255, 0, 0, 0.15); /* Rojo claro */
+            border: 1px solid #ff0000; /* Borde rojo */
+            color: #ff0000; /* Texto rojo */
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+        }
+
         #confirmationMessage {
-            background-color: rgba(0, 229, 255, 0.15);
-            border: 1px solid #00e5ff;
-            color: #00e5ff;
             padding: 1rem;
             border-radius: 8px;
             margin-top: 1.5rem;
-            box-shadow: 0 0 15px rgba(0, 229, 255, 0.7);
             font-weight: bold;
-            display: none;
+            display: none; /* Hidden by default */
         }
         .card {
             background: rgba(19, 18, 39, 0.8);
@@ -213,15 +224,15 @@
             
             <div id="countdown" class="flex justify-center items-center gap-4 flex-wrap">
                 <div class="countdown-item">
-                    <div id="days" class="countdown-value">42</div>
+                    <div id="days" class="countdown-value">00</div>
                     <div class="countdown-label">Días</div>
                 </div>
                 <div class="countdown-item">
-                    <div id="hours" class="countdown-value">24</div>
+                    <div id="hours" class="countdown-value">00</div>
                     <div class="countdown-label">Horas</div>
                 </div>
                 <div class="countdown-item">
-                    <div id="minutes" class="countdown-value">35</div>
+                    <div id="minutes" class="countdown-value">00</div>
                     <div class="countdown-label">Minutos</div>
                 </div>
                 <div class="countdown-item">
@@ -329,6 +340,124 @@
             const distance = countDownDate - now;
             
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+            
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                const countdownElem = document.getElementById("countdown");
+                if(countdownElem) {
+                    countdownElem.innerHTML = "<div class='text-2xl font-bold text-[#ff00ff] col-span-4'>¡EL TALLER HA COMENZADO!</div>";
+                }
+            }
+        }, 1000);
+
+        // --- Inicio de la nueva lógica de integración con Django Backend ---
+
+        // Función para obtener el token CSRF de las cookies (necesario para solicitudes POST en Django)
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        // Obtener el formulario de pre-inscripción
+        const preRegistrationForm = document.getElementById('preRegistrationForm');
+        const confirmationMessageDiv = document.getElementById('confirmationMessage');
+
+        // Escuchar el evento de envío del formulario
+        preRegistrationForm.addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevenir el envío por defecto del formulario (recarga de página)
+
+            // Limpiar cualquier mensaje anterior
+            confirmationMessageDiv.style.display = 'none';
+            confirmationMessageDiv.classList.remove('message-success', 'message-error');
+
+            // Recopilar los datos del formulario
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const programInterest = document.getElementById('programInterest').value;
+
+            // Preparar los datos para enviar al backend (deben coincidir con los campos de tu modelo Django)
+            const data = {
+                nombre_completo: fullName,
+                correo_electronico: email,
+                programa_interes: programInterest,
+                // 'fecha_registro' se genera automáticamente en el backend, no lo enviamos desde aquí
+            };
+
+            const csrftoken = getCookie('csrftoken'); // Obtener el token CSRF
+
+            try {
+                // Realizar la solicitud POST a la API de Django
+                const response = await fetch('http://127.0.0.1:8001/api/preinscripcion/', { // ¡Asegúrate de que el puerto sea el correcto!
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrftoken, // Incluir el token CSRF en los headers
+                    },
+                    body: JSON.stringify(data), // Convertir el objeto JavaScript a una cadena JSON
+                });
+
+                if (response.ok) { // Si la respuesta es exitosa (código 2xx)
+                    const result = await response.json(); // Leer la respuesta JSON del backend
+                    console.log('Pre-inscripción exitosa:', result);
+
+                    // Mostrar mensaje de éxito al usuario
+                    confirmationMessageDiv.textContent = '¡Gracias por tu pre-inscripción! Datos guardados.';
+                    confirmationMessageDiv.classList.add('message-success');
+                    confirmationMessageDiv.style.display = 'block'; // Mostrar el mensaje
+                    
+                    preRegistrationForm.reset(); // Limpiar el formulario
+                } else {
+                    // Si la respuesta no es exitosa (código 4xx, 5xx)
+                    const errorData = await response.json(); // Leer los detalles del error desde el backend
+                    console.error('Error en la pre-inscripción:', response.status, errorData);
+
+                    let errorMessage = 'Hubo un error al procesar tu pre-inscripción.';
+                    if (errorData.correo_electronico && errorData.correo_electronico.includes('already exists')) {
+                        errorMessage = '¡Ups! Este correo electrónico ya está pre-inscrito.';
+                    } else if (errorData.detail) { // Mensajes de error generales de DRF
+                        errorMessage = `Error: ${errorData.detail}`;
+                    } else if (typeof errorData === 'object') {
+                        // Intentar construir un mensaje a partir de otros errores de validación de DRF
+                        errorMessage = "Error de validación: " + Object.values(errorData).flat().join('; ');
+                    }
+                    
+                    // Mostrar mensaje de error al usuario
+                    confirmationMessageDiv.textContent = errorMessage;
+                    confirmationMessageDiv.classList.add('message-error');
+                    confirmationMessageDiv.style.display = 'block'; // Mostrar el mensaje
+                }
+            } catch (error) {
+                // Capturar errores de red (por ejemplo, si el servidor no está corriendo o hay problemas de conexión)
+                console.error('Error de red o inesperado:', error);
+                confirmationMessageDiv.textContent = 'Error de conexión. Asegúrate de que el servidor esté funcionando e inténtalo de nuevo.';
+                confirmationMessageDiv.classList.add('message-error');
+                confirmationMessageDiv.style.display = 'block'; // Mostrar el mensaje
+            }
+        });
+
+        // --- Fin de la nueva lógica de integración con Django Backend ---
+    </script>
+</body>
+</html>
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
