@@ -58,11 +58,14 @@
         .btn-cotidiano { border-color: #ff00ff; color: #ff00ff; box-shadow: 0 0 10px #ff00ff; }
         .btn-flyer { border-color: #f3f74c; color: #f3f74c; box-shadow: 0 0 10px #f3f74c; }
         .btn-aula { border-color: #00ff9d; color: #00ff9d; box-shadow: 0 0 10px #00ff9d; }
+        .btn-auth { border-color: #8cff00; color: #8cff00; box-shadow: 0 0 10px #8cff00; }
+
 
         .btn-avanzado:hover { background-color: #00e5ff; color: #0d0c1d; text-shadow: none; box-shadow: 0 0 25px #00e5ff; transform: translateY(-3px); }
         .btn-cotidiano:hover { background-color: #ff00ff; color: #0d0c1d; text-shadow: none; box-shadow: 0 0 25px #ff00ff; transform: translateY(-3px); }
         .btn-flyer:hover { background-color: #f3f74c; color: #0d0c1d; text-shadow: none; box-shadow: 0 0 25px #f3f74c; transform: translateY(-3px); }
         .btn-aula:hover { background-color: #00ff9d; color: #0d0c1d; text-shadow: none; box-shadow: 0 0 25px #00ff9d; transform: translateY(-3px); }
+        .btn-auth:hover { background-color: #8cff00; color: #0d0c1d; text-shadow: none; box-shadow: 0 0 25px #8cff00; transform: translateY(-3px); }
         
         .countdown-item {
             display: flex;
@@ -324,10 +327,22 @@
         <div class="mt-8">
             <h2 class="font-orbitron text-2xl md:text-3xl neon-text-yellow mb-6">Accesos Directos</h2>
             <div class="flex flex-wrap justify-center gap-6">
-                <a href="modulos.html" class="cyber-button btn-avanzado">Programa Avanzado</a>
-                <a href="modulos_cotidianidad.html" class="cyber-button btn-cotidiano">IA Cotidiana</a>
+                <!-- Enlaces a programas -->
+                <a href="modulos.html" class="cyber-button btn-avanzado">Ver Programa Avanzado</a>
+                <a href="modulos_cotidianidad.html" class="cyber-button btn-cotidiano">Ver IA Cotidiana</a>
                 <a href="flyerwp.html" class="cyber-button btn-flyer">Flyer para Compartir</a>
-                <a href="aula.html" class="cyber-button btn-aula">Aula Virtual</a>
+                
+                <!-- Bloque de autenticación de Django -->
+                {% if user.is_authenticated %}
+                    <form action="{% url 'logout' %}" method="post" class="inline-block">
+                        {% csrf_token %}
+                        <button type="submit" class="cyber-button btn-auth">Cerrar Sesión ({{ user.username }})</button>
+                    </form>
+                    <a href="aula.html" class="cyber-button btn-aula">Ir al Aula Virtual</a> {# Este sería tu botón para el aula si el usuario está logueado #}
+                {% else %}
+                    <a href="{% url 'auth:login' %}" class="cyber-button btn-auth">Iniciar Sesión</a>
+                    <a href="{% url 'auth:register' %}" class="cyber-button btn-auth">Registrarse</a>
+                {% endif %}
             </div>
         </div>
     </main>
@@ -336,7 +351,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Lógica del contador regresivo
             const countDownDate = new Date("August 4, 2025 14:00:00").getTime();
-            const countdownInterval = setInterval(function() { // Cambiado el nombre de la variable
+            const countdownInterval = setInterval(function() {
                 const now = new Date().getTime();
                 const distance = countDownDate - now;
                 
@@ -357,7 +372,7 @@
                 if (secondsElem) secondsElem.innerHTML = seconds.toString().padStart(2, '0');
                 
                 if (distance < 0) {
-                    clearInterval(countdownInterval); // Cambiado el nombre de la variable
+                    clearInterval(countdownInterval);
                     const countdownElem = document.getElementById("countdown");
                     if(countdownElem) {
                         countdownElem.innerHTML = "<div class='text-2xl font-bold text-[#ff00ff] col-span-4'>¡EL TALLER HA COMENZADO!</div>";
@@ -365,37 +380,32 @@
                 }
             }, 1000);
 
-            // --- Inicio de la nueva lógica de integración con Django Backend ---
+            // --- Lógica de integración con Django Backend para el formulario de pre-inscripción ---
 
             // Función para obtener el token CSRF de las cookies (necesario para solicitudes POST en Django)
+            // Esta función es importante cuando Django sirve la plantilla.
             function getCookie(name) {
                 let cookieValue = null;
                 if (document.cookie && document.cookie !== '') {
                     const cookies = document.cookie.split(';');
                     for (let i = 0; i < cookies.length; i++) {
                         const cookie = cookies[i].trim();
-                        // Does this cookie string begin with the name we want?
                         if (cookie.substring(0, name.length + 1) === (name + '=')) {
                             cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
                             break;
                         }
-                        // If running locally from file:// and Django server is on http://
-                        // CSRF cookie will not be accessible due to cross-origin restrictions.
-                        // In this case, csrftoken will be null.
-                        // A temporary bypass in Django for development might be needed (e.g., @csrf_exempt in view)
-                        // OR serve index.html directly from Django.
                     }
                 }
                 return cookieValue;
             }
 
-            // Obtener el formulario de pre-inscripción
+            // Obtener el formulario de pre-inscripción y el div de mensajes
             const preRegistrationForm = document.getElementById('preRegistrationForm');
             const confirmationMessageDiv = document.getElementById('confirmationMessage');
 
             // Escuchar el evento de envío del formulario
             preRegistrationForm.addEventListener('submit', async function(event) {
-                event.preventDefault(); // Prevenir el envío por defecto del formulario (recarga de página)
+                event.preventDefault(); // Prevenir el envío por defecto del formulario
 
                 // Limpiar cualquier mensaje anterior
                 confirmationMessageDiv.style.display = 'none';
@@ -411,7 +421,6 @@
                     nombre_completo: fullName,
                     correo_electronico: email,
                     programa_interes: programInterest,
-                    // 'fecha_registro' se genera automáticamente en el backend, no lo enviamos desde aquí
                 };
 
                 const csrftoken = getCookie('csrftoken'); // Obtener el token CSRF
@@ -419,61 +428,51 @@
                 try {
                     // Realizar la solicitud POST a la API de Django
                     // Asegúrate de que el puerto sea el correcto (8001 en este ejemplo)
-                    // y que tu servidor Django esté corriendo.
                     const response = await fetch('http://127.0.0.1:8001/api/preinscripcion/', { 
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
-                            // Incluir el token CSRF en los headers. Si esto falla
-                            // porque la cookie no es accesible (ej. abriendo HTML localmente),
-                            // podrías necesitar desactivar temporalmente CSRF en Django REST Framework
-                            // para esa vista en desarrollo, o servir este HTML desde Django.
-                            'X-CSRFToken': csrftoken, 
+                            'X-CSRFToken': csrftoken, // Incluir el token CSRF
                         },
-                        body: JSON.stringify(data), // Convertir el objeto JavaScript a una cadena JSON
+                        body: JSON.stringify(data),
                     });
 
                     if (response.ok) { // Si la respuesta es exitosa (código 2xx)
-                        const result = await response.json(); // Leer la respuesta JSON del backend
+                        const result = await response.json();
                         console.log('Pre-inscripción exitosa:', result);
 
                         // Mostrar mensaje de éxito al usuario
                         confirmationMessageDiv.textContent = '¡Gracias por tu pre-inscripción! Datos guardados.';
                         confirmationMessageDiv.classList.add('message-success');
-                        confirmationMessageDiv.style.display = 'block'; // Mostrar el mensaje
+                        confirmationMessageDiv.style.display = 'block';
                         
                         preRegistrationForm.reset(); // Limpiar el formulario
                     } else {
                         // Si la respuesta no es exitosa (código 4xx, 5xx)
-                        const errorData = await response.json(); // Leer los detalles del error desde el backend
+                        const errorData = await response.json();
                         console.error('Error en la pre-inscripción:', response.status, errorData);
 
                         let errorMessage = 'Hubo un error al procesar tu pre-inscripción.';
-                        if (errorData.correo_electronico && errorData.correo_electronico.includes('already exists')) {
+                        if (errorData.correo_electronico && Array.isArray(errorData.correo_electronico) && errorData.correo_electronico.includes('pre inscripcion with this correo electronico already exists.')) {
                             errorMessage = '¡Ups! Este correo electrónico ya está pre-inscrito.';
-                        } else if (errorData.detail) { // Mensajes de error generales de DRF
+                        } else if (errorData.detail) {
                             errorMessage = `Error: ${errorData.detail}`;
                         } else if (typeof errorData === 'object') {
-                            // Intentar construir un mensaje a partir de otros errores de validación de DRF
                             errorMessage = "Error de validación: " + Object.values(errorData).flat().join('; ');
                         }
                         
-                        // Mostrar mensaje de error al usuario
                         confirmationMessageDiv.textContent = errorMessage;
                         confirmationMessageDiv.classList.add('message-error');
-                        confirmationMessageDiv.style.display = 'block'; // Mostrar el mensaje
+                        confirmationMessageDiv.style.display = 'block';
                     }
-                }
-                catch (error) {
-                    // Capturar errores de red (por ejemplo, si el servidor no está corriendo o hay problemas de conexión)
+                } catch (error) {
+                    // Capturar errores de red
                     console.error('Error de red o inesperado:', error);
                     confirmationMessageDiv.textContent = 'Error de conexión. Asegúrate de que el servidor esté funcionando e inténtalo de nuevo.';
                     confirmationMessageDiv.classList.add('message-error');
-                    confirmationMessageDiv.style.display = 'block'; // Mostrar el mensaje
+                    confirmationMessageDiv.style.display = 'block';
                 }
             });
-
-            // --- Fin de la nueva lógica de integración con Django Backend ---
         }); // Fin de DOMContentLoaded
     </script>
 </body>
