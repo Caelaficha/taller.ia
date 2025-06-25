@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CAELAFICHA IA - Inicio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Chakra Petch', sans-serif;
+      background-color: #0d0c1d;
+      color: #d0d0d0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+    .font-orbitron { font-family: 'Orbitron', sans-serif; }
+    .neon-text-cyan { color: #00e5ff; text-shadow: 0 0 5px #00e5ff, 0 0 15px #00e5ff, 0 0 30px #00e5ff; }
+    .neon-text-pink { color: #ff00ff; text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff; }
+    .cyber-border {
+      border: 2px solid #00e5ff;
+      box-shadow: 0 0 15px #00e5ff, inset 0 0 15px #00e5ff;
+    }
+    .cyber-button {
+      background-color: transparent;
+      border: 2px solid #ff00ff;
+      color: #ff00ff;
+      padding: 0.75rem 1.5rem;
+      font-family: 'Orbitron', sans-serif;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px #ff00ff;
+    }
+    .cyber-button:hover {
+      background-color: #ff00ff;
+      color: #0d0c1d;
+      box-shadow: 0 0 25px #ff00ff;
+    }
+  </style>
+</head>
+<body class="p-4">
+  <main class="w-full max-w-3xl bg-[#131227] cyber-border rounded-lg text-center p-8 md:p-12">
+    <h1 class="font-orbitron text-4xl md:text-6xl font-bold neon-text-cyan">CAELAFICHA IA</h1>
+    <p class="mt-4 text-xl md:text-2xl text-white">
+      Empezás desde <span class="neon-text-pink">cero</span>, terminás usando IA como un <span class="neon-text-pink">profesional</span>.
+    </p>
+    <!-- Stats Section -->
+    <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+      <div class="bg-black/40 p-4 rounded-md border border-cyan-700">
+        <span class="font-orbitron text-3xl font-bold text-white">1</span>
+        <p class="text-sm font-medium text-cyan-300">AÑO DE DURACIÓN</p>
+      </div>
+      <div class="bg-black/40 p-4 rounded-md border border-cyan-700">
+        <span class="font-orbitron text-3xl font-bold text-white">6</span>
+        <p class="text-sm font-medium text-cyan-300">MÓDULOS</p>
+      </div>
+      <div class="bg-black/40 p-4 rounded-md border border-cyan-700">
+        <span class="font-orbitron text-3xl font-bold text-white">48</span>
+        <p class="text-sm font-medium text-cyan-300">TEMAS PRÁCTICOS</p>
+      </div>
+    </div>
+    <!-- Links Section -->
+    <div class="mt-12 flex flex-col md:flex-row justify-center items-center gap-6">
+      <a href="modulos.html" class="cyber-button rounded-md w-full md:w-auto">Ver Programa Completo</a>
+      <a href="modulos_cotidianidad.html" class="cyber-button rounded-md w-full md:w-auto">IA Cotidiana</a>
+      <a href="flyerwp.html" class="cyber-button rounded-md w-full md:w-auto">Flyer para Compartir</a>
+    </div>
+  </main>
+</body>
+</html>
