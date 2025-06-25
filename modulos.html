@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programa de IA - Cronograma 2025/2026</title>
+    <title>Programa Avanzado IA - Cronograma 2025/2026</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,10 +50,6 @@
             border: 2px solid var(--neon-pink); 
             box-shadow: 0 0 15px var(--neon-pink), inset 0 0 15px var(--neon-pink); 
         }
-        .cyber-border-yellow { 
-            border: 2px solid var(--neon-yellow); 
-            box-shadow: 0 0 15px var(--neon-yellow), inset 0 0 15px var(--neon-yellow); 
-        }
         .module-content { 
             transition: max-height 0.4s ease; 
             overflow: hidden; 
@@ -74,7 +70,7 @@
             content: '▹'; 
             position: absolute; 
             left: 0; 
-            color: var(--neon-cyan); 
+            color: var(--neon-pink); 
         }
         .date-badge { 
             display: inline-block; 
@@ -94,51 +90,10 @@
             color: #ff5555; 
             border: 1px solid #ff5555; 
         }
-        .holiday-badge { 
-            background-color: rgba(0, 255, 0, 0.1); 
-            color: var(--neon-green); 
-            border: 1px solid var(--neon-green); 
+        .holiday-item {
+            background-color: rgba(0, 255, 0, 0.05);
+            border: 1px solid rgba(0, 255, 0, 0.3);
         }
-        .progress-bar {
-            height: 6px;
-            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink));
-            border-radius: 3px;
-            margin-top: 10px;
-        }
-        .timeline-marker {
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: var(--neon-pink);
-            top: 50%;
-            transform: translateY(-50%);
-            left: -6px;
-            z-index: 10;
-        }
-        .timeline-item {
-            position: relative;
-            padding-left: 20px;
-            margin-bottom: 20px;
-        }
-        .timeline-item:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, var(--neon-cyan), var(--neon-pink));
-        }
-        .timeline-content {
-            padding: 10px 15px;
-            border-radius: 6px;
-            background-color: rgba(25, 24, 48, 0.7);
-            border: 1px solid #2a2940;
-        }
-        .tp-item { border-left: 3px solid var(--neon-yellow); }
-        .eval-item { border-left: 3px solid #ff5555; }
-        .holiday-item { border-left: 3px solid var(--neon-green); }
         .module-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -154,14 +109,14 @@
         }
         .module-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 229, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(255, 0, 255, 0.2);
         }
         .glow {
             animation: glow 2s infinite alternate;
         }
         @keyframes glow {
-            from { box-shadow: 0 0 5px var(--neon-cyan), 0 0 10px var(--neon-cyan); }
-            to { box-shadow: 0 0 15px var(--neon-cyan), 0 0 20px var(--neon-cyan); }
+            from { box-shadow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-pink); }
+            to { box-shadow: 0 0 15px var(--neon-pink), 0 0 20px var(--neon-pink); }
         }
         .grid-highlight {
             background: linear-gradient(45deg, rgba(0, 229, 255, 0.1), rgba(255, 0, 255, 0.1));
@@ -171,11 +126,11 @@
     </style>
 </head>
 <body class="flex flex-col items-center min-h-screen p-4">
-    <main class="w-full max-w-6xl bg-[#131227] cyber-border rounded-lg overflow-hidden my-8 p-6 md:p-10 glow">
+    <main class="w-full max-w-6xl bg-[#131227] cyber-border-pink rounded-lg overflow-hidden my-8 p-6 md:p-10 glow">
         <header class="text-center mb-10">
-            <h1 class="font-orbitron text-3xl md:text-4xl font-bold neon-text-cyan mb-2">PROGRAMA DE ESTUDIO</h1>
-            <h2 class="font-orbitron text-xl md:text-2xl text-white">TALLER DE INTELIGENCIA ARTIFICIAL</h2>
-            <p class="mt-4 text-lg text-gray-400">Tu camino de principiante a profesional de la IA</p>
+            <h1 class="font-orbitron text-3xl md:text-4xl font-bold neon-text-pink mb-2">PROGRAMA AVANZADO DE IA</h1>
+            <h2 class="font-orbitron text-xl md:text-2xl text-white">De Cero a Profesional</h2>
+            <p class="mt-4 text-lg text-gray-400">Tu camino para dominar la programación y la ciencia de datos en IA.</p>
             
             <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div class="bg-[#0d0c1d] p-4 rounded-lg cyber-border">
@@ -187,311 +142,156 @@
                 </div>
                 
                 <div class="bg-[#0d0c1d] p-4 rounded-lg cyber-border">
-                    <h3 class="font-orbitron text-lg neon-text-pink mb-2">Duración</h3>
-                    <p class="text-center text-cyan-300">52 semanas</p>
-                    <p class="text-center text-gray-400">(1 año académico)</p>
+                    <h3 class="font-orbitron text-lg neon-text-pink mb-2">Horario</h3>
+                    <p class="text-center text-cyan-300">Lunes y Miércoles</p>
+                     <div class="text-center text-gray-400 text-sm mt-1">
+                        <p>Virtual: 14:00 - 16:00</p>
+                        <p>Presencial: 17:00 - 19:00</p>
+                    </div>
                 </div>
                 
                 <div class="bg-[#0d0c1d] p-4 rounded-lg cyber-border">
-                    <h3 class="font-orbitron text-lg neon-text-yellow mb-2">Horario</h3>
-                    <p class="text-center text-cyan-300">Lunes y Miércoles</p>
-                    <p class="text-center text-gray-400">18:00 - 20:00</p>
-                </div>
-            </div>
-            
-            <div class="mt-6 bg-[#0d0c1d] p-4 rounded-lg cyber-border-pink">
-                <div class="flex justify-between items-center mb-2">
-                    <span class="text-cyan-300">Inicio: 4 Ago 2025</span>
-                    <span class="text-pink-300">Fin: 3 Ago 2026</span>
-                </div>
-                <div class="progress-bar">
-                    <div class="h-full bg-gradient-to-r from-cyan-500 to-pink-500" style="width: 25%"></div>
-                </div>
-                <div class="mt-2 text-sm text-gray-300 flex justify-between">
-                    <span>Módulo 1</span>
-                    <span>Módulo 6</span>
+                    <h3 class="font-orbitron text-lg neon-text-yellow mb-2">Duración</h3>
+                    <p class="text-center text-cyan-300">52 semanas</p>
+                    <p class="text-center text-gray-400">(1 año académico)</p>
                 </div>
             </div>
         </header>
 
         <div class="grid-highlight">
-            <h3 class="font-orbitron text-xl neon-text-cyan mb-4 text-center">Cronograma Detallado</h3>
+            <h3 class="font-orbitron text-xl neon-text-pink mb-4 text-center">Cronograma Detallado</h3>
             <div class="module-grid">
-                <!-- Módulo 1 -->
-                <div class="module-card">
-                    <div class="module-header flex justify-between items-center cursor-pointer">
-                        <div>
-                            <h3 class="font-orbitron text-lg text-pink-400">MÓDULO 1</h3>
-                            <p class="text-cyan-300 text-sm">Introducción a la IA</p>
-                            <p class="text-gray-400 text-xs mt-1">4 Ago - 5 Sep 2025</p>
-                        </div>
-                        <svg class="w-6 h-6 text-pink-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </div>
-                    <div class="module-content mt-3">
-                        <ul class="text-gray-300 text-sm space-y-1">
-                            <li class="sub-item">T1: Conceptos básicos <span class="date-badge">4 Ago</span></li>
-                            <li class="sub-item">T2: Historia de la IA <span class="date-badge">6 Ago</span></li>
-                            <li class="sub-item">T3: Tipos de IA <span class="date-badge">11 Ago</span></li>
-                            <li class="sub-item">T4: Aplicaciones prácticas <span class="date-badge">13 Ago</span></li>
-                            <li class="sub-item">T5: Mitos y realidades <span class="date-badge">18 Ago</span></li>
-                            <li class="sub-item">T6: Riesgos y sesgos <span class="date-badge">20 Ago</span></li>
-                            <li class="sub-item tp-item">TP1: Uso de chatbots <span class="date-badge tp-badge">25 Ago</span></li>
-                            <li class="sub-item eval-item">Evaluación M1 <span class="date-badge eval-badge">27 Ago</span></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Módulo 2 -->
-                <div class="module-card">
-                    <div class="module-header flex justify-between items-center cursor-pointer">
-                        <div>
-                            <h3 class="font-orbitron text-lg text-cyan-400">MÓDULO 2</h3>
-                            <p class="text-pink-300 text-sm">Herramientas sin código</p>
-                            <p class="text-gray-400 text-xs mt-1">8 Sep - 10 Oct 2025</p>
-                        </div>
-                        <svg class="w-6 h-6 text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </div>
-                    <div class="module-content mt-3">
-                        <ul class="text-gray-300 text-sm space-y-1">
-                            <li class="sub-item">T7: Asistentes de voz <span class="date-badge">8 Sep</span></li>
-                            <li class="sub-item">T8: Generación de texto <span class="date-badge">10 Sep</span></li>
-                            <li class="sub-item">T9: Creación de imágenes <span class="date-badge">15 Sep</span></li>
-                            <li class="sub-item">T10: Traducción automática <span class="date-badge">17 Sep</span></li>
-                            <li class="sub-item">T11: Resumen de documentos <span class="date-badge">22 Sep</span></li>
-                            <li class="sub-item">T12: Automatización <span class="date-badge">24 Sep</span></li>
-                            <li class="sub-item tp-item">TP2: Combinar herramientas <span class="date-badge tp-badge">1 Oct</span></li>
-                            <li class="sub-item eval-item">Evaluación M2 <span class="date-badge eval-badge">8 Oct</span></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Vacaciones -->
-                <div class="module-card holiday-item">
-                    <div class="module-header flex justify-between items-center">
-                        <div>
-                            <h3 class="font-orbitron text-lg text-green-400">VACACIONES</h3>
-                            <p class="text-yellow-300 text-sm">Descanso académico</p>
-                            <p class="text-gray-400 text-xs mt-1">13 Oct - 19 Oct 2025</p>
-                        </div>
-                        <svg class="w-6 h-6 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </div>
-                    <div class="module-content mt-3">
-                        <p class="text-center text-green-300 text-sm py-2">¡Tiempo para descansar y recargar energías!</p>
-                    </div>
-                </div>
-
-                <!-- Módulo 3 -->
-                <div class="module-card">
-                    <div class="module-header flex justify-between items-center cursor-pointer">
-                        <div>
-                            <h3 class="font-orbitron text-lg text-pink-400">MÓDULO 3</h3>
-                            <p class="text-cyan-300 text-sm">Programación para IA</p>
-                            <p class="text-gray-400 text-xs mt-1">20 Oct - 21 Nov 2025</p>
-                        </div>
-                        <svg class="w-6 h-6 text-pink-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </div>
-                    <div class="module-content mt-3">
-                        <ul class="text-gray-300 text-sm space-y-1">
-                            <li class="sub-item">T13: Lógica de programación <span class="date-badge">20 Oct</span></li>
-                            <li class="sub-item">T14: Entorno Python <span class="date-badge">22 Oct</span></li>
-                            <li class="sub-item">T15: Variables y tipos <span class="date-badge">27 Oct</span></li>
-                            <li class="sub-item">T16: Estructuras de control <span class="date-badge">29 Oct</span></li>
-                            <li class="sub-item">T17: Funciones <span class="date-badge">3 Nov</span></li>
-                            <li class="sub-item">T18: Estructuras de datos <span class="date-badge">5 Nov</span></li>
-                            <li class="sub-item tp-item">TP3: Script CSV <span class="date-badge tp-badge">12 Nov</span></li>
-                            <li class="sub-item eval-item">Evaluación M3 <span class="date-badge eval-badge">19 Nov</span></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Módulo 4 -->
-                <div class="module-card">
-                    <div class="module-header flex justify-between items-center cursor-pointer">
-                        <div>
-                            <h3 class="font-orbitron text-lg text-cyan-400">MÓDULO 4</h3>
-                            <p class="text-pink-300 text-sm">Ciencia de datos</p>
-                            <p class="text-gray-400 text-xs mt-1">24 Nov 2025 - 9 Ene 2026</p>
-                        </div>
-                        <svg class="w-6 h-6 text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </div>
-                    <div class="module-content mt-3">
-                        <ul class="text-gray-300 text-sm space-y-1">
-                            <li class="sub-item">T19: Estadística descriptiva <span class="date-badge">24 Nov</span></li>
-                            <li class="sub-item">T20: Probabilidad <span class="date-badge">26 Nov</span></li>
-                            <li class="sub-item">T21: Álgebra lineal <span class="date-badge">1 Dic</span></li>
-                            <li class="sub-item">T22: Operaciones matriciales <span class="date-badge">3 Dic</span></li>
-                            <li class="sub-item">T23: Cálculo para IA <span class="date-badge">8 Dic</span></li>
-                            <li class="sub-item">T24: Visualización <span class="date-badge">15 Dic</span></li>
-                            <li class="sub-item tp-item">TP4: Análisis de datos <span class="date-badge tp-badge">5 Ene</span></li>
-                            <li class="sub-item eval-item">Evaluación M4 <span class="date-badge eval-badge">8 Ene</span></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Vacaciones Navidad -->
-                <div class="module-card holiday-item">
-                    <div class="module-header flex justify-between items-center">
-                        <div>
-                            <h3 class="font-orbitron text-lg text-green-400">NAVIDAD</h3>
-                            <p class="text-yellow-300 text-sm">Vacaciones</p>
-                            <p class="text-gray-400 text-xs mt-1">20 Dic 2025 - 5 Ene 2026</p>
-                        </div>
-                        <svg class="w-6 h-6 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </div>
-                    <div class="module-content mt-3">
-                        <p class="text-center text-green-300 text-sm py-2">¡Felices fiestas! Regresamos en enero</p>
-                    </div>
-                </div>
-
-                <!-- Módulo 5 -->
-                <div class="module-card">
-                    <div class="module-header flex justify-between items-center cursor-pointer">
-                        <div>
-                            <h3 class="font-orbitron text-lg text-pink-400">MÓDULO 5</h3>
-                            <p class="text-cyan-300 text-sm">Machine Learning</p>
-                            <p class="text-gray-400 text-xs mt-1">12 Ene - 13 Feb 2026</p>
-                        </div>
-                        <svg class="w-6 h-6 text-pink-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </div>
-                    <div class="module-content mt-3">
-                        <ul class="text-gray-300 text-sm space-y-1">
-                            <li class="sub-item">T25: Aprendizaje supervisado <span class="date-badge">12 Ene</span></li>
-                            <li class="sub-item">T26: Regresión lineal <span class="date-badge">14 Ene</span></li>
-                            <li class="sub-item">T27: Regresión logística <span class="date-badge">19 Ene</span></li>
-                            <li class="sub-item">T28: Árboles de decisión <span class="date-badge">21 Ene</span></li>
-                            <li class="sub-item">T29: SVM y kernels <span class="date-badge">26 Ene</span></li>
-                            <li class="sub-item">T30: Redes neuronales <span class="date-badge">28 Ene</span></li>
-                            <li class="sub-item tp-item">TP5: Pipeline entrenamiento <span class="date-badge tp-badge">4 Feb</span></li>
-                            <li class="sub-item eval-item">Evaluación M5 <span class="date-badge eval-badge">11 Feb</span></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Módulo 6 -->
-                <div class="module-card">
-                    <div class="module-header flex justify-between items-center cursor-pointer">
-                        <div>
-                            <h3 class="font-orbitron text-lg text-cyan-400">MÓDULO 6</h3>
-                            <p class="text-pink-300 text-sm">Implementación profesional</p>
-                            <p class="text-gray-400 text-xs mt-1">16 Feb - 31 Mar 2026</p>
-                        </div>
-                        <svg class="w-6 h-6 text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </div>
-                    <div class="module-content mt-3">
-                        <ul class="text-gray-300 text-sm space-y-1">
-                            <li class="sub-item">T31: IA generativa avanzada <span class="date-badge">16 Feb</span></li>
-                            <li class="sub-item">T32: MLOps <span class="date-badge">18 Feb</span></li>
-                            <li class="sub-item">T33: Contenerización <span class="date-badge">23 Feb</span></li>
-                            <li class="sub-item">T34: Despliegue de modelos <span class="date-badge">25 Feb</span></li>
-                            <li class="sub-item">T35: Monitoreo <span class="date-badge">2 Mar</span></li>
-                            <li class="sub-item">T36: Ética y explicabilidad <span class="date-badge">4 Mar</span></li>
-                            <li class="sub-item tp-item">TP6: Proyecto final <span class="date-badge tp-badge">18 Mar</span></li>
-                            <li class="sub-item eval-item">Evaluación final <span class="date-badge eval-badge">25 Mar</span></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Proyecto Final -->
-                <div class="module-card cyber-border-yellow">
-                    <div class="module-header flex justify-between items-center">
-                        <div>
-                            <h3 class="font-orbitron text-lg neon-text-yellow">PROYECTO FINAL</h3>
-                            <p class="text-pink-300 text-sm">Implementación completa</p>
-                            <p class="text-gray-400 text-xs mt-1">1 Abr - 3 Ago 2026</p>
-                        </div>
-                        <svg class="w-6 h-6 text-yellow-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </div>
-                    <div class="module-content mt-3">
-                        <ul class="text-gray-300 text-sm space-y-1">
-                            <li class="sub-item">Desarrollo del proyecto <span class="date-badge">1 Abr</span></li>
-                            <li class="sub-item">Revisiones semanales <span class="date-badge">Cada lunes</span></li>
-                            <li class="sub-item">Entrega preliminar <span class="date-badge">1 Jul</span></li>
-                            <li class="sub-item">Presentación final <span class="date-badge">29 Jul</span></li>
-                            <li class="sub-item">Ceremonia de graduación <span class="date-badge">3 Ago</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="mt-10">
-            <h3 class="font-orbitron text-xl neon-text-cyan mb-4 text-center">Calendario Académico</h3>
-            <div class="bg-[#0d0c1d] p-4 rounded-lg cyber-border">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <h4 class="font-orbitron text-lg neon-text-pink mb-3">Periodos Lectivos</h4>
-                        <ul class="space-y-2 text-sm">
-                            <li class="flex justify-between">
-                                <span class="text-gray-300">Primer cuatrimestre:</span>
-                                <span class="text-cyan-300">4 Ago - 19 Dic 2025</span>
-                            </li>
-                            <li class="flex justify-between">
-                                <span class="text-gray-300">Segundo cuatrimestre:</span>
-                                <span class="text-cyan-300">5 Ene - 3 Ago 2026</span>
-                            </li>
-                            <li class="flex justify-between">
-                                <span class="text-gray-300">Horas totales:</span>
-                                <span class="text-cyan-300">320 horas</span>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <div>
-                        <h4 class="font-orbitron text-lg neon-text-cyan mb-3">Vacaciones</h4>
-                        <ul class="space-y-2 text-sm">
-                            <li class="flex justify-between">
-                                <span class="text-gray-300">Descanso académico:</span>
-                                <span class="text-green-300">13-19 Oct 2025</span>
-                            </li>
-                            <li class="flex justify-between">
-                                <span class="text-gray-300">Navidad/Año Nuevo:</span>
-                                <span class="text-green-300">20 Dic 2025 - 5 Ene 2026</span>
-                            </li>
-                            <li class="flex justify-between">
-                                <span class="text-gray-300">Semana Santa:</span>
-                                <span class="text-green-300">24-30 Mar 2026</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                <!-- Modules and holidays will be injected here by JavaScript -->
             </div>
         </div>
     </main>
 
     <footer class="text-center text-gray-500 text-sm mt-6 mb-4">
-        <p>© 2025 - Programa de Inteligencia Artificial | Inicia: 4/8/2025 - Finaliza: 3/8/2026</p>
+        <p>© 2025 - Programa Avanzado de IA | Inicia: 4/8/2025 - Finaliza: 3/8/2026</p>
     </footer>
 
     <script>
-        document.querySelectorAll('.module-card').forEach(card => {
-            const header = card.querySelector('.module-header');
-            const content = card.querySelector('.module-content');
+        document.addEventListener('DOMContentLoaded', function () {
+            const modulesData = [
+                { title: "Introducción a la IA", topics: ["¿Qué es la IA? Ejemplos cotidianos", "Historia y evolución breve de la IA", "IA débil vs IA fuerte", "Tipos de IA: Machine Learning, etc.", "Aplicaciones prácticas", "Mitos y realidades de la IA", "Riesgos básicos y sesgos", "TP: Usar un chatbot"] },
+                { title: "Herramientas de IA sin programar", topics: ["Asistentes de voz", "Generación de texto con ChatGPT", "Creación de imágenes (DALL·E)", "Traducción automática", "Resúmenes de documentos", "Calendarios inteligentes", "Automatización de flujos simples", "TP: Combinar tres herramientas"] },
+                { title: "Fundamentos de programación para IA", topics: ["Lógica de programación", "Entorno Python y Jupyter", "Variables y tipos de datos", "Estructuras de control", "Funciones y modularidad", "Listas, tuplas, diccionarios", "Manejo de archivos", "TP: Procesar un CSV"] },
+                { title: "Ciencia de datos y matemáticas", topics: ["Estadística descriptiva", "Probabilidad básica", "Álgebra lineal: vectores y matrices", "Operaciones con NumPy", "Cálculo: derivadas y gradientes", "Visualización con Matplotlib", "Manipulación con Pandas", "TP: Análisis exploratorio"] },
+                { title: "Machine Learning y modelos", topics: ["Aprendizaje supervisado y no", "Regresión lineal con scikit-learn", "Regresión logística", "Árboles de decisión", "Support Vector Machines", "Redes neuronales con TensorFlow", "Fundamentos de NLP", "TP: Pipeline de entrenamiento"] },
+                { title: "Implementación profesional y ética", topics: ["Métricas y validación cruzada", "Preprocesamiento avanzado", "Despliegue con FastAPI", "Contenerización con Docker", "Monitoreo de modelos", "MLOps y DVC", "Ética y explicabilidad (LIME/SHAP)", "TP Final: De idea a prototipo"] }
+            ];
+
+            const startDate = new Date('2025-08-04T12:00:00Z');
+            const endDate = new Date('2026-08-03T12:00:00Z');
+            const recessDates = [
+                { start: new Date('2025-10-13T12:00:00Z'), end: new Date('2025-10-20T12:00:00Z'), title: "DESCANSO ACADÉMICO", message: "¡Tiempo para recargar energías!" },
+                { start: new Date('2025-12-20T12:00:00Z'), end: new Date('2026-01-05T12:00:00Z'), title: "VACACIONES NAVIDAD", message: "¡Felices fiestas! Regresamos en enero." },
+                { start: new Date('2026-03-24T12:00:00Z'), end: new Date('2026-03-31T12:00:00Z'), title: "SEMANA SANTA", message: "Breve descanso y volvemos con todo." }
+            ];
+
+            let classDates = [];
+            for (let d = new Date(startDate); d <= endDate && classDates.length < 48; d.setDate(d.getDate() + 1)) {
+                const dayOfWeek = d.getDay();
+                let isHoliday = recessDates.some(range => d >= range.start && d < range.end);
+                if ((dayOfWeek === 1 || dayOfWeek === 3) && !isHoliday) {
+                    classDates.push(new Date(d));
+                }
+            }
             
-            if (header && content) {
-                header.addEventListener('click', () => {
-                    const isActive = header.classList.contains('active');
-                    
-                    if (isActive) {
-                        header.classList.remove('active');
-                        content.style.maxHeight = null;
-                    } else {
-                        header.classList.add('active');
-                        content.style.maxHeight = content.scrollHeight + 'px';
-                    }
+            const moduleGrid = document.querySelector('.module-grid');
+            let topicIndex = 0;
+            
+            modulesData.forEach((module, moduleIndex) => {
+                const moduleTopics = module.topics;
+                const moduleStart = classDates[topicIndex];
+                const moduleEnd = classDates[topicIndex + moduleTopics.length - 1];
+
+                const card = document.createElement('div');
+                card.className = 'module-card';
+                
+                let topicsHTML = '';
+                moduleTopics.forEach(topic => {
+                    const date = classDates[topicIndex];
+                    const isTP = topic.startsWith("TP");
+                    const topicText = topic.replace(/TP\d*:\s*/, '');
+                    const badgeClass = isTP ? 'tp-badge' : '';
+                    topicsHTML += `<li class="sub-item ${isTP ? 'tp-item' : ''}">${topicText} <span class="date-badge ${badgeClass}">${date.getDate()} ${date.toLocaleString('es-ES', { month: 'short' }).replace('.','')}</span></li>`;
+                    topicIndex++;
                 });
+
+                const evalDate = classDates[topicIndex-1]; 
+                if(evalDate) {
+                   topicsHTML += `<li class="sub-item eval-item">Evaluación M${moduleIndex + 1} <span class="date-badge eval-badge">${evalDate.getDate() + 2} ${evalDate.toLocaleString('es-ES', { month: 'short' }).replace('.','')}</span></li>`;
+                }
+
+                card.innerHTML = `
+                    <div class="module-header flex justify-between items-center cursor-pointer">
+                        <div>
+                            <h3 class="font-orbitron text-lg ${moduleIndex % 2 === 0 ? 'text-pink-400' : 'text-cyan-400'}">MÓDULO ${moduleIndex + 1}</h3>
+                            <p class="${moduleIndex % 2 === 0 ? 'text-cyan-300' : 'text-pink-300'} text-sm">${module.title}</p>
+                            <p class="text-gray-400 text-xs mt-1">${moduleStart.getDate()} ${moduleStart.toLocaleString('es-ES', { month: 'short' }).replace('.','')} - ${moduleEnd.getDate()} ${moduleEnd.toLocaleString('es-ES', { month: 'short' }).replace('.','')} ${moduleEnd.getFullYear()}</p>
+                        </div>
+                        <svg class="w-6 h-6 ${moduleIndex % 2 === 0 ? 'text-pink-400' : 'text-cyan-400'}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                    <div class="module-content mt-3">
+                        <ul class="text-gray-300 text-sm space-y-1">${topicsHTML}</ul>
+                    </div>
+                `;
+                moduleGrid.appendChild(card);
+
+                // Add holiday breaks after specific modules
+                if (moduleIndex === 1) { // After Module 2
+                    addHolidayCard(recessDates[0]);
+                } else if (moduleIndex === 3) { // After Module 4
+                    addHolidayCard(recessDates[1]);
+                } else if (moduleIndex === 5) { // After Module 6
+                    addHolidayCard(recessDates[2]);
+                }
+            });
+            
+            function addHolidayCard(holiday) {
+                const card = document.createElement('div');
+                card.className = 'module-card holiday-item';
+                card.innerHTML = `
+                    <div class="module-header flex justify-between items-center">
+                        <div>
+                            <h3 class="font-orbitron text-lg text-green-400">${holiday.title}</h3>
+                            <p class="text-yellow-300 text-sm">Descanso académico</p>
+                            <p class="text-gray-400 text-xs mt-1">${holiday.start.getDate()} ${holiday.start.toLocaleString('es-ES', { month: 'short' }).replace('.','')} - ${holiday.end.getDate()} ${holiday.end.toLocaleString('es-ES', { month: 'short' }).replace('.','')} ${holiday.end.getFullYear()}</p>
+                        </div>
+                    </div>
+                `;
+                 moduleGrid.appendChild(card);
+            }
+
+            document.querySelectorAll('.module-card').forEach(card => {
+                const header = card.querySelector('.module-header');
+                const content = card.querySelector('.module-content');
+                if (header && content) {
+                    header.addEventListener('click', () => {
+                        const isActive = header.classList.contains('active');
+                        if (isActive) {
+                            header.classList.remove('active');
+                            content.style.maxHeight = null;
+                        } else {
+                            header.classList.add('active');
+                            content.style.maxHeight = content.scrollHeight + 'px';
+                        }
+                    });
+                }
+            });
+
+            // Auto open first module
+            const firstCard = document.querySelector('.module-card');
+            if (firstCard) {
+                const firstHeader = firstCard.querySelector('.module-header');
+                const firstContent = firstCard.querySelector('.module-content');
+                if (firstHeader && firstContent) {
+                    firstHeader.classList.add('active');
+                    firstContent.style.maxHeight = firstContent.scrollHeight + 'px';
+                }
             }
         });
-        
-        // Auto open first module
-        const firstCard = document.querySelector('.module-card');
-        if (firstCard) {
-            const firstHeader = firstCard.querySelector('.module-header');
-            const firstContent = firstCard.querySelector('.module-content');
-            if (firstHeader && firstContent) {
-                firstHeader.classList.add('active');
-                firstContent.style.maxHeight = firstContent.scrollHeight + 'px';
-            }
-        }
     </script>
 </body>
 </html>
