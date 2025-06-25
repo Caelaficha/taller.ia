@@ -12,8 +12,10 @@
         body {
             font-family: 'Chakra Petch', sans-serif;
             background-color: #0d0c1d;
-            background-image: radial-gradient(circle at 10% 20%, rgba(255, 0, 255, 0.05) 0%, transparent 20%), 
-                                radial-gradient(circle at 90% 80%, rgba(0, 229, 255, 0.05) 0%, transparent 20%);
+            /* Enhanced background gradients for more depth */
+            background-image: radial-gradient(circle at 10% 20%, rgba(255, 0, 255, 0.08) 0%, transparent 25%),
+                              radial-gradient(circle at 90% 80%, rgba(0, 229, 255, 0.08) 0%, transparent 25%),
+                              radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.01) 0%, transparent 50%);
             color: #d0d0d0;
             display: flex;
             align-items: center;
@@ -33,7 +35,6 @@
         .cyber-button {
             background-color: transparent;
             border: 2px solid;
-            color: #ff00ff;
             padding: 0.75rem 1.5rem;
             font-family: 'Orbitron', sans-serif;
             text-transform: uppercase;
@@ -41,6 +42,7 @@
             box-shadow: 0 0 10px;
             text-decoration: none;
             display: inline-block;
+            cursor: pointer; /* Ensure buttons and form submit are clearly clickable */
         }
         .btn-avanzado { border-color: #00e5ff; color: #00e5ff; box-shadow: 0 0 10px #00e5ff; }
         .btn-cotidiano { border-color: #ff00ff; color: #ff00ff; box-shadow: 0 0 10px #ff00ff; }
@@ -88,6 +90,56 @@
             0% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
+        }
+
+        /* Form specific styles */
+        .cyber-input {
+            background-color: rgba(10, 9, 25, 0.7);
+            border: 1px solid #00e5ff;
+            color: #d0d0d0;
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            box-shadow: 0 0 8px rgba(0, 229, 255, 0.3), inset 0 0 4px rgba(0, 229, 255, 0.2);
+            transition: all 0.2s ease-in-out;
+            width: 100%;
+        }
+        .cyber-input:focus {
+            outline: none;
+            border-color: #ff00ff;
+            box-shadow: 0 0 12px rgba(255, 0, 255, 0.6), inset 0 0 6px rgba(255, 0, 255, 0.4);
+        }
+        .cyber-select {
+            background-color: rgba(10, 9, 25, 0.7);
+            border: 1px solid #00e5ff;
+            color: #d0d0d0;
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            box-shadow: 0 0 8px rgba(0, 229, 255, 0.3), inset 0 0 4px rgba(0, 229, 255, 0.2);
+            appearance: none; /* Remove default select arrow */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2300e5ff%22%20d%3D%22M287%2C146.2L146.2%2C287c-3.1%2C3.1-8.2%2C3.1-11.3%2C0c-3.1-3.1-3.1-8.2%2C0-11.3L268.4%2C140.5L134.9%2C6.9c-3.1-3.1-3.1-8.2%2C0-11.3c3.1-3.1%2C8.2-3.1%2C11.3%2C0L287%2C146.2z%22%2F%3E%3C%2Fsvg%3E'); /* Custom arrow */
+            background-repeat: no-repeat;
+            background-position: right 0.7em top 50%;
+            background-size: 0.65em auto;
+            width: 100%;
+        }
+        .cyber-select option {
+            background-color: #0d0c1d;
+            color: #d0d0d0;
+        }
+
+        /* Confirmation Message styles */
+        #confirmationMessage {
+            background-color: rgba(0, 229, 255, 0.15);
+            border: 1px solid #00e5ff;
+            color: #00e5ff;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.7);
+            font-weight: bold;
+            display: none; /* Hidden by default */
         }
     </style>
 </head>
@@ -161,6 +213,37 @@
                 </div>
             </div>
         </div>
+
+        <div class="glowing-divider"></div>
+
+        <!-- Pre-registration Form Section -->
+        <div class="mt-8 text-center">
+            <h2 class="font-orbitron text-2xl md:text-3xl neon-text-pink mb-6">¡Pre-inscríbete Ahora!</h2>
+            <form id="preRegistrationForm" class="max-w-xl mx-auto space-y-6">
+                <div>
+                    <label for="fullName" class="block text-left text-lg font-bold mb-2 neon-text-cyan">Nombre Completo:</label>
+                    <input type="text" id="fullName" name="fullName" required class="cyber-input" placeholder="Tu Nombre y Apellido">
+                </div>
+                <div>
+                    <label for="email" class="block text-left text-lg font-bold mb-2 neon-text-cyan">Correo Electrónico:</label>
+                    <input type="email" id="email" name="email" required class="cyber-input" placeholder="tu.correo@ejemplo.com">
+                </div>
+                <div>
+                    <label for="programInterest" class="block text-left text-lg font-bold mb-2 neon-text-cyan">Interés en Programa:</label>
+                    <select id="programInterest" name="programInterest" class="cyber-select">
+                        <option value="avanzado">Programa Avanzado (Lunes y Miércoles)</option>
+                        <option value="cotidiana">IA Cotidiana (Martes y Jueves)</option>
+                        <option value="indefinido">Aún no estoy seguro/a</option>
+                    </select>
+                </div>
+                <button type="submit" class="cyber-button btn-cotidiano rounded-md w-full md:w-auto mt-4">Enviar Pre-inscripción</button>
+            </form>
+            <div id="confirmationMessage" class="mt-6 hidden">
+                ¡Gracias por tu pre-inscripción! Nos pondremos en contacto contigo pronto.
+            </div>
+        </div>
+        
+        <div class="glowing-divider"></div>
         
         <!-- Links Section -->
         <div class="mt-16 flex flex-col md:flex-row justify-center items-center gap-6">
@@ -171,21 +254,25 @@
     </main>
     
     <script>
+        // Countdown Logic
         const countDownDate = new Date("August 4, 2025 14:00:00").getTime();
         const countdownFunction = setInterval(function() {
             const now = new Date().getTime();
             const distance = countDownDate - now;
             
+            // Calculate days, hours, minutes, seconds
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
             
+            // Update the HTML elements with leading zeros
             document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
             document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
             document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
             document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
             
+            // If the countdown is over, display a message
             if (distance < 0) {
                 clearInterval(countdownFunction);
                 const countdownElem = document.getElementById("countdown");
@@ -194,6 +281,51 @@
                 }
             }
         }, 1000);
+
+        // Form Submission Logic (Client-side simulation)
+        document.getElementById('preRegistrationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Get form values (for demonstration, not actually sent)
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const programInterest = document.getElementById('programInterest').value;
+
+            console.log("Datos de Pre-inscripción:");
+            console.log("Nombre: " + fullName);
+            console.log("Email: " + email);
+            console.log("Programa de Interés: " + programInterest);
+
+            // Display confirmation message
+            const confirmationMessage = document.getElementById('confirmationMessage');
+            confirmationMessage.classList.remove('hidden'); // Show the message
+            
+            // Optionally, clear the form after submission
+            this.reset();
+
+            // In a real application, you would send this data to your backend (e.g., using fetch API)
+            // Example:
+            /*
+            fetch('/api/pre-register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ fullName, email, programInterest }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                confirmationMessage.textContent = '¡Gracias por tu pre-inscripción! Nos pondremos en contacto contigo pronto.';
+                confirmationMessage.classList.remove('hidden');
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                confirmationMessage.textContent = 'Hubo un error al procesar tu pre-inscripción. Por favor, inténtalo de nuevo.';
+                confirmationMessage.classList.remove('hidden');
+            });
+            */
+        });
     </script>
 </body>
 </html>
