@@ -13,7 +13,7 @@
             font-family: 'Chakra Petch', sans-serif;
             background-color: #0d0c1d;
             background-image: radial-gradient(circle at 10% 20%, rgba(255, 0, 255, 0.05) 0%, transparent 20%), 
-                              radial-gradient(circle at 90% 80%, rgba(0, 229, 255, 0.05) 0%, transparent 20%);
+                                radial-gradient(circle at 90% 80%, rgba(0, 229, 255, 0.05) 0%, transparent 20%);
             color: #d0d0d0;
             display: flex;
             align-items: center;
@@ -32,21 +32,24 @@
         }
         .cyber-button {
             background-color: transparent;
-            border: 2px solid #ff00ff;
+            border: 2px solid;
             color: #ff00ff;
             padding: 0.75rem 1.5rem;
             font-family: 'Orbitron', sans-serif;
             text-transform: uppercase;
             transition: all 0.3s ease;
-            box-shadow: 0 0 10px #ff00ff;
+            box-shadow: 0 0 10px;
             text-decoration: none;
             display: inline-block;
         }
-        .cyber-button:hover {
-            background-color: #ff00ff;
-            color: #0d0c1d;
-            box-shadow: 0 0 25px #ff00ff;
-        }
+        .btn-avanzado { border-color: #00e5ff; color: #00e5ff; box-shadow: 0 0 10px #00e5ff; }
+        .btn-cotidiano { border-color: #ff00ff; color: #ff00ff; box-shadow: 0 0 10px #ff00ff; }
+        .btn-flyer { border-color: #f3f74c; color: #f3f74c; box-shadow: 0 0 10px #f3f74c; }
+
+        .btn-avanzado:hover { background-color: #00e5ff; color: #0d0c1d; text-shadow: none; box-shadow: 0 0 25px #00e5ff; transform: translateY(-3px); }
+        .btn-cotidiano:hover { background-color: #ff00ff; color: #0d0c1d; text-shadow: none; box-shadow: 0 0 25px #ff00ff; transform: translateY(-3px); }
+        .btn-flyer:hover { background-color: #f3f74c; color: #0d0c1d; text-shadow: none; box-shadow: 0 0 25px #f3f74c; transform: translateY(-3px); }
+        
         .countdown-item {
             display: flex;
             flex-direction: column;
@@ -75,16 +78,8 @@
         .glowing-divider {
             height: 3px;
             background: linear-gradient(90deg, transparent, #00e5ff, #ff00ff, #00e5ff, transparent);
-            margin: 2rem 0;
+            margin: 2.5rem 0;
             box-shadow: 0 0 10px rgba(0, 229, 255, 0.7);
-        }
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 0, 255, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(255, 0, 255, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 0, 255, 0); }
         }
         .floating {
             animation: floating 3s ease-in-out infinite;
@@ -94,40 +89,10 @@
             50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
         }
-        .matrix-grid {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.1;
-            background-image: 
-                linear-gradient(rgba(0, 229, 255, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 229, 255, 0.1) 1px, transparent 1px);
-            background-size: 40px 40px;
-        }
-        .progress-container {
-            width: 100%;
-            height: 12px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 6px;
-            margin-top: 1rem;
-            overflow: hidden;
-        }
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, #ff00ff, #00e5ff);
-            border-radius: 6px;
-            width: 0%;
-            transition: width 0.5s ease;
-        }
     </style>
 </head>
 <body>
-    <div class="matrix-grid"></div>
-    
-    <main class="w-full max-w-3xl bg-[#131227] cyber-border rounded-lg text-center p-8 md:p-12 relative z-10">
+    <main class="w-full max-w-4xl bg-[#131227] cyber-border rounded-lg text-center p-8 md:p-12 relative z-10">
         <div class="absolute top-4 right-4 bg-[#ff00ff] text-[#0d0c1d] text-xs font-bold py-1 px-2 rounded">
             <span class="font-orbitron">PRE-INSCRIPCIÓN ABIERTA</span>
         </div>
@@ -141,7 +106,7 @@
         <div class="mt-10">
             <h2 class="font-orbitron text-2xl md:text-3xl neon-text-cyan mb-6">¡El taller comienza en!</h2>
             
-            <div class="flex justify-center items-center gap-4 flex-wrap">
+            <div id="countdown" class="flex justify-center items-center gap-4 flex-wrap">
                 <div class="countdown-item">
                     <div id="days" class="countdown-value">00</div>
                     <div class="countdown-label">Días</div>
@@ -161,116 +126,74 @@
             </div>
             
             <div class="mt-6 text-cyan-300">
-                <p>Fecha de inicio: <span class="font-bold">1 de Julio, 2025</span></p>
-                <p class="mt-2 text-sm">Horario: Martes y Jueves de 19:00 a 21:00</p>
-            </div>
-            
-            <div class="progress-container mt-4">
-                <div id="progress-bar" class="progress-bar"></div>
+                <p>Fecha de inicio: <span class="font-bold">4 de Agosto, 2025</span></p>
             </div>
         </div>
         
         <div class="glowing-divider"></div>
         
-        <!-- Stats Section -->
-        <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-            <div class="bg-black/40 p-4 rounded-md border border-cyan-700">
-                <span class="font-orbitron text-3xl font-bold text-white">1</span>
-                <p class="text-sm font-medium text-cyan-300">AÑO DE DURACIÓN</p>
+        <!-- Schedule Section -->
+        <div class="mt-8 text-center">
+            <h2 class="font-orbitron text-2xl md:text-3xl neon-text-cyan mb-6">Nuestros Programas</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+                <!-- Avanzado -->
+                <div class="bg-black/20 p-6 rounded-lg border border-cyan-500/50">
+                    <h3 class="font-orbitron text-2xl text-cyan-400 mb-3">Programa Avanzado</h3>
+                    <p class="font-bold text-lg text-white">Lunes y Miércoles</p>
+                </div>
+                <!-- Cotidiano -->
+                <div class="bg-black/20 p-6 rounded-lg border border-pink-500/50">
+                    <h3 class="font-orbitron text-2xl text-pink-400 mb-3">IA Cotidiana</h3>
+                    <p class="font-bold text-lg text-white">Martes y Jueves</p>
+                </div>
             </div>
-            <div class="bg-black/40 p-4 rounded-md border border-cyan-700">
-                <span class="font-orbitron text-3xl font-bold text-white">6</span>
-                <p class="text-sm font-medium text-cyan-300">MÓDULOS POR CURSO</p>
+            <div class="mt-8 bg-black/20 p-6 rounded-lg border border-yellow-500/50 max-w-3xl mx-auto">
+                <h3 class="font-orbitron text-2xl text-yellow-300 mb-4">Modalidades y Horarios</h3>
+                <div class="flex justify-center gap-8 text-lg">
+                    <div>
+                        <p class="font-bold text-cyan-300">VIRTUAL</p>
+                        <p>14:00 a 16:00</p>
+                    </div>
+                    <div>
+                        <p class="font-bold text-pink-400">PRESENCIAL</p>
+                        <p>17:00 a 19:00</p>
+                    </div>
+                </div>
             </div>
-            <div class="bg-black/40 p-4 rounded-md border border-cyan-700">
-                <span class="font-orbitron text-3xl font-bold text-white">48</span>
-                <p class="text-sm font-medium text-cyan-300">TEMAS PRÁCTICOS</p>
-            </div>
-        </div>
-        
-        <div class="mt-8 text-left bg-[#0d0c1d] p-4 rounded-md border border-cyan-700">
-            <h3 class="font-orbitron text-xl neon-text-cyan mb-3">Estructura del Programa</h3>
-            <ul class="text-sm space-y-2">
-                <li>• <span class="text-cyan-300">Duración:</span> 1 año (48 semanas)</li>
-                <li>• <span class="text-cyan-300">Clases:</span> 2 veces por semana (Martes y Jueves)</li>
-                <li>• <span class="text-cyan-300">Horario:</span> 19:00 a 21:00 (2 horas por clase)</li>
-                <li>• <span class="text-cyan-300">Temas:</span> 1 tema práctico por clase (48 en total)</li>
-                <li>• <span class="text-cyan-300">Evaluación:</span> 1 examen por módulo (cada 8 semanas)</li>
-                <li>• <span class="text-cyan-300">Trabajos:</span> 1 trabajo práctico por semana</li>
-            </ul>
         </div>
         
         <!-- Links Section -->
-        <div class="mt-12 flex flex-col md:flex-row justify-center items-center gap-6">
-            <a href="cronograma.html" class="cyber-button rounded-md w-full md:w-auto pulse">Programa Avanzado</a>
-            <a href="cronograma.html" class="cyber-button rounded-md w-full md:w-auto">IA Cotidiana</a>
-            <a href="flyerwp.html" class="cyber-button rounded-md w-full md:w-auto">Flyer para Compartir</a>
+        <div class="mt-16 flex flex-col md:flex-row justify-center items-center gap-6">
+            <a href="modulos.html" class="cyber-button btn-avanzado rounded-md w-full md:w-auto">Ver Programa Avanzado</a>
+            <a href="modulos_cotidianidad.html" class="cyber-button btn-cotidiano rounded-md w-full md:w-auto">Ver IA Cotidiana</a>
+            <a href="flyerwp.html" class="cyber-button btn-flyer rounded-md w-full md:w-auto">Flyer para Compartir</a>
         </div>
     </main>
     
     <script>
-        // Set the date we're counting down to (July 1, 2025 19:00:00)
-        const countDownDate = new Date("July 1, 2025 19:00:00").getTime();
-        
-        // Update the countdown every 1 second
+        const countDownDate = new Date("August 4, 2025 14:00:00").getTime();
         const countdownFunction = setInterval(function() {
-            // Get today's date and time
             const now = new Date().getTime();
-            
-            // Find the distance between now and the count down date
             const distance = countDownDate - now;
             
-            // Time calculations for days, hours, minutes and seconds
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
             
-            // Output the result in elements
             document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
             document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
             document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
             document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
             
-            // Calculate progress percentage
-            const totalDuration = 365 * 24 * 60 * 60 * 1000; // 1 year in ms
-            const progress = Math.max(0, Math.min(100, 100 - (distance / totalDuration * 100)));
-            document.getElementById("progress-bar").style.width = progress + "%";
-            
-            // If the count down is over, write some text
             if (distance < 0) {
                 clearInterval(countdownFunction);
-                document.getElementById("countdown").innerHTML = "<div class='text-2xl font-bold text-[#ff00ff]'>¡EL TALLER HA COMENZADO!</div>";
-                document.getElementById("progress-bar").style.width = "100%";
+                const countdownElem = document.getElementById("countdown");
+                if(countdownElem) {
+                    countdownElem.innerHTML = "<div class='text-2xl font-bold text-[#ff00ff] col-span-4'>¡EL TALLER HA COMENZADO!</div>";
+                }
             }
         }, 1000);
-        
-        // Matrix-like background effect
-        document.addEventListener('DOMContentLoaded', function() {
-            const grid = document.querySelector('.matrix-grid');
-            for (let i = 0; i < 20; i++) {
-                const drop = document.createElement('div');
-                drop.style.position = 'absolute';
-                drop.style.left = Math.random() * 100 + 'vw';
-                drop.style.top = '-20px';
-                drop.style.width = '2px';
-                drop.style.height = '20px';
-                drop.style.background = 'linear-gradient(to bottom, transparent, #00e5ff)';
-                drop.style.opacity = Math.random() * 0.5 + 0.1;
-                drop.style.animation = `fall ${Math.random() * 5 + 3}s linear infinite`;
-                drop.style.animationDelay = Math.random() * 5 + 's';
-                grid.appendChild(drop);
-            }
-            
-            // Add CSS for falling animation
-            const style = document.createElement('style');
-            style.innerHTML = `
-                @keyframes fall {
-                    to { top: 100vh; }
-                }
-            `;
-            document.head.appendChild(style);
-        });
     </script>
 </body>
 </html>
