@@ -463,7 +463,8 @@
                         confirmationMessageDiv.classList.add('message-error');
                         confirmationMessageDiv.style.display = 'block'; // Mostrar el mensaje
                     }
-                } catch (error) {
+                }
+                catch (error) {
                     // Capturar errores de red (por ejemplo, si el servidor no está corriendo o hay problemas de conexión)
                     console.error('Error de red o inesperado:', error);
                     confirmationMessageDiv.textContent = 'Error de conexión. Asegúrate de que el servidor esté funcionando e inténtalo de nuevo.';
