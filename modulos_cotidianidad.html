@@ -76,7 +76,7 @@
             display: inline-block; 
             padding: 0.2rem 0.6rem; 
             border-radius: 4px; 
-            font-size: 0.875rem; /* Increased size */
+            font-size: 0.875rem;
             margin-left: 8px;
             vertical-align: middle;
         }
@@ -96,14 +96,14 @@
         }
         .module-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Wider cards */
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 1.5rem;
             margin-top: 1.5rem;
         }
         .module-card {
             background-color: rgba(19, 18, 39, 0.8);
             border-radius: 8px;
-            padding: 1.5rem; /* More padding */
+            padding: 1.5rem;
             border: 1px solid #2a2940;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -123,6 +123,47 @@
             border-radius: 8px;
             padding: 1.5rem;
         }
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            margin-top: 1rem;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
+            border-radius: 4px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 70px;
+            padding: 0.5rem;
+        }
+        .countdown-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--neon-yellow);
+            text-shadow: 0 0 8px var(--neon-yellow);
+        }
+        .countdown-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--neon-cyan);
+        }
     </style>
 </head>
 <body class="flex flex-col items-center min-h-screen p-4">
@@ -132,19 +173,19 @@
             <h2 class="font-orbitron text-2xl md:text-3xl text-white">Programa de Estudio Práctico</h2>
             <p class="mt-4 text-xl text-gray-400">Tu guía para integrar la IA en tu vida diaria</p>
             
-            <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div class="bg-[#0d0c1d] p-4 rounded-lg cyber-border">
                     <h3 class="font-orbitron text-xl neon-text-cyan mb-2">Fechas</h3>
                     <p class="text-center text-lg">
-                        <span class="text-cyan-300 block">Inicio: 5 Ago 2025</span>
-                        <span class="text-pink-300 block mt-1">Fin: 4 Ago 2026</span>
+                        <span class="text-cyan-300 block">Inicio: 4 Ago 2025</span>
+                        <span class="text-pink-300 block mt-1">Fin: 3 Ago 2026</span>
                     </p>
                 </div>
                 
                 <div class="bg-[#0d0c1d] p-4 rounded-lg cyber-border">
                     <h3 class="font-orbitron text-xl neon-text-pink mb-2">Horario</h3>
                     <p class="text-center text-cyan-300 text-lg">Martes y Jueves</p>
-                     <div class="text-center text-gray-400 text-base mt-1">
+                    <div class="text-center text-gray-400 text-base mt-1">
                         <p>Virtual: 14:00 - 16:00</p>
                         <p>Presencial: 17:00 - 19:00</p>
                     </div>
@@ -155,11 +196,34 @@
                     <p class="text-center text-cyan-300 text-lg">52 semanas</p>
                     <p class="text-center text-gray-400">(1 año académico)</p>
                 </div>
+                
+                <div class="bg-[#0d0c1d] p-4 rounded-lg cyber-border">
+                    <h3 class="font-orbitron text-xl neon-text-green mb-2">Tiempo Restante</h3>
+                    <div class="countdown-container">
+                        <div class="countdown-item">
+                            <div id="days" class="countdown-value">00</div>
+                            <div class="countdown-label">Días</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div id="hours" class="countdown-value">00</div>
+                            <div class="countdown-label">Horas</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div id="minutes" class="countdown-value">00</div>
+                            <div class="countdown-label">Min</div>
+                        </div>
+                    </div>
+                    <div class="progress-container mt-2">
+                        <div id="progress-bar" class="progress-bar"></div>
+                    </div>
+                </div>
             </div>
         </header>
 
         <div class="grid-highlight">
-            <h3 class="font-orbitron text-2xl neon-text-cyan mb-4 text-center">Cronograma Detallado</h3>
+            <h3 class="font-orbitron text-2xl neon-text-cyan mb-4 text-center">Cronograma Detallado 2025/2026</h3>
+            <p class="text-center text-gray-400 mb-6">48 temas prácticos distribuidos en 6 módulos - 2 clases por semana</p>
+            
             <div class="module-grid">
                 <!-- Modules and holidays will be injected here by JavaScript -->
             </div>
@@ -167,11 +231,39 @@
     </main>
 
     <footer class="text-center text-gray-500 text-base mt-6 mb-4">
-        <p>© 2025 - Programa IA en lo Cotidiano | Inicia: 5/8/2025 - Finaliza: 4/8/2026</p>
+        <p>© 2025 - Programa IA en lo Cotidiano | Inicia: 4/8/2025 - Finaliza: 3/8/2026</p>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Countdown timer
+            const startDate = new Date('2025-08-04T12:00:00Z');
+            const now = new Date();
+            const countdownFunction = setInterval(function() {
+                const distance = startDate - new Date();
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                
+                document.getElementById("days").textContent = days.toString().padStart(2, '0');
+                document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+                document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+                
+                // Calculate progress percentage
+                const totalDuration = 365 * 24 * 60 * 60 * 1000; // 1 year in ms
+                const progress = Math.max(0, Math.min(100, 100 - (distance / totalDuration * 100)));
+                document.getElementById("progress-bar").style.width = progress + "%";
+                
+                if (distance < 0) {
+                    clearInterval(countdownFunction);
+                    document.getElementById("days").textContent = "00";
+                    document.getElementById("hours").textContent = "00";
+                    document.getElementById("minutes").textContent = "00";
+                    document.getElementById("progress-bar").style.width = "100%";
+                }
+            }, 1000);
+            
+            // Modules data
             const modulesData = [
                 { title: "Descubrir la IA en tu día a día", topics: ["¿Qué es una IA sin jerga? Analogías", "Prompts: tu pregunta como clave", "Primera consulta efectiva", "Diferencias entre ChatGPT, Bard y Gemini", "Mitos sobre la IA desmontados", "Privacidad y datos", "Prompts avanzados", "TP: Taller exprés de prompts"] },
                 { title: "IA para organizar tu rutina", topics: ["Planificar un viaje con IA", "Listas de compras inteligentes", "Calendarios y recordatorios", "IA para seguimiento de gastos", "Creación de menús personalizados", "Organizar tu correo", "IA en transporte y movilidad", "TP: Automatiza una tarea rutinaria"] },
@@ -181,28 +273,36 @@
                 { title: "Trucos, ética y proyecto final", topics: ["Mitos falsos sobre IA doméstica", "Trucos para mejorar resultados", "Comparativa de plataformas IA", "Costos y suscripciones", "Filtros y seguridad", "Ética en uso diario", "Mantenerte actualizado", "TP Final: Asistente IA personal"] }
             ];
 
-            const startDate = new Date('2025-08-05T12:00:00Z');
-            const endDate = new Date('2026-08-04T12:00:00Z');
+            const programStart = new Date('2025-08-04T12:00:00Z');
+            const programEnd = new Date('2026-08-03T12:00:00Z');
             const recessDates = [
                 { start: new Date('2025-10-13T12:00:00Z'), end: new Date('2025-10-20T12:00:00Z'), title: "DESCANSO ACADÉMICO" },
                 { start: new Date('2025-12-20T12:00:00Z'), end: new Date('2026-01-05T12:00:00Z'), title: "VACACIONES NAVIDAD" },
                 { start: new Date('2026-03-24T12:00:00Z'), end: new Date('2026-03-31T12:00:00Z'), title: "SEMANA SANTA" }
             ];
             
+            // Generate class dates (Tuesdays and Thursdays)
             let classDates = [];
-            for (let d = new Date(startDate); d <= endDate && classDates.length < 48; d.setDate(d.getDate() + 1)) {
-                const dayOfWeek = d.getDay();
-                let isHoliday = recessDates.some(range => d >= range.start && d < range.end);
+            let currentDate = new Date(programStart);
+            while (currentDate <= programEnd && classDates.length < 48) {
+                const dayOfWeek = currentDate.getDay();
+                let isHoliday = recessDates.some(range => 
+                    currentDate >= range.start && currentDate < range.end
+                );
+                
+                // Tuesdays (2) and Thursdays (4)
                 if ((dayOfWeek === 2 || dayOfWeek === 4) && !isHoliday) {
-                    classDates.push(new Date(d));
+                    classDates.push(new Date(currentDate));
                 }
+                currentDate.setDate(currentDate.getDate() + 1);
             }
 
             const moduleGrid = document.querySelector('.module-grid');
             let topicIndex = 0;
 
+            // Create module cards
             modulesData.forEach((module, moduleIndex) => {
-                 const moduleTopics = module.topics;
+                const moduleTopics = module.topics;
                 const moduleStart = classDates[topicIndex];
                 const moduleEnd = classDates[topicIndex + moduleTopics.length - 1];
 
@@ -215,13 +315,31 @@
                     const isTP = topic.startsWith("TP");
                     const topicText = topic.replace(/TP\d*:\s*/, '');
                     const badgeClass = isTP ? 'tp-badge' : '';
-                    topicsHTML += `<li class="sub-item ${isTP ? 'tp-item' : ''}">${topicText} <span class="date-badge ${badgeClass}">${date.getDate()} ${date.toLocaleString('es-ES', { month: 'short' }).replace('.','')}</span></li>`;
+                    
+                    // Format date as "d MMM"
+                    const formattedDate = date ? 
+                        `${date.getDate()} ${date.toLocaleString('es-ES', { month: 'short' }).replace('.','')}` : 
+                        'TBD';
+                    
+                    topicsHTML += `
+                        <li class="sub-item ${isTP ? 'tp-item' : ''}">
+                            ${topicText} 
+                            <span class="date-badge ${badgeClass}">${formattedDate}</span>
+                        </li>`;
                     topicIndex++;
                 });
 
-                const evalDate = classDates[topicIndex-1]; 
+                // Add evaluation date
+                const evalDate = new Date(classDates[topicIndex-1]);
                 if(evalDate) {
-                   topicsHTML += `<li class="sub-item eval-item">Evaluación M${moduleIndex + 1} <span class="date-badge eval-badge">${evalDate.getDate() + 2} ${evalDate.toLocaleString('es-ES', { month: 'short' }).replace('.','')}</span></li>`;
+                    evalDate.setDate(evalDate.getDate() + 3);
+                    topicsHTML += `
+                        <li class="sub-item eval-item">
+                            Evaluación M${moduleIndex + 1} 
+                            <span class="date-badge eval-badge">
+                                ${evalDate.getDate()} ${evalDate.toLocaleString('es-ES', { month: 'short' }).replace('.','')}
+                            </span>
+                        </li>`;
                 }
 
                 card.innerHTML = `
@@ -229,7 +347,12 @@
                         <div>
                             <h3 class="font-orbitron text-xl ${moduleIndex % 2 === 0 ? 'text-pink-400' : 'text-cyan-400'}">MÓDULO ${moduleIndex + 1}</h3>
                             <p class="${moduleIndex % 2 === 0 ? 'text-cyan-300' : 'text-pink-300'} text-base">${module.title}</p>
-                            <p class="text-gray-400 text-sm mt-1">${moduleStart.getDate()} ${moduleStart.toLocaleString('es-ES', { month: 'short' }).replace('.','')} - ${moduleEnd.getDate()} ${moduleEnd.toLocaleString('es-ES', { month: 'short' }).replace('.','')} ${moduleEnd.getFullYear()}</p>
+                            <p class="text-gray-400 text-sm mt-1">
+                                ${moduleStart ? 
+                                    `${moduleStart.getDate()} ${moduleStart.toLocaleString('es-ES', { month: 'short' }).replace('.','')} - 
+                                    ${moduleEnd.getDate()} ${moduleEnd.toLocaleString('es-ES', { month: 'short' }).replace('.','')} ${moduleEnd.getFullYear()}` : 
+                                    'Fechas por definir'}
+                            </p>
                         </div>
                         <svg class="w-8 h-8 ${moduleIndex % 2 === 0 ? 'text-pink-400' : 'text-cyan-400'}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                     </div>
@@ -240,22 +363,25 @@
                 moduleGrid.appendChild(card);
             });
             
-             recessDates.forEach(holiday => addHolidayCard(holiday));
-             
-            function addHolidayCard(holiday) {
+            // Add holiday cards
+            recessDates.forEach(holiday => {
                 const card = document.createElement('div');
                 card.className = 'module-card holiday-item';
                 card.innerHTML = `
                     <div class="module-header flex justify-between items-center">
                         <div>
                             <h3 class="font-orbitron text-xl text-green-400">${holiday.title}</h3>
-                            <p class="text-yellow-300 text-base">Descanso académico</p>
+                            <p class="text-yellow-300 text-base">
+                                ${holiday.start.getDate()} ${holiday.start.toLocaleString('es-ES', { month: 'short' }).replace('.','')} - 
+                                ${holiday.end.getDate()} ${holiday.end.toLocaleString('es-ES', { month: 'short' }).replace('.','')}
+                            </p>
                         </div>
                     </div>
                 `;
-                 moduleGrid.appendChild(card);
-            }
+                moduleGrid.appendChild(card);
+            });
 
+            // Add toggle functionality for modules
             document.querySelectorAll('.module-card').forEach(card => {
                 const header = card.querySelector('.module-header');
                 const content = card.querySelector('.module-content');
