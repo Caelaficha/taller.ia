@@ -13,7 +13,7 @@
             --neon-cyan: #00e5ff;
             --neon-pink: #ff00ff;
             --neon-yellow: #ffff00;
-            --neon-green: #00ff00;
+            --neon-green: #39ff14;
             --dark-bg: #0d0c1d;
             --card-bg: #131227;
         }
@@ -26,194 +26,61 @@
                 radial-gradient(circle at 90% 80%, rgba(255, 0, 255, 0.05) 0%, transparent 20%);
         }
         .font-orbitron { font-family: 'Orbitron', sans-serif; }
-        .neon-text-cyan { 
-            color: var(--neon-cyan); 
-            text-shadow: 0 0 5px var(--neon-cyan), 0 0 10px var(--neon-cyan); 
-        }
-        .neon-text-pink { 
-            color: var(--neon-pink); 
-            text-shadow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-pink); 
-        }
-        .neon-text-yellow { 
-            color: var(--neon-yellow); 
-            text-shadow: 0 0 5px var(--neon-yellow), 0 0 10px var(--neon-yellow); 
-        }
-        .neon-text-green { 
-            color: var(--neon-green); 
-            text-shadow: 0 0 5px var(--neon-green), 0 0 10px var(--neon-green); 
-        }
-        .cyber-border { 
-            border: 2px solid var(--neon-cyan); 
-            box-shadow: 0 0 15px var(--neon-cyan), inset 0 0 15px var(--neon-cyan); 
-        }
-        .cyber-border-pink { 
-            border: 2px solid var(--neon-pink); 
-            box-shadow: 0 0 15px var(--neon-pink), inset 0 0 15px var(--neon-pink); 
-        }
-        .module-content { 
-            transition: max-height 0.4s ease; 
-            overflow: hidden; 
-            max-height: 0; 
-        }
-        .module-header svg { 
-            transition: transform 0.3s ease; 
-        }
-        .module-header.active svg { 
-            transform: rotate(180deg); 
-        }
-        .sub-item { 
-            padding-left: 1rem; 
-            position: relative; 
-            margin-bottom: 0.5rem;
-        }
-        .sub-item::before { 
-            content: '▹'; 
-            position: absolute; 
-            left: 0; 
-            color: var(--neon-cyan); 
-        }
-        .date-badge { 
-            display: inline-block; 
-            padding: 0.2rem 0.6rem; 
-            border-radius: 4px; 
-            font-size: 0.875rem;
-            margin-left: 8px;
-            vertical-align: middle;
-        }
-        .tp-badge { 
-            background-color: rgba(255, 255, 0, 0.1); 
-            color: var(--neon-yellow); 
-            border: 1px solid var(--neon-yellow); 
-        }
-        .eval-badge { 
-            background-color: rgba(255, 0, 0, 0.1); 
-            color: #ff5555; 
-            border: 1px solid #ff5555; 
-        }
-        .holiday-item {
-            background-color: rgba(0, 255, 0, 0.05);
-            border: 1px solid rgba(0, 255, 0, 0.3);
-        }
-        .module-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-        .module-card {
-            background-color: rgba(19, 18, 39, 0.8);
-            border-radius: 8px;
-            padding: 1.5rem;
-            border: 1px solid #2a2940;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .module-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 229, 255, 0.2);
-        }
-        .glow {
-            animation: glow 2s infinite alternate;
-        }
+        .neon-text-cyan { color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan), 0 0 10px var(--neon-cyan); }
+        .neon-text-pink { color: var(--neon-pink); text-shadow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-pink); }
+        .neon-text-yellow { color: var(--neon-yellow); text-shadow: 0 0 5px var(--neon-yellow), 0 0 10px var(--neon-yellow); }
+        .neon-text-green { color: var(--neon-green); text-shadow: 0 0 5px var(--neon-green), 0 0 10px var(--neon-green); }
+
+        .cyber-border { border: 2px solid var(--neon-cyan); box-shadow: 0 0 15px var(--neon-cyan), inset 0 0 15px var(--neon-cyan); }
+        .cyber-border-pink { border: 2px solid var(--neon-pink); box-shadow: 0 0 15px var(--neon-pink), inset 0 0 15px var(--neon-pink); }
+        
+        .module-content { transition: max-height 0.4s ease-in-out; overflow: hidden; max-height: 0; }
+        .module-header svg { transition: transform 0.3s ease; }
+        .module-header.active svg { transform: rotate(180deg); }
+
+        .sub-item { padding-left: 1.5rem; position: relative; margin-bottom: 0.5rem; }
+        .sub-item::before { content: '▹'; position: absolute; left: 0.5rem; color: var(--neon-cyan); }
+        
+        .date-badge { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.875rem; margin-left: 8px; vertical-align: middle; background-color: rgba(0, 229, 255, 0.1); color: var(--neon-cyan); border: 1px solid var(--neon-cyan); }
+        .tp-badge { background-color: rgba(255, 255, 0, 0.1); color: var(--neon-yellow); border: 1px solid var(--neon-yellow); }
+        .eval-badge { background-color: rgba(255, 0, 0, 0.1); color: #ff5555; border: 1px solid #ff5555; }
+        
+        .holiday-item { background-color: rgba(57, 255, 20, 0.05); border: 1px solid rgba(57, 255, 20, 0.3); }
+        
+        .module-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+        
+        .module-card { background-color: rgba(19, 18, 39, 0.8); border-radius: 8px; padding: 1.5rem; border: 1px solid #2a2940; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .module-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0, 229, 255, 0.2); }
+        
+        .glow { animation: glow 2s infinite alternate; }
         @keyframes glow {
-            from { box-shadow: 0 0 5px var(--neon-cyan), 0 0 10px var(--neon-cyan); }
-            to { box-shadow: 0 0 15px var(--neon-cyan), 0 0 20px var(--neon-cyan); }
+            from { box-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink), inset 0 0 10px var(--neon-pink); }
+            to { box-shadow: 0 0 20px var(--neon-pink), 0 0 30px var(--neon-pink), inset 0 0 15px var(--neon-pink); }
         }
-        .grid-highlight {
-            background: linear-gradient(45deg, rgba(0, 229, 255, 0.1), rgba(255, 0, 255, 0.1));
-            border-radius: 8px;
-            padding: 1.5rem;
-        }
-        .progress-container {
-            width: 100%;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            margin-top: 1rem;
-            overflow: hidden;
-        }
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
-            border-radius: 4px;
-            width: 0%;
-            transition: width 0.5s ease;
-        }
-        .countdown-container {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-        .countdown-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-width: 70px;
-            padding: 0.5rem;
-        }
-        .countdown-value {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--neon-yellow);
-            text-shadow: 0 0 8px var(--neon-yellow);
-        }
-        .countdown-label {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--neon-cyan);
-        }
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-        .info-card {
-            background-color: var(--dark-bg);
-            border-radius: 8px;
-            padding: 1rem;
-            border: 1px solid #2a2940;
-        }
-        .header-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .subtitle {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            text-align: center;
-            color: #ffffff;
-            margin-bottom: 1.5rem;
-        }
-        .description {
-            text-align: center;
-            font-size: 1.2rem;
-            color: #b0b0b0;
-            margin-bottom: 2rem;
-        }
+        
+        .grid-highlight { background: linear-gradient(45deg, rgba(0, 229, 255, 0.1), rgba(255, 0, 255, 0.1)); border-radius: 8px; padding: 1.5rem; }
+        
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+        .info-card { background-color: var(--dark-bg); border-radius: 8px; padding: 1rem; border: 1px solid #2a2940; }
+        
+        .header-title { font-family: 'Orbitron', sans-serif; font-size: 2.5rem; font-weight: 700; text-align: center; margin-bottom: 0.5rem; background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .subtitle { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; text-align: center; color: #ffffff; margin-bottom: 1.5rem; }
+        .description { text-align: center; font-size: 1.2rem; color: #b0b0b0; margin-bottom: 2rem; max-width: 800px; margin-left:auto; margin-right:auto;}
     </style>
 </head>
 <body class="flex flex-col items-center min-h-screen p-4">
-    <main class="w-full max-w-6xl bg-[#131227] cyber-border-pink rounded-lg overflow-hidden my-8 p-6 md:p-10 glow">
+    <main class="w-full max-w-7xl bg-[#131227] cyber-border-pink rounded-lg overflow-hidden my-8 p-6 md:p-10 glow">
         <header class="text-center mb-10">
             <h1 class="header-title">PROGRAMA AVANZADO DE IA</h1>
             <h2 class="subtitle">De Cero a Profesional</h2>
-            <p class="description">Tu camino para dominar la programación y la ciencia de datos en IA.</p>
+            <p class="description">Un recorrido exhaustivo de un año académico para dominar los fundamentos, la programación, la ciencia de datos y la implementación de soluciones de Inteligencia Artificial.</p>
             
             <div class="info-grid">
                 <div class="info-card cyber-border">
-                    <h3 class="font-orbitron text-lg neon-text-cyan mb-2">Fechas</h3>
+                    <h3 class="font-orbitron text-lg neon-text-cyan mb-2">Fechas Clave</h3>
                     <p class="text-center">
                         <span class="text-cyan-300 block">Inicio: 4 Ago 2025</span>
-                        <span class="text-pink-300 block mt-1">Fin: 3 Ago 2026</span>
+                        <span class="text-pink-300 block mt-1">Fin: 29 Jul 2026</span>
                     </p>
                 </div>
                 
@@ -227,61 +94,37 @@
                 </div>
                 
                 <div class="info-card cyber-border">
-                    <h3 class="font-orbitron text-lg neon-text-yellow mb-2">Duración</h3>
-                    <p class="text-center text-cyan-300">52 semanas</p>
-                    <p class="text-center text-gray-400">(1 año académico)</p>
-                </div>
-            
-                <!-- Contador de Tiempo Restante -->
-                <div class="info-card cyber-border">
-                    <h3 class="font-orbitron text-lg neon-text-green mb-2">Tiempo Restante</h3>
-                    <div class="countdown-container">
-                        <div class="countdown-item">
-                            <div id="daysAdvanced" class="countdown-value">42</div>
-                            <div class="countdown-label">Días</div>
-                        </div>
-                        <div class="countdown-item">
-                            <div id="hoursAdvanced" class="countdown-value">24</div>
-                            <div class="countdown-label">Horas</div>
-                        </div>
-                        <div class="countdown-item">
-                            <div id="minutesAdvanced" class="countdown-value">35</div>
-                            <div class="countdown-label">Min</div>
-                        </div>
-                    </div>
-                    <div class="progress-container mt-2">
-                        <div id="progressBarAdvanced" class="progress-bar" style="width: 12%"></div>
-                    </div>
+                    <h3 class="font-orbitron text-lg neon-text-yellow mb-2">Duración Total</h3>
+                    <p class="text-center text-cyan-300">1 Año Académico</p>
+                    <p class="text-center text-gray-400">(48 clases + proyecto final)</p>
                 </div>
             </div>
         </header>
 
         <div class="grid-highlight">
-            <h3 class="font-orbitron text-xl neon-text-pink mb-4 text-center">Cronograma Detallado</h3>
+            <h3 class="font-orbitron text-2xl neon-text-pink mb-6 text-center">Cronograma Detallado</h3>
             <div class="module-grid">
+                
                 <!-- Módulo 1 -->
                 <div class="module-card">
                     <div class="module-header flex justify-between items-center cursor-pointer active">
                         <div>
                             <h3 class="font-orbitron text-xl text-pink-400">MÓDULO 1</h3>
                             <p class="text-cyan-300 text-base">Introducción a la IA para principiantes</p>
-                            <p class="text-gray-400 text-sm mt-1">
-                                5 ago - 28 ago 2025
-                            </p>
+                            <p class="text-gray-400 text-sm mt-1">4 ago - 27 ago 2025</p>
                         </div>
                         <svg class="w-8 h-8 text-pink-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                     </div>
                     <div class="module-content mt-4" style="max-height: 1000px">
                         <ul class="text-gray-300 text-base space-y-2">
-                            <li class="sub-item">¿Qué es la IA? Ejemplos cotidianos <span class="date-badge">5 ago</span></li>
-                            <li class="sub-item">Historia y evolución breve de la IA <span class="date-badge">7 ago</span></li>
-                            <li class="sub-item">IA débil vs IA fuerte <span class="date-badge">12 ago</span></li>
-                            <li class="sub-item">Tipos de IA: Machine Learning, Deep Learning, Generativa <span class="date-badge">14 ago</span></li>
-                            <li class="sub-item">Aplicaciones prácticas: asistentes, recomendaciones, buscadores <span class="date-badge">19 ago</span></li>
-                            <li class="sub-item">Mitos y realidades de la IA <span class="date-badge">21 ago</span></li>
-                            <li class="sub-item">Riesgos básicos y sesgos <span class="date-badge">26 ago</span></li>
-                            <li class="sub-item tp-item">TP: Primer contacto práctico con chatbot <span class="date-badge tp-badge">28 ago</span></li>
-                            <li class="sub-item eval-item">Evaluación M1 <span class="date-badge eval-badge">31 ago</span></li>
+                            <li class="sub-item">¿Qué es la IA? Ejemplos cotidianos <span class="date-badge">4 ago</span></li>
+                            <li class="sub-item">Historia y evolución breve de la IA <span class="date-badge">6 ago</span></li>
+                            <li class="sub-item">IA débil vs IA fuerte <span class="date-badge">11 ago</span></li>
+                            <li class="sub-item">Tipos de IA: Machine Learning, Deep Learning, Generativa <span class="date-badge">13 ago</span></li>
+                            <li class="sub-item">Aplicaciones prácticas: asistentes, recomendaciones <span class="date-badge">18 ago</span></li>
+                            <li class="sub-item">Mitos y realidades de la IA <span class="date-badge">20 ago</span></li>
+                            <li class="sub-item">Riesgos básicos y sesgos <span class="date-badge">25 ago</span></li>
+                            <li class="sub-item">TP: Primer contacto práctico con chatbot <span class="date-badge tp-badge">27 ago</span></li>
                         </ul>
                     </div>
                 </div>
@@ -292,23 +135,20 @@
                         <div>
                             <h3 class="font-orbitron text-xl text-cyan-400">MÓDULO 2</h3>
                             <p class="text-pink-300 text-base">Herramientas de IA sin programar</p>
-                            <p class="text-gray-400 text-sm mt-1">
-                                2 sept - 26 sept 2025
-                            </p>
+                            <p class="text-gray-400 text-sm mt-1">1 sep - 24 sep 2025</p>
                         </div>
                         <svg class="w-8 h-8 text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                     </div>
                     <div class="module-content mt-4">
                         <ul class="text-gray-300 text-base space-y-2">
-                            <li class="sub-item">Asistentes de voz y reconocimiento de voz <span class="date-badge">2 sept</span></li>
-                            <li class="sub-item">Generación de texto con ChatGPT <span class="date-badge">4 sept</span></li>
-                            <li class="sub-item">Creación de imágenes con Midjourney y DALL·E <span class="date-badge">9 sept</span></li>
-                            <li class="sub-item">Traducción y corrección automática de textos <span class="date-badge">11 sept</span></li>
-                            <li class="sub-item">Resúmenes y simplificación de documentos <span class="date-badge">16 sept</span></li>
-                            <li class="sub-item">Organización de tareas y calendarios inteligentes <span class="date-badge">18 sept</span></li>
-                            <li class="sub-item">Automatización de flujos de trabajo simples <span class="date-badge">23 sept</span></li>
-                            <li class="sub-item tp-item">TP: Combinar tres herramientas <span class="date-badge tp-badge">25 sept</span></li>
-                            <li class="sub-item eval-item">Evaluación M2 <span class="date-badge eval-badge">28 sept</span></li>
+                            <li class="sub-item">Asistentes de voz y reconocimiento de voz<span class="date-badge">1 sep</span></li>
+                            <li class="sub-item">Generación de texto con ChatGPT<span class="date-badge">3 sep</span></li>
+                            <li class="sub-item">Creación de imágenes con Midjourney y DALL·E<span class="date-badge">8 sep</span></li>
+                            <li class="sub-item">Traducción y corrección automática de textos<span class="date-badge">10 sep</span></li>
+                            <li class="sub-item">Resúmenes y simplificación de documentos<span class="date-badge">15 sep</span></li>
+                            <li class="sub-item">Organización de tareas y calendarios inteligentes<span class="date-badge">17 sep</span></li>
+                            <li class="sub-item">Automatización de flujos de trabajo simples<span class="date-badge">22 sep</span></li>
+                            <li class="sub-item">TP: Combinar tres herramientas<span class="date-badge tp-badge">24 sep</span></li>
                         </ul>
                     </div>
                 </div>
@@ -317,53 +157,123 @@
                 <div class="module-card">
                     <div class="module-header flex justify-between items-center cursor-pointer">
                         <div>
-                            <h3 class="font-orbitron text-xl text-pink-400">MÓDULO 3</h3>
+                            <h3 class="font-orbitron text-xl text-yellow-400 neon-text-yellow">MÓDULO 3</h3>
                             <p class="text-cyan-300 text-base">Fundamentos de programación para IA</p>
-                            <p class="text-gray-400 text-sm mt-1">
-                                30 sept - 30 oct 2025
-                            </p>
+                            <p class="text-gray-400 text-sm mt-1">29 sep - 5 nov 2025</p>
+                        </div>
+                        <svg class="w-8 h-8 text-yellow-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                    <div class="module-content mt-4">
+                        <ul class="text-gray-300 text-base space-y-2">
+                            <li class="sub-item">Lógica de programación y pseudocódigo<span class="date-badge">29 sep</span></li>
+                            <li class="sub-item">Entorno Python: instalación y Jupyter<span class="date-badge">1 oct</span></li>
+                            <li class="sub-item">Variables, tipos de datos y operaciones<span class="date-badge">6 oct</span></li>
+                            <li class="sub-item">Estructuras de control: if/else y bucles<span class="date-badge">8 oct</span></li>
+                            <li class="sub-item text-green-400 font-bold">Receso Académico<span class="date-badge">13-17 oct</span></li>
+                            <li class="sub-item">Funciones y modularidad de código<span class="date-badge">20 oct</span></li>
+                            <li class="sub-item">Estructuras de datos: listas, tuplas, diccionarios<span class="date-badge">22 oct</span></li>
+                            <li class="sub-item">Manejo de archivos y lectura de datos<span class="date-badge">27 oct</span></li>
+                            <li class="sub-item">TP: Script para procesar un archivo CSV<span class="date-badge tp-badge">29 oct</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Módulo 4 -->
+                <div class="module-card">
+                    <div class="module-header flex justify-between items-center cursor-pointer">
+                        <div>
+                            <h3 class="font-orbitron text-xl text-green-400 neon-text-green">MÓDULO 4</h3>
+                            <p class="text-pink-300 text-base">Ciencia de datos y matemáticas para IA</p>
+                            <p class="text-gray-400 text-sm mt-1">3 nov - 26 nov 2025</p>
+                        </div>
+                        <svg class="w-8 h-8 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                    <div class="module-content mt-4">
+                        <ul class="text-gray-300 text-base space-y-2">
+                           <li class="sub-item">Estadística descriptiva: media, mediana, varianza<span class="date-badge">3 nov</span></li>
+                           <li class="sub-item">Probabilidad básica y teorema de Bayes<span class="date-badge">5 nov</span></li>
+                           <li class="sub-item">Álgebra lineal: vectores y matrices<span class="date-badge">10 nov</span></li>
+                           <li class="sub-item">Operaciones matriciales con NumPy<span class="date-badge">12 nov</span></li>
+                           <li class="sub-item">Cálculo: derivadas e intuición de gradientes<span class="date-badge">17 nov</span></li>
+                           <li class="sub-item">Visualización de datos con Matplotlib<span class="date-badge">19 nov</span></li>
+                           <li class="sub-item">Manipulación de datos con Pandas<span class="date-badge">24 nov</span></li>
+                           <li class="sub-item">TP: Análisis exploratorio de un dataset<span class="date-badge tp-badge">26 nov</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Receso de Verano -->
+                <div class="module-card holiday-item col-span-1 md:col-span-2">
+                    <div class="module-header flex justify-center items-center text-center">
+                        <div>
+                            <h3 class="font-orbitron text-2xl text-green-400 neon-text-green">RECESO DE VERANO</h3>
+                            <p class="text-yellow-300 text-base mt-2">Diciembre 2025 - Enero 2026</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Módulo 5 -->
+                <div class="module-card">
+                    <div class="module-header flex justify-between items-center cursor-pointer">
+                        <div>
+                            <h3 class="font-orbitron text-xl text-pink-400">MÓDULO 5</h3>
+                            <p class="text-cyan-300 text-base">Machine Learning y modelos</p>
+                            <p class="text-gray-400 text-sm mt-1">2 feb - 25 mar 2026</p>
                         </div>
                         <svg class="w-8 h-8 text-pink-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                     </div>
                     <div class="module-content mt-4">
                         <ul class="text-gray-300 text-base space-y-2">
-                            <li class="sub-item">Lógica de programación y pseudocódigo <span class="date-badge">30 sept</span></li>
-                            <li class="sub-item">Entorno Python: instalación y Jupyter <span class="date-badge">2 oct</span></li>
-                            <li class="sub-item">Variables, tipos de datos y operaciones básicas <span class="date-badge">7 oct</span></li>
-                            <li class="sub-item">Estructuras de control: if/else y bucles <span class="date-badge">9 oct</span></li>
-                            <li class="sub-item">Funciones y modularidad de código <span class="date-badge">14 oct</span></li>
-                            <li class="sub-item">Estructuras de datos: listas, tuplas y diccionarios <span class="date-badge">16 oct</span></li>
-                            <li class="sub-item">Manejo de archivos y lectura de datos <span class="date-badge">21 oct</span></li>
-                            <li class="sub-item tp-item">TP: Script para procesar un archivo CSV <span class="date-badge tp-badge">23 oct</span></li>
-                            <li class="sub-item eval-item">Evaluación M3 <span class="date-badge eval-badge">26 oct</span></li>
+                            <li class="sub-item">Aprendizaje supervisado, no supervisado, refuerzo<span class="date-badge">2 feb</span></li>
+                            <li class="sub-item">Regresión lineal y polinómica con scikit-learn<span class="date-badge">4 feb</span></li>
+                            <li class="sub-item">Regresión logística y clasificación binaria<span class="date-badge">9 feb</span></li>
+                            <li class="sub-item">Árboles de decisión y Random Forests<span class="date-badge">11 feb</span></li>
+                            <li class="sub-item text-green-400 font-bold">Feriado de Carnaval<span class="date-badge">16-18 feb</span></li>
+                            <li class="sub-item">Support Vector Machines y kernels<span class="date-badge">23 feb</span></li>
+                            <li class="sub-item">Redes neuronales básicas con TensorFlow/Keras<span class="date-badge">25 feb</span></li>
+                            <li class="sub-item">Fundamentos de NLP: tokenización y embeddings<span class="date-badge">2 mar</span></li>
+                            <li class="sub-item">TP: Pipeline de entrenamiento y evaluación<span class="date-badge tp-badge">4 mar</span></li>
                         </ul>
                     </div>
                 </div>
-                
-                <!-- Descanso Académico -->
-                <div class="module-card holiday-item">
-                    <div class="module-header flex justify-between items-center">
+
+                <!-- Módulo 6 -->
+                <div class="module-card">
+                    <div class="module-header flex justify-between items-center cursor-pointer">
                         <div>
-                            <h3 class="font-orbitron text-xl text-green-400">DESCANSO ACADÉMICO</h3>
-                            <p class="text-yellow-300 text-base">
-                                13 oct - 20 oct 2025
-                            </p>
+                            <h3 class="font-orbitron text-xl text-cyan-400">MÓDULO 6</h3>
+                            <p class="text-pink-300 text-base">Implementación profesional y ética</p>
+                            <p class="text-gray-400 text-sm mt-1">9 mar - 29 jul 2026</p>
                         </div>
+                        <svg class="w-8 h-8 text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                    <div class="module-content mt-4">
+                        <ul class="text-gray-300 text-base space-y-2">
+                           <li class="sub-item">Métricas de evaluación y validación cruzada<span class="date-badge">9 mar</span></li>
+                           <li class="sub-item">Preprocesamiento avanzado e imputación de datos<span class="date-badge">11 mar</span></li>
+                           <li class="sub-item">Despliegue de modelos como API con FastAPI<span class="date-badge">16 mar</span></li>
+                           <li class="sub-item">Contenerización con Docker<span class="date-badge">18 mar</span></li>
+                           <li class="sub-item">Monitoreo y detección de “model drift”<span class="date-badge">23 mar</span></li>
+                           <li class="sub-item">Ciclo de vida MLOps y versionado con DVC<span class="date-badge">25 mar</span></li>
+                           <li class="sub-item text-green-400 font-bold">Receso de Pascuas<span class="date-badge">30 mar-3 abr</span></li>
+                           <li class="sub-item">Ética y explicabilidad con LIME/SHAP<span class="date-badge">6 abr</span></li>
+                           <li class="sub-item font-bold neon-text-yellow">PROYECTO FINAL<span class="date-badge tp-badge">Inicia 8 abr</span></li>
+                           <li class="sub-item">Presentación de Proyectos<span class="date-badge eval-badge">27 y 29 jul</span></li>
+                        </ul>
                     </div>
                 </div>
+
             </div>
         </div>
     </main>
 
     <footer class="text-center text-gray-500 text-sm mt-6 mb-4">
-        <p>© 2025 - Programa Avanzado de IA | Inicia: 4/8/2025 - Finaliza: 3/8/2026</p>
+        <p>© 2025 - CAELAFICHA IA</p>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Función para añadir funcionalidad de alternar (toggle) para los módulos colapsables
             document.querySelectorAll('.module-card').forEach(card => {
-                // Excluir los "holiday-item" de la funcionalidad de toggle
                 if (card.classList.contains('holiday-item')) {
                     return;
                 }
@@ -372,7 +282,7 @@
                 if (header && content) {
                     header.addEventListener('click', () => {
                         const isActive = header.classList.contains('active');
-                        // Cerrar todos los módulos abiertos primero
+                        // Cerrar todos los demás módulos
                         document.querySelectorAll('.module-header.active').forEach(activeHeader => {
                             if (activeHeader !== header) {
                                 activeHeader.classList.remove('active');
@@ -380,7 +290,7 @@
                             }
                         });
 
-                        // Abrir o cerrar el módulo clicado
+                        // Alternar el módulo actual
                         if (!isActive) {
                             header.classList.add('active');
                             content.style.maxHeight = content.scrollHeight + 'px';
