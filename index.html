@@ -106,21 +106,23 @@
             50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
         }
-        .cyber-input {
+        .cyber-input, .cyber-select {
             background-color: rgba(10, 9, 25, 0.7);
             border: 1px solid #00e5ff;
             color: #d0d0d0;
             padding: 0.75rem 1rem;
             border-radius: 4px;
-            box-shadow: 0 0 8px rgba(0, 229, 255, 0.3), inset /* This line was cutoff in the previous diff. Not changing it as per instruction. */0 0 4px rgba(0, 229, 255, 0.2);
-            appearance: none;
+            box-shadow: 0 0 8px rgba(0, 229, 255, 0.3), inset 0 0 4px rgba(0, 229, 255, 0.2);
+            width: 100%;
+        }
+        .cyber-select {
+             appearance: none;
             -webkit-appearance: none;
             -moz-appearance: none;
             background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2300e5ff%22%20d%3D%22M287%2C146.2L146.2%2C287c-3.1%2C3.1-8.2%2C3.1-11.3%2C0c-3.1-3.1-3.1-8.2%2C0-11.3L268.4%2C140.5L134.9%2C6.9c-3.1-3.1-3.1-8.2%2C0-11.3c3.1-3.1%2C8.2-3.1%2C11.3%2C0L287%2C146.2z%22%2F%3E%3C%2Fsvg%3E');
             background-repeat: no-repeat;
             background-position: right 0.7em top 50%;
             background-size: 0.65em auto;
-            width: 100%;
         }
         .cyber-select option {
             background-color: #0d0c1d;
@@ -301,8 +303,8 @@
                 </div>
                 <button type="submit" class="cyber-button btn-cotidiano rounded-md w-full md:w-auto mt-4">Enviar Pre-inscripción</button>
             </form>
-            <div id="confirmationMessage" class="mt-6">
-                ¡Gracias por tu pre-inscripción! Nos pondremos en contacto contigo pronto.
+            <div id="confirmationMessage">
+                <!-- Mensajes de éxito o error se insertarán aquí dinámicamente -->
             </div>
         </div>
         
@@ -310,24 +312,35 @@
         
         <!-- Enlaces importantes -->
         <div class="mt-8">
-            <h2 class="font-orbitron text-2xl md:text-3xl neon-text-yellow mb-6">Accesos Directos</h2>
+            <h2 class="font-orbitron text-2xl md:text-3xl neon-text-yellow mb-6">Accesos y Comunidad</h2>
             <div class="flex flex-wrap justify-center gap-6">
-                <!-- Enlaces a programas -->
-                <a href="modulos.html" class="cyber-button btn-avanzado">Ver Programa Avanzado</a>
-                <a href="modulos_cotidianidad.html" class="cyber-button btn-cotidiano">Ver IA Cotidiana</a>
                 <a href="flyerwp.html" class="cyber-button btn-flyer">Flyer para Compartir</a>
                 
-                <!-- Bloque de autenticación de Django -->
-                {% if user.is_authenticated %}
-                    <form action="{% url 'auth:logout' %}" method="post" class="inline-block"> {# CORREGIDO A 'auth:logout' #}
-                        {% csrf_token %}
-                        <button type="submit" class="cyber-button btn-auth">Cerrar Sesión ({{ user.username }})</button>
-                    </form>
-                    <a href="aula.html" class="cyber-button btn-aula">Ir al Aula Virtual</a> {# Este sería tu botón para el aula si el usuario está logueado #}
-                {% else %}
-                    <a href="{% url 'auth:login' %}" class="cyber-button btn-auth">Iniciar Sesión</a> {# CORREGIDO A 'auth:login' #}
-                    <a href="{% url 'auth:register' %}" class="cyber-button btn-auth">Registrarse</a> {# CORREGIDO A 'auth:register' #}
-                {% endif %}
+                <!--
+                    NOTA PARA EL DESARROLLADOR:
+                    El siguiente bloque es una simulación para la vista previa estática.
+                    Cuando integres esto en tu proyecto Django, DEBES REEMPLAZAR este bloque
+                    con tu lógica de plantillas original (la que está comentada debajo)
+                    para que la autenticación funcione correctamente.
+                -->
+                <!-- Simulación para la vista previa (usuario no autenticado) -->
+                <a href="#" class="cyber-button btn-auth">Iniciar Sesión</a>
+                <a href="#" class="cyber-button btn-auth">Registrarse</a>
+
+
+                <!--
+                    BLOQUE ORIGINAL DE DJANGO - DESCOMENTAR EN PRODUCCIÓN
+                    {% if user.is_authenticated %}
+                        <form action="{% url 'auth:logout' %}" method="post" class="inline-block">
+                            {% csrf_token %}
+                            <button type="submit" class="cyber-button btn-auth">Cerrar Sesión ({{ user.username }})</button>
+                        </form>
+                        <a href="aula.html" class="cyber-button btn-aula">Ir al Aula Virtual</a>
+                    {% else %}
+                        <a href="{% url 'auth:login' %}" class="cyber-button btn-auth">Iniciar Sesión</a>
+                        <a href="{% url 'auth:register' %}" class="cyber-button btn-auth">Registrarse</a>
+                    {% endif %}
+                -->
             </div>
         </div>
     </main>
@@ -367,8 +380,6 @@
 
             // --- Lógica de integración con Django Backend para el formulario de pre-inscripción ---
 
-            // Función para obtener el token CSRF de las cookies (necesario para solicitudes POST en Django)
-            // Esta función es importante cuando Django sirve la plantilla.
             function getCookie(name) {
                 let cookieValue = null;
                 if (document.cookie && document.cookie !== '') {
@@ -384,81 +395,62 @@
                 return cookieValue;
             }
 
-            // Obtener el formulario de pre-inscripción y el div de mensajes
             const preRegistrationForm = document.getElementById('preRegistrationForm');
             const confirmationMessageDiv = document.getElementById('confirmationMessage');
 
-            // Escuchar el evento de envío del formulario
-            preRegistrationForm.addEventListener('submit', async function(event) {
-                event.preventDefault(); // Prevenir el envío por defecto del formulario
+            if (preRegistrationForm) {
+                preRegistrationForm.addEventListener('submit', async function(event) {
+                    event.preventDefault(); 
 
-                // Limpiar cualquier mensaje anterior
-                confirmationMessageDiv.style.display = 'none';
-                confirmationMessageDiv.classList.remove('message-success', 'message-error');
+                    confirmationMessageDiv.style.display = 'none';
+                    confirmationMessageDiv.className = ''; // Limpiar clases previas
 
-                // Recopilar los datos del formulario
-                const fullName = document.getElementById('fullName').value;
-                const email = document.getElementById('email').value;
-                const programInterest = document.getElementById('programInterest').value;
+                    const formData = new FormData(preRegistrationForm);
+                    const data = {
+                        nombre_completo: formData.get('fullName'),
+                        correo_electronico: formData.get('email'),
+                        programa_interes: formData.get('programInterest'),
+                    };
 
-                // Preparar los datos para enviar al backend (deben coincidir con los campos de tu modelo Django)
-                const data = {
-                    nombre_completo: fullName,
-                    correo_electronico: email,
-                    programa_interes: programInterest,
-                };
+                    const csrftoken = getCookie('csrftoken');
 
-                const csrftoken = getCookie('csrftoken'); // Obtener el token CSRF
+                    try {
+                        const response = await fetch('http://127.0.0.1:8001/api/preinscripcion/', { 
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRFToken': csrftoken,
+                            },
+                            body: JSON.stringify(data),
+                        });
 
-                try {
-                    // Realizar la solicitud POST a la API de Django
-                    // Asegúrate de que el puerto sea el correcto (8001 en este ejemplo)
-                    const response = await fetch('http://127.0.0.1:8001/api/preinscripcion/', { 
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRFToken': csrftoken, // Incluir el token CSRF
-                        },
-                        body: JSON.stringify(data),
-                    });
-
-                    if (response.ok) { // Si la respuesta es exitosa (código 2xx)
                         const result = await response.json();
-                        console.log('Pre-inscripción exitosa:', result);
 
-                        // Mostrar mensaje de éxito al usuario
-                        confirmationMessageDiv.textContent = '¡Gracias por tu pre-inscripción! Datos guardados.';
-                        confirmationMessageDiv.classList.add('message-success');
-                        confirmationMessageDiv.style.display = 'block';
-                        
-                        preRegistrationForm.reset(); // Limpiar el formulario
-                    } else {
-                        // Si la respuesta no es exitosa (código 4xx, 5xx)
-                        const errorData = await response.json();
-                        console.error('Error en la pre-inscripción:', response.status, errorData);
-
-                        let errorMessage = 'Hubo un error al procesar tu pre-inscripción.';
-                        if (errorData.correo_electronico && Array.isArray(errorData.correo_electronico) && errorData.correo_electronico.includes('pre inscripcion with this correo electronico already exists.')) {
-                            errorMessage = '¡Ups! Este correo electrónico ya está pre-inscrito.';
-                        } else if (errorData.detail) {
-                            errorMessage = `Error: ${errorData.detail}`;
-                        } else if (typeof errorData === 'object') {
-                            errorMessage = "Error de validación: " + Object.values(errorData).flat().join('; ');
+                        if (response.ok) {
+                            confirmationMessageDiv.textContent = '¡Gracias por tu pre-inscripción! Datos guardados.';
+                            confirmationMessageDiv.classList.add('message-success');
+                            preRegistrationForm.reset(); 
+                        } else {
+                            let errorMessage = 'Hubo un error al procesar tu pre-inscripción.';
+                            if (result.correo_electronico) {
+                                errorMessage = '¡Ups! Este correo electrónico ya está pre-inscrito.';
+                            } else if (typeof result === 'object') {
+                                // Construir un mensaje de error más detallado
+                                errorMessage = Object.entries(result).map(([key, value]) => `${key}: ${value}`).join(' ');
+                            }
+                            confirmationMessageDiv.textContent = errorMessage;
+                            confirmationMessageDiv.classList.add('message-error');
                         }
-                        
-                        confirmationMessageDiv.textContent = errorMessage;
+                    } catch (error) {
+                        console.error('Error de red o inesperado:', error);
+                        confirmationMessageDiv.textContent = 'Error de conexión. Asegúrate de que el servidor esté funcionando.';
                         confirmationMessageDiv.classList.add('message-error');
-                        confirmationMessageDiv.style.display = 'block';
+                    } finally {
+                         confirmationMessageDiv.style.display = 'block';
                     }
-                } catch (error) {
-                    // Capturar errores de red
-                    console.error('Error de red o inesperado:', error);
-                    confirmationMessageDiv.textContent = 'Error de conexión. Asegúrate de que el servidor esté funcionando e inténtalo de nuevo.';
-                    confirmationMessageDiv.classList.add('message-error');
-                    confirmationMessageDiv.style.display = 'block';
-                }
-            });
-        }); // Fin de DOMContentLoaded
+                });
+            }
+        }); 
     </script>
 </body>
 </html>
