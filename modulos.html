@@ -33,8 +33,10 @@
 
         .cyber-border { border: 2px solid var(--neon-cyan); box-shadow: 0 0 15px var(--neon-cyan), inset 0 0 15px var(--neon-cyan); }
         .cyber-border-pink { border: 2px solid var(--neon-pink); box-shadow: 0 0 15px var(--neon-pink), inset 0 0 15px var(--neon-pink); }
+        .cyber-border-yellow { border: 2px solid var(--neon-yellow); box-shadow: 0 0 15px var(--neon-yellow), inset 0 0 15px var(--neon-yellow); }
         
         .module-content { transition: max-height 0.4s ease-in-out; overflow: hidden; max-height: 0; }
+        .module-header { cursor: pointer; }
         .module-header svg { transition: transform 0.3s ease; }
         .module-header.active svg { transform: rotate(180deg); }
 
@@ -73,14 +75,14 @@
         <header class="text-center mb-10">
             <h1 class="header-title">PROGRAMA AVANZADO DE IA</h1>
             <h2 class="subtitle">De Cero a Profesional</h2>
-            <p class="description">Un recorrido exhaustivo de un año académico para dominar los fundamentos, la programación, la ciencia de datos y la implementación de soluciones de Inteligencia Artificial.</p>
+            <p class="description">Un viaje inmersivo de un año para dominar la programación, la ciencia de datos y la implementación de soluciones de IA, desde los fundamentos hasta el despliegue profesional.</p>
             
             <div class="info-grid">
                 <div class="info-card cyber-border">
                     <h3 class="font-orbitron text-lg neon-text-cyan mb-2">Fechas Clave</h3>
                     <p class="text-center">
                         <span class="text-cyan-300 block">Inicio: 4 Ago 2025</span>
-                        <span class="text-pink-300 block mt-1">Fin: 29 Jul 2026</span>
+                        <span class="text-pink-300 block mt-1">Fin: 30 Jul 2026</span>
                     </p>
                 </div>
                 
@@ -98,6 +100,12 @@
                     <p class="text-center text-cyan-300">1 Año Académico</p>
                     <p class="text-center text-gray-400">(48 clases + proyecto final)</p>
                 </div>
+
+                <div class="info-card cyber-border">
+                    <h3 class="font-orbitron text-lg neon-text-green mb-2">Certificación Final</h3>
+                    <p class="text-center text-cyan-300">Constancia de Participación</p>
+                    <p class="text-center text-gray-400 mt-1">Entrega: Agosto 2026</p>
+                </div>
             </div>
         </header>
 
@@ -107,104 +115,103 @@
                 
                 <!-- Módulo 1 -->
                 <div class="module-card">
-                    <div class="module-header flex justify-between items-center cursor-pointer active">
+                    <div class="module-header flex justify-between items-center active">
                         <div>
                             <h3 class="font-orbitron text-xl text-pink-400">MÓDULO 1</h3>
-                            <p class="text-cyan-300 text-base">Introducción a la IA para principiantes</p>
-                            <p class="text-gray-400 text-sm mt-1">4 ago - 27 ago 2025</p>
+                            <p class="text-cyan-300 text-base">Fundamentos de Programación y Matemáticas</p>
+                            <p class="text-gray-400 text-sm mt-1">4 ago - 1 sep 2025</p>
                         </div>
                         <svg class="w-8 h-8 text-pink-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                     </div>
-                    <div class="module-content mt-4" style="max-height: 1000px">
+                    <div class="module-content mt-4" style="max-height: 1000px;">
                         <ul class="text-gray-300 text-base space-y-2">
-                            <li class="sub-item">¿Qué es la IA? Ejemplos cotidianos <span class="date-badge">4 ago</span></li>
-                            <li class="sub-item">Historia y evolución breve de la IA <span class="date-badge">6 ago</span></li>
-                            <li class="sub-item">IA débil vs IA fuerte <span class="date-badge">11 ago</span></li>
-                            <li class="sub-item">Tipos de IA: Machine Learning, Deep Learning, Generativa <span class="date-badge">13 ago</span></li>
-                            <li class="sub-item">Aplicaciones prácticas: asistentes, recomendaciones <span class="date-badge">18 ago</span></li>
-                            <li class="sub-item">Mitos y realidades de la IA <span class="date-badge">20 ago</span></li>
-                            <li class="sub-item">Riesgos básicos y sesgos <span class="date-badge">25 ago</span></li>
-                            <li class="sub-item">TP: Primer contacto práctico con chatbot <span class="date-badge tp-badge">27 ago</span></li>
+                            <li class="sub-item">Python Avanzado: Decoradores y POO <span class="date-badge">4 ago</span></li>
+                            <li class="sub-item">NumPy: Del array al broadcasting <span class="date-badge">6 ago</span></li>
+                            <li class="sub-item">Pandas: Indexación avanzada y multi-índices <span class="date-badge">11 ago</span></li>
+                            <li class="sub-item">Pandas: Joins, merges y group-by <span class="date-badge">13 ago</span></li>
+                            <li class="sub-item">Matplotlib y Seaborn: Visualización efectiva <span class="date-badge">20 ago</span></li>
+                            <li class="sub-item">Estadística y Probabilidad con SciPy <span class="date-badge">25 ago</span></li>
+                            <li class="sub-item">Álgebra Lineal: Vectores y matrices <span class="date-badge">27 ago</span></li>
+                            <li class="sub-item">TP: Análisis Exploratorio de Datos (EDA) <span class="date-badge tp-badge">1 sep</span></li>
                         </ul>
                     </div>
                 </div>
                 
                 <!-- Módulo 2 -->
                 <div class="module-card">
-                    <div class="module-header flex justify-between items-center cursor-pointer">
+                    <div class="module-header flex justify-between items-center">
                         <div>
                             <h3 class="font-orbitron text-xl text-cyan-400">MÓDULO 2</h3>
-                            <p class="text-pink-300 text-base">Herramientas de IA sin programar</p>
-                            <p class="text-gray-400 text-sm mt-1">1 sep - 24 sep 2025</p>
+                            <p class="text-pink-300 text-base">Machine Learning Clásico</p>
+                            <p class="text-gray-400 text-sm mt-1">3 sep - 29 sep 2025</p>
                         </div>
                         <svg class="w-8 h-8 text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                     </div>
                     <div class="module-content mt-4">
                         <ul class="text-gray-300 text-base space-y-2">
-                            <li class="sub-item">Asistentes de voz y reconocimiento de voz<span class="date-badge">1 sep</span></li>
-                            <li class="sub-item">Generación de texto con ChatGPT<span class="date-badge">3 sep</span></li>
-                            <li class="sub-item">Creación de imágenes con Midjourney y DALL·E<span class="date-badge">8 sep</span></li>
-                            <li class="sub-item">Traducción y corrección automática de textos<span class="date-badge">10 sep</span></li>
-                            <li class="sub-item">Resúmenes y simplificación de documentos<span class="date-badge">15 sep</span></li>
-                            <li class="sub-item">Organización de tareas y calendarios inteligentes<span class="date-badge">17 sep</span></li>
-                            <li class="sub-item">Automatización de flujos de trabajo simples<span class="date-badge">22 sep</span></li>
-                            <li class="sub-item">TP: Combinar tres herramientas<span class="date-badge tp-badge">24 sep</span></li>
+                           <li class="sub-item">Regresión Lineal y Regularización (Ridge, Lasso) <span class="date-badge">3 sep</span></li>
+                           <li class="sub-item">Regresión Logística y Métricas de Clasificación <span class="date-badge">8 sep</span></li>
+                           <li class="sub-item">Árboles de Decisión y Random Forests <span class="date-badge">10 sep</span></li>
+                           <li class="sub-item">Support Vector Machines (SVM) y Kernels <span class="date-badge">15 sep</span></li>
+                           <li class="sub-item">Gradient Boosting (XGBoost, LightGBM) <span class="date-badge">17 sep</span></li>
+                           <li class="sub-item">Clustering: K-Means y DBSCAN <span class="date-badge">22 sep</span></li>
+                           <li class="sub-item">Reducción de Dimensionalidad: PCA y t-SNE <span class="date-badge">24 sep</span></li>
+                           <li class="sub-item">TP: Pipeline de Clasificación con Validación Cruzada <span class="date-badge tp-badge">29 sep</span></li>
                         </ul>
                     </div>
                 </div>
                 
                 <!-- Módulo 3 -->
                 <div class="module-card">
-                    <div class="module-header flex justify-between items-center cursor-pointer">
+                    <div class="module-header flex justify-between items-center">
                         <div>
                             <h3 class="font-orbitron text-xl text-yellow-400 neon-text-yellow">MÓDULO 3</h3>
-                            <p class="text-cyan-300 text-base">Fundamentos de programación para IA</p>
-                            <p class="text-gray-400 text-sm mt-1">29 sep - 5 nov 2025</p>
+                            <p class="text-cyan-300 text-base">Redes Neuronales y Deep Learning</p>
+                            <p class="text-gray-400 text-sm mt-1">1 oct - 29 oct 2025</p>
                         </div>
                         <svg class="w-8 h-8 text-yellow-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                     </div>
                     <div class="module-content mt-4">
                         <ul class="text-gray-300 text-base space-y-2">
-                            <li class="sub-item">Lógica de programación y pseudocódigo<span class="date-badge">29 sep</span></li>
-                            <li class="sub-item">Entorno Python: instalación y Jupyter<span class="date-badge">1 oct</span></li>
-                            <li class="sub-item">Variables, tipos de datos y operaciones<span class="date-badge">6 oct</span></li>
-                            <li class="sub-item">Estructuras de control: if/else y bucles<span class="date-badge">8 oct</span></li>
-                            <li class="sub-item text-green-400 font-bold">Receso Académico<span class="date-badge">13-17 oct</span></li>
-                            <li class="sub-item">Funciones y modularidad de código<span class="date-badge">20 oct</span></li>
-                            <li class="sub-item">Estructuras de datos: listas, tuplas, diccionarios<span class="date-badge">22 oct</span></li>
-                            <li class="sub-item">Manejo de archivos y lectura de datos<span class="date-badge">27 oct</span></li>
-                            <li class="sub-item">TP: Script para procesar un archivo CSV<span class="date-badge tp-badge">29 oct</span></li>
+                            <li class="sub-item">De la Neurona al Perceptrón Multicapa (MLP) <span class="date-badge">1 oct</span></li>
+                            <li class="sub-item">Keras/TensorFlow: Construcción de una red <span class="date-badge">6 oct</span></li>
+                            <li class="sub-item">Función de Pérdida y Descenso de Gradiente <span class="date-badge">8 oct</span></li>
+                            <li class="sub-item">Optimización: Adam, RMSprop y Momentum <span class="date-badge">15 oct</span></li>
+                            <li class="sub-item">Regularización: Dropout y Early Stopping <span class="date-badge">20 oct</span></li>
+                            <li class="sub-item">Ajuste de Hiperparámetros <span class="date-badge">22 oct</span></li>
+                            <li class="sub-item">Arquitecturas de Redes: Profundidad vs. Ancho <span class="date-badge">27 oct</span></li>
+                            <li class="sub-item">TP: Clasificador de imágenes (Fashion MNIST) <span class="date-badge tp-badge">29 oct</span></li>
                         </ul>
                     </div>
                 </div>
-
+                
                 <!-- Módulo 4 -->
                 <div class="module-card">
-                    <div class="module-header flex justify-between items-center cursor-pointer">
+                    <div class="module-header flex justify-between items-center">
                         <div>
                             <h3 class="font-orbitron text-xl text-green-400 neon-text-green">MÓDULO 4</h3>
-                            <p class="text-pink-300 text-base">Ciencia de datos y matemáticas para IA</p>
-                            <p class="text-gray-400 text-sm mt-1">3 nov - 26 nov 2025</p>
+                            <p class="text-pink-300 text-base">Visión por Computadora (CV)</p>
+                            <p class="text-gray-400 text-sm mt-1">3 nov - 1 dic 2025</p>
                         </div>
                         <svg class="w-8 h-8 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                     </div>
                     <div class="module-content mt-4">
                         <ul class="text-gray-300 text-base space-y-2">
-                           <li class="sub-item">Estadística descriptiva: media, mediana, varianza<span class="date-badge">3 nov</span></li>
-                           <li class="sub-item">Probabilidad básica y teorema de Bayes<span class="date-badge">5 nov</span></li>
-                           <li class="sub-item">Álgebra lineal: vectores y matrices<span class="date-badge">10 nov</span></li>
-                           <li class="sub-item">Operaciones matriciales con NumPy<span class="date-badge">12 nov</span></li>
-                           <li class="sub-item">Cálculo: derivadas e intuición de gradientes<span class="date-badge">17 nov</span></li>
-                           <li class="sub-item">Visualización de datos con Matplotlib<span class="date-badge">19 nov</span></li>
-                           <li class="sub-item">Manipulación de datos con Pandas<span class="date-badge">24 nov</span></li>
-                           <li class="sub-item">TP: Análisis exploratorio de un dataset<span class="date-badge tp-badge">26 nov</span></li>
+                           <li class="sub-item">Convoluciones: Filtros y Feature Maps <span class="date-badge">3 nov</span></li>
+                           <li class="sub-item">Redes Convolucionales (CNNs): Arquitectura <span class="date-badge">5 nov</span></li>
+                           <li class="sub-item">Arquitecturas Clásicas: LeNet, AlexNet, VGG <span class="date-badge">10 nov</span></li>
+                           <li class="sub-item">Transfer Learning y Fine-Tuning <span class="date-badge">12 nov</span></li>
+                           <li class="sub-item">Data Augmentation para evitar sobreajuste <span class="date-badge">17 nov</span></li>
+                           <li class="sub-item">Detección de Objetos: R-CNN y YOLO <span class="date-badge">19 nov</span></li>
+                           <li class="sub-item">Segmentación de Imágenes: U-Net <span class="date-badge">26 nov</span></li>
+                           <li class="sub-item">TP: Detector de objetos personalizado <span class="date-badge tp-badge">1 dic</span></li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Receso de Verano -->
                 <div class="module-card holiday-item col-span-1 md:col-span-2">
-                    <div class="module-header flex justify-center items-center text-center">
+                    <div class="module-header flex justify-center items-center text-center p-4">
                         <div>
                             <h3 class="font-orbitron text-2xl text-green-400 neon-text-green">RECESO DE VERANO</h3>
                             <p class="text-yellow-300 text-base mt-2">Diciembre 2025 - Enero 2026</p>
@@ -214,50 +221,67 @@
                 
                 <!-- Módulo 5 -->
                 <div class="module-card">
-                    <div class="module-header flex justify-between items-center cursor-pointer">
+                    <div class="module-header flex justify-between items-center">
                         <div>
                             <h3 class="font-orbitron text-xl text-pink-400">MÓDULO 5</h3>
-                            <p class="text-cyan-300 text-base">Machine Learning y modelos</p>
-                            <p class="text-gray-400 text-sm mt-1">2 feb - 25 mar 2026</p>
+                            <p class="text-cyan-300 text-base">Procesamiento de Lenguaje Natural (NLP)</p>
+                            <p class="text-gray-400 text-sm mt-1">2 feb - 26 feb 2026</p>
                         </div>
                         <svg class="w-8 h-8 text-pink-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                     </div>
                     <div class="module-content mt-4">
                         <ul class="text-gray-300 text-base space-y-2">
-                            <li class="sub-item">Aprendizaje supervisado, no supervisado, refuerzo<span class="date-badge">2 feb</span></li>
-                            <li class="sub-item">Regresión lineal y polinómica con scikit-learn<span class="date-badge">4 feb</span></li>
-                            <li class="sub-item">Regresión logística y clasificación binaria<span class="date-badge">9 feb</span></li>
-                            <li class="sub-item">Árboles de decisión y Random Forests<span class="date-badge">11 feb</span></li>
-                            <li class="sub-item text-green-400 font-bold">Feriado de Carnaval<span class="date-badge">16-18 feb</span></li>
-                            <li class="sub-item">Support Vector Machines y kernels<span class="date-badge">23 feb</span></li>
-                            <li class="sub-item">Redes neuronales básicas con TensorFlow/Keras<span class="date-badge">25 feb</span></li>
-                            <li class="sub-item">Fundamentos de NLP: tokenización y embeddings<span class="date-badge">2 mar</span></li>
-                            <li class="sub-item">TP: Pipeline de entrenamiento y evaluación<span class="date-badge tp-badge">4 mar</span></li>
+                            <li class="sub-item">Del Texto a Vectores: TF-IDF y Bag-of-Words <span class="date-badge">2 feb</span></li>
+                            <li class="sub-item">Word Embeddings: Word2Vec y GloVe <span class="date-badge">4 feb</span></li>
+                            <li class="sub-item">Redes Neuronales Recurrentes (RNNs) y LSTMs <span class="date-badge">9 feb</span></li>
+                            <li class="sub-item">El Mecanismo de Atención <span class="date-badge">11 feb</span></li>
+                            <li class="sub-item">La Arquitectura Transformer <span class="date-badge">18 feb</span></li>
+                            <li class="sub-item">Fine-Tuning de LLMs: BERT y GPT <span class="date-badge">23 feb</span></li>
+                            <li class="sub-item">Generación de Texto: Beam Search y Sampling <span class="date-badge">25 feb</span></li>
+                            <li class="sub-item">TP: Clasificador de sentimientos con Transformers <span class="date-badge tp-badge">26 feb</span></li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Módulo 6 -->
                 <div class="module-card">
-                    <div class="module-header flex justify-between items-center cursor-pointer">
+                    <div class="module-header flex justify-between items-center">
                         <div>
                             <h3 class="font-orbitron text-xl text-cyan-400">MÓDULO 6</h3>
-                            <p class="text-pink-300 text-base">Implementación profesional y ética</p>
-                            <p class="text-gray-400 text-sm mt-1">9 mar - 29 jul 2026</p>
+                            <p class="text-pink-300 text-base">MLOps y Despliegue Profesional</p>
+                            <p class="text-gray-400 text-sm mt-1">4 mar - 8 abr 2026</p>
                         </div>
                         <svg class="w-8 h-8 text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                     </div>
                     <div class="module-content mt-4">
                         <ul class="text-gray-300 text-base space-y-2">
-                           <li class="sub-item">Métricas de evaluación y validación cruzada<span class="date-badge">9 mar</span></li>
-                           <li class="sub-item">Preprocesamiento avanzado e imputación de datos<span class="date-badge">11 mar</span></li>
-                           <li class="sub-item">Despliegue de modelos como API con FastAPI<span class="date-badge">16 mar</span></li>
-                           <li class="sub-item">Contenerización con Docker<span class="date-badge">18 mar</span></li>
-                           <li class="sub-item">Monitoreo y detección de “model drift”<span class="date-badge">23 mar</span></li>
-                           <li class="sub-item">Ciclo de vida MLOps y versionado con DVC<span class="date-badge">25 mar</span></li>
-                           <li class="sub-item text-green-400 font-bold">Receso de Pascuas<span class="date-badge">30 mar-3 abr</span></li>
-                           <li class="sub-item">Ética y explicabilidad con LIME/SHAP<span class="date-badge">6 abr</span></li>
-                           <li class="sub-item font-bold neon-text-yellow">PROYECTO FINAL<span class="date-badge tp-badge">Inicia 8 abr</span></li>
+                           <li class="sub-item">Creando una API para tu modelo con FastAPI <span class="date-badge">4 mar</span></li>
+                           <li class="sub-item">Contenerización de aplicaciones con Docker <span class="date-badge">9 mar</span></li>
+                           <li class="sub-item">Introducción al CI/CD con GitHub Actions <span class="date-badge">11 mar</span></li>
+                           <li class="sub-item">Versionado de Datos y Modelos (DVC) <span class="date-badge">16 mar</span></li>
+                           <li class="sub-item">Monitoreo de Modelos: Detección de Drift <span class="date-badge">18 mar</span></li>
+                           <li class="sub-item">Orquestación básica con Docker Compose <span class="date-badge">23 mar</span></li>
+                           <li class="sub-item">Ética y Explicabilidad: LIME y SHAP <span class="date-badge">25 mar</span></li>
+                           <li class="sub-item">TP: Despliegue de un modelo en un contenedor <span class="date-badge tp-badge">8 abr</span></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Proyecto Final -->
+                <div class="module-card cyber-border-yellow col-span-1 md:col-span-3">
+                    <div class="module-header flex justify-center items-center text-center p-4">
+                        <div>
+                            <h3 class="font-orbitron text-2xl neon-text-yellow">PROYECTO FINAL INTEGRADOR</h3>
+                            <p class="text-cyan-300 text-base mt-2">Aplicación Práctica de Conocimientos</p>
+                            <p class="text-gray-400 text-sm mt-1">13 abr - 29 jul 2026</p>
+                        </div>
+                    </div>
+                     <div class="mt-2 text-center">
+                        <ul class="text-gray-300 text-base space-y-2 inline-block text-left">
+                           <li class="sub-item">Definición de la idea y alcance del proyecto.</li>
+                           <li class="sub-item">Tutorías y seguimiento semanal de avances.</li>
+                           <li class="sub-item">Desarrollo, entrenamiento y despliegue.</li>
+                           <li class="sub-item">Preparación de la presentación final.</li>
                            <li class="sub-item">Presentación de Proyectos<span class="date-badge eval-badge">27 y 29 jul</span></li>
                         </ul>
                     </div>
@@ -273,33 +297,32 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            document.querySelectorAll('.module-card').forEach(card => {
-                if (card.classList.contains('holiday-item')) {
-                    return;
+            document.querySelectorAll('.module-header').forEach(header => {
+                if(header.closest('.holiday-item') || header.closest('.cyber-border-yellow')) {
+                    return; // No hacer nada si es un feriado o el proyecto final
                 }
-                const header = card.querySelector('.module-header');
-                const content = card.querySelector('.module-content');
-                if (header && content) {
-                    header.addEventListener('click', () => {
-                        const isActive = header.classList.contains('active');
-                        // Cerrar todos los demás módulos
-                        document.querySelectorAll('.module-header.active').forEach(activeHeader => {
-                            if (activeHeader !== header) {
-                                activeHeader.classList.remove('active');
-                                activeHeader.nextElementSibling.style.maxHeight = null;
-                            }
-                        });
+                
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const isActive = header.classList.contains('active');
 
-                        // Alternar el módulo actual
-                        if (!isActive) {
-                            header.classList.add('active');
-                            content.style.maxHeight = content.scrollHeight + 'px';
-                        } else {
-                            header.classList.remove('active');
-                            content.style.maxHeight = null;
+                    // Cerrar todos los demás módulos
+                    document.querySelectorAll('.module-header.active').forEach(activeHeader => {
+                        if (activeHeader !== header) {
+                            activeHeader.classList.remove('active');
+                            activeHeader.nextElementSibling.style.maxHeight = null;
                         }
                     });
-                }
+
+                    // Alternar el módulo actual
+                    if (!isActive) {
+                        header.classList.add('active');
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    } else {
+                        header.classList.remove('active');
+                        content.style.maxHeight = null;
+                    }
+                });
             });
         });
     </script>
