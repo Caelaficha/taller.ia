@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- Creado con Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+    <!-- 
+      NOTA: Se corrigieron las fechas <lastmod> a la fecha y hora actuales.
+      Las fechas futuras causan un error de validación en Google Search Console.
+    -->
+    <url>
+        <loc>https://caelaficha.com/</loc>
+        <lastmod>2025-07-04T15:47:00-03:00</lastmod>
+    </url>
+    <url>
+        <loc>https://caelaficha.com/modulos_cotidianidad.html</loc>
+        <lastmod>2025-07-04T15:47:00-03:00</lastmod>
+    </url>
+    <url>
+        <loc>https://caelaficha.com/modulos.html</loc>
+        <lastmod>2025-07-04T15:47:00-03:00</lastmod>
+    </url>
+    <url>
+        <loc>https://caelaficha.com/flyerwp.html</loc>
+        <lastmod>2025-07-04T15:47:00-03:00</lastmod>
+    </url>
+</urlset>
